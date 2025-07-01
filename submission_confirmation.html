@@ -343,15 +343,15 @@
 
             // Display confirmation details
             document.getElementById('displayRequestId').textContent = requestId || '#REQ-XXXXXX';
-            document.getElementById('displayProjectName').textContent = projectName || 'N/A';
+            document.getElementById('displayProjectName').textContent = decodeURIComponent(projectName || 'N/A');
             document.getElementById('displayProjectBudget').textContent = projectBudget ? `${parseInt(projectBudget).toLocaleString()} บาท` : 'N/A';
-            document.getElementById('displayMethodText').textContent = methodText || 'N/A';
-            document.getElementById('displayUrgency').textContent = urgency || 'N/A'; // NEW
-            document.getElementById('displayProcurementType').textContent = procurementType || 'N/A'; // NEW
-            document.getElementById('displayVendorChar').textContent = vendorChar || 'N/A'; // NEW
-            document.getElementById('displayProjectDescription').textContent = projectDescription || 'N/A'; // NEW
-            document.getElementById('displayContactPerson').textContent = contactPerson || 'N/A'; // NEW
-            document.getElementById('displayContactTel').textContent = contactTel || 'N/A'; // NEW
+            document.getElementById('displayMethodText').textContent = decodeURIComponent(methodText || 'N/A');
+            document.getElementById('displayUrgency').textContent = decodeURIComponent(urgency || 'N/A'); // NEW
+            document.getElementById('displayProcurementType').textContent = decodeURIComponent(procurementType || 'N/A'); // NEW
+            document.getElementById('displayVendorChar').textContent = decodeURIComponent(vendorChar || 'N/A'); // NEW
+            document.getElementById('displayProjectDescription').textContent = decodeURIComponent(projectDescription || 'N/A'); // NEW
+            document.getElementById('displayContactPerson').textContent = decodeURIComponent(contactPerson || 'N/A'); // NEW
+            document.getElementById('displayContactTel').textContent = decodeURIComponent(contactTel || 'N/A'); // NEW
         });
     </script>
 </body>
