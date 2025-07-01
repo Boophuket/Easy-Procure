@@ -488,28 +488,38 @@
             // Validate required form fields before proceeding
             const projectName = document.getElementById('projectName').value.trim();
             const projectBudget = document.getElementById('projectBudget').value.trim();
-            const urgency = document.getElementById('urgency').value;
-            const procurementType = document.getElementById('procurementType').value;
-            const vendorChar = document.getElementById('vendorChar').value;
             const contactPerson = document.getElementById('contactPerson').value.trim();
             const contactTel = document.getElementById('contactTel').value.trim();
             const projectDescription = document.getElementById('projectDescription').value.trim(); // Ensure description is also captured
 
-            if (!projectName || !projectBudget || !urgency || !procurementType || !vendorChar || !contactPerson || !contactTel) {
+            // --- START OF MODIFICATION ---
+            // Get the displayed text for select options, not their 'value' attribute
+            const urgencySelect = document.getElementById('urgency');
+            const urgencyText = urgencySelect.options[urgencySelect.selectedIndex].textContent;
+
+            const procurementTypeSelect = document.getElementById('procurementType');
+            const procurementTypeText = procurementTypeSelect.options[procurementTypeSelect.selectedIndex].textContent;
+
+            const vendorCharSelect = document.getElementById('vendorChar');
+            const vendorCharText = vendorCharSelect.options[vendorCharSelect.selectedIndex].textContent;
+            // --- END OF MODIFICATION ---
+
+            // Check if all required fields are filled (using the original values for validation logic if needed)
+            if (!projectName || !projectBudget || !urgencySelect.value || !procurementTypeSelect.value || !vendorCharSelect.value || !contactPerson || !contactTel) {
                 alert('กรุณากรอกข้อมูลในช่องที่มีเครื่องหมายดอกจัน (*) ให้ครบถ้วนก่อนดำเนินการต่อ');
                 return; // Stop function execution
             }
 
-            // Construct the URL with all parameters
+            // Construct the URL with all parameters, using text content for select fields
             let url = `document_checklist.html?` +
                       `methodCode=${encodeURIComponent(recommendedMethodCode)}` +
                       `&methodText=${encodeURIComponent(recommendedMethodText)}` +
                       `&projectName=${encodeURIComponent(projectName)}` +
                       `&projectBudget=${encodeURIComponent(projectBudget)}` +
-                      `&urgency=${encodeURIComponent(urgency)}` +
-                      `&procurementType=${encodeURIComponent(procurementType)}` +
-                      `&vendorChar=${encodeURIComponent(vendorChar)}` +
-                      `&projectDescription=${encodeURIComponent(projectDescription)}` + // Add description
+                      `&urgency=${encodeURIComponent(urgencyText)}` + // Use urgencyText
+                      `&procurementType=${encodeURIComponent(procurementTypeText)}` + // Use procurementTypeText
+                      `&vendorChar=${encodeURIComponent(vendorCharText)}` + // Use vendorCharText
+                      `&projectDescription=${encodeURIComponent(projectDescription)}` +
                       `&contactPerson=${encodeURIComponent(contactPerson)}` +
                       `&contactTel=${encodeURIComponent(contactTel)}`;
             
