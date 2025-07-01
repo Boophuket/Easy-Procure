@@ -200,13 +200,14 @@
         .document-item {
             display: flex;
             align-items: center;
+            justify-content: space-between; /* Distribute content */
             background: white;
             padding: 1rem 1.5rem;
             border-radius: 12px;
             margin-bottom: 0.8rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             transition: all 0.2s ease;
-            cursor: pointer;
+            cursor: default; /* Change cursor back to default as the whole item is not just clickable */
             border: 1px solid #eee;
         }
 
@@ -216,34 +217,73 @@
             border-color: #a5d6a7;
         }
 
-        .document-item i {
-            color: #6c63ff;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .document-item span {
-            flex-grow: 1;
+        .document-item .document-name {
+            flex-grow: 1; /* Allows the name to take available space */
             font-size: 1.05rem;
             color: #333;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .document-item .document-name i {
+            color: #6c63ff; /* Icon for document type */
         }
 
-        .document-item .status-icon {
-            font-size: 1.1rem;
-            margin-left: 1rem;
-            color: #ccc; /* Default grey */
+        .document-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
 
-        .document-item.complete .status-icon {
-            color: #4CAF50; /* Green for complete */
+        /* Small Action Buttons for Download/Upload */
+        .action-button.small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border: none; /* Ensure no default border */
+            cursor: pointer; /* Make sure it looks clickable */
+        }
+        .action-button.small.primary {
+            background: linear-gradient(45deg, #4CAF50, #28a745); /* Green for download */
+            color: white;
+        }
+        .action-button.small.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+        }
+        .action-button.small.secondary {
+            background: #007bff; /* Blue for upload */
+            color: white;
+        }
+        .action-button.small.secondary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+        .action-button.small.disabled {
+            background: #cccccc;
+            color: #666666;
+            cursor: not-allowed;
         }
 
-        .document-item.missing .status-icon {
-            color: #f44336; /* Red for missing */
+        /* Status Icons */
+        .status-icon {
+            font-size: 1.3rem;
+            margin-left: 0.5rem;
+        }
+        .uploaded-status {
+            color: #4CAF50; /* Green for check */
+        }
+        .missing-status {
+            color: #f44336; /* Red for cross */
         }
 
-        /* Action Buttons */
+
+        /* Action Buttons (main buttons at bottom) */
         .action-buttons {
             display: flex;
             justify-content: center;
@@ -285,97 +325,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            position: relative;
-        }
-
-        .close-button {
-            color: #aaa;
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-content h3 {
-            color: #333;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .modal-content button {
-            display: block;
-            width: 80%;
-            padding: 15px;
-            margin: 15px auto;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-        }
-
-        .modal-content .download-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .modal-content .download-btn:hover {
-            background-color: #45a049;
-        }
-
-        .modal-content .edit-btn {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .modal-content .edit-btn:hover {
-            background-color: #0056b3;
-        }
-
-        .modal-content p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 10px;
-        }
-
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .container {
@@ -405,6 +354,15 @@
                 width: 100%;
                 justify-content: center;
             }
+            .document-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .document-actions {
+                width: 100%;
+                justify-content: flex-end; /* Align buttons to the right on small screens */
+            }
         }
 
         @media (max-width: 480px) {
@@ -422,6 +380,15 @@
             }
             .page-description {
                 font-size: 0.9rem;
+            }
+            .document-actions {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 0.5rem;
+            }
+            .action-button.small {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -486,7 +453,7 @@
                 <div class="detail-item">
                     <label>เบอร์โทรศัพท์:</label>
                     <span id="displayContactTel"> - ไม่มีข้อมูล - </span>
-                </div>
+                 </div>
                  <div class="detail-item">
                     <label>วิธีจัดซื้อจัดจ้างที่แนะนำ:</label>
                     <span id="displayRecommendedMethod"> - ไม่มีข้อมูล - </span>
@@ -500,218 +467,34 @@
                 นี่คือรายการเอกสารที่คุณต้องเตรียมสำหรับวิธีจัดซื้อจัดจ้าง "<span id="methodNameInChecklist" style="font-weight: 600; color: #2e7d32;">- ไม่มีข้อมูล -</span>"
             </p>
             <div id="documentListContainer">
-                <ul class="document-list">
+                <ul class="document-list" id="dynamicDocumentList">
                     <li class="document-item">
-                        <i class="fas fa-file-invoice"></i>
-                        <span>เอกสารทั่วไป 1</span>
-                        <i class="fas fa-circle status-icon"></i>
+                        <span class="document-name"><i class="fas fa-file-invoice"></i> ตัวอย่างเอกสาร 1</span>
+                        <div class="document-actions">
+                            <button class="action-button small primary download-item-btn" data-template-url="#">
+                                <i class="fas fa-download"></i> ดาวน์โหลด
+                            </button>
+                            <label class="action-button small secondary upload-item-label">
+                                <input type="file" class="upload-item-input" style="display: none;">
+                                <i class="fas fa-upload"></i> อัพโหลด
+                            </label>
+                            <i class="fas fa-check-circle status-icon uploaded-status" style="display:none;" title="อัพโหลดแล้ว"></i>
+                            <i class="fas fa-times-circle status-icon missing-status" style="display:inline-block;" title="ยังไม่อัพโหลด"></i>
+                        </div>
                     </li>
                     <li class="document-item">
-                        <i class="fas fa-file-invoice"></i>
-                        <span>เอกสารทั่วไป 2</span>
-                        <i class="fas fa-circle status-icon"></i>
+                        <span class="document-name"><i class="fas fa-file-invoice"></i> ตัวอย่างเอกสาร 2</span>
+                        <div class="document-actions">
+                             <button class="action-button small primary download-item-btn" data-template-url="#">
+                                <i class="fas fa-download"></i> ดาวน์โหลด
+                            </button>
+                            <label class="action-button small secondary upload-item-label">
+                                <input type="file" class="upload-item-input" style="display: none;">
+                                <i class="fas fa-upload"></i> อัพโหลด
+                            </label>
+                            <i class="fas fa-check-circle status-icon uploaded-status" style="display:none;" title="อัพโหลดแล้ว"></i>
+                            <i class="fas fa-times-circle status-icon missing-status" style="display:inline-block;" title="ยังไม่อัพโหลด"></i>
+                        </div>
                     </li>
                 </ul>
-                <p class="no-documents" style="text-align: center; color: #777; font-style: italic; margin-top: 1rem; display: none;">ไม่มีรายการเอกสารสำหรับวิธีนี้</p>
-            </div>
-        </div>
-
-        <div class="action-buttons">
-            <button class="action-button primary" onclick="showDocumentModal()"><i class="fas fa-plus-circle"></i> เพิ่มเอกสาร</button>
-            <button class="action-button secondary" onclick="window.location.href='create_request.html'"><i class="fas fa-arrow-circle-left"></i> ย้อนกลับ</button>
-        </div>
-    </div>
-
-    <div id="documentModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeDocumentModal()">&times;</span>
-            <h3><i class="fas fa-file-upload"></i> เลือกรูปแบบการจัดการเอกสาร</h3>
-            <button class="download-btn" onclick="downloadTemplate()"><i class="fas fa-download"></i> ดาวน์โหลดเทมเพลต</button>
-            <button class="edit-btn" onclick="editInWordDesktop()"><i class="fas fa-edit"></i> แก้ไขใน Word Desktop</button>
-            <p>การแก้ไขใน Word Desktop จะทำงานได้ดีที่สุดในสภาพแวดล้อม Microsoft 365/SharePoint</p>
-        </div>
-    </div>
-
-    <script>
-        const documentTemplates = {
-            'specific': [
-                'หนังสือขออนุมัติจัดซื้อจัดจ้างวิธีเฉพาะเจาะจง',
-                'ใบเสนอราคา (ถ้ามี)',
-                'รายงานผลการพิจารณา (บก.06)',
-                'สัญญา/ใบสั่งซื้อสั่งจ้าง',
-                'เอกสารแต่งตั้งคณะกรรมการ (ถ้ามี)'
-            ],
-            'e-market': [
-                'ใบเสนอราคาจาก e-market',
-                'รายงานผลการพิจารณา (บก.06) จาก e-market',
-                'สัญญา/ใบสั่งซื้อสั่งจ้าง (ในระบบ e-GP)',
-                'รายงานขอซื้อขอจ้าง'
-            ],
-            'e-bidding': [
-                'ประกาศประกวดราคาอิเล็กทรอนิกส์',
-                'เอกสารประกวดราคา (TOR)',
-                'ใบเสนอราคาจากผู้เสนอราคา',
-                'รายงานผลการพิจารณา (บก.06)',
-                'สัญญา/ข้อตกลง',
-                'หนังสือค้ำประกัน (ถ้ามี)'
-            ],
-            'selection': [
-                'หนังสือเชิญชวน (ถ้ามี)',
-                'เอกสารคัดเลือก (TOR)',
-                'ข้อเสนอทางเทคนิค/ราคาจากผู้เสนอราคา',
-                'รายงานผลการพิจารณา (บก.06) คัดเลือก',
-                'สัญญา/ข้อตกลง',
-                'เอกสารคุณสมบัติผู้เสนอราคา'
-            ],
-            'special': [
-                'หนังสืออนุมัติจัดซื้อจัดจ้างกรณีพิเศษ',
-                'รายงานขอซื้อขอจ้างกรณีพิเศษ',
-                'ใบเสนอราคา (ถ้ามี)',
-                'สัญญา/ใบสั่งซื้อสั่งจ้าง'
-            ]
-        };
-
-        // Function to parse URL parameters
-        function getUrlParams() {
-            const params = {};
-            window.location.search.substring(1).split('&').forEach(param => {
-                const parts = param.split('=');
-                if (parts.length === 2) {
-                    params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
-                }
-            });
-            return params;
-        }
-
-        // Function to display project data and checklist
-        function loadProjectAndDocumentData() {
-            const params = getUrlParams();
-            let formData = {};
-
-            if (params.formData) {
-                try {
-                    formData = JSON.parse(params.formData);
-                } catch (e) {
-                    console.error("Error parsing formData:", e);
-                }
-            }
-
-            // Get the recommended method code directly from formData if available, else default
-            const recommendedMethodCode = formData.recommendedMethodCode || 'default';
-            // Get the recommended method display name from formData if available, else 'N/A'
-            const recommendedMethodName = formData.recommendedMethodName || 'N/A';
-
-            // Populate Project Information
-            document.getElementById('displayProjectName').textContent = formData.projectName || '- ไม่มีข้อมูล -';
-            document.getElementById('displayProjectBudget').textContent = (formData.projectBudget ? parseFloat(formData.projectBudget).toLocaleString('th-TH', { style: 'currency', currency: 'THB' }).replace('฿', '') + ' บาท' : '- ไม่มีข้อมูล -');
-            document.getElementById('displayUrgency').textContent = mapUrgencyValue(formData.urgency) || '- ไม่มีข้อมูล -';
-            document.getElementById('displayProcurementType').textContent = mapProcurementTypeValue(formData.procurementType) || '- ไม่มีข้อมูล -';
-            document.getElementById('displayVendorChar').textContent = mapVendorCharValue(formData.vendorChar) || '- ไม่มีข้อมูล -';
-            document.getElementById('displayProjectDescription').textContent = formData.projectDescription || '- ไม่มีข้อมูล -';
-            document.getElementById('displayContactPerson').textContent = formData.contactPerson || '- ไม่มีข้อมูล -';
-            document.getElementById('displayContactTel').textContent = formData.contactTel || '- ไม่มีข้อมูล -';
-            document.getElementById('displayRecommendedMethod').textContent = recommendedMethodName; // Use the name from formData
-
-
-            // Populate Document Checklist
-            document.getElementById('methodNameInChecklist').textContent = recommendedMethodName; // Use the name from formData
-
-            const documents = documentTemplates[recommendedMethodCode]; // Use the code from formData
-            const documentListContainer = document.getElementById('documentListContainer');
-            const noDocumentsMessage = documentListContainer.querySelector('.no-documents');
-            let documentListHtml = '';
-
-            if (documents && documents.length > 0) {
-                documentListHtml += '<ul class="document-list">';
-                documents.forEach(doc => {
-                    documentListHtml += `
-                        <li class="document-item">
-                            <i class="fas fa-file-alt"></i>
-                            <span>${doc}</span>
-                            <i class="fas fa-circle status-icon" title="ยังไม่ได้ดำเนินการ"></i>
-                        </li>
-                    `;
-                });
-                documentListHtml += '</ul>';
-                noDocumentsMessage.style.display = 'none';
-            } else {
-                documentListHtml = '<ul class="document-list"></ul>'; // Ensure ul element is present
-                noDocumentsMessage.style.display = 'block';
-            }
-            documentListContainer.querySelector('.document-list').outerHTML = documentListHtml; // Replace existing ul
-
-            // Add click event listeners to document items
-            document.querySelectorAll('.document-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    // Placeholder for future functionality like marking as complete or opening modal for this specific document
-                    console.log('Document item clicked:', item.querySelector('span').textContent);
-                });
-            });
-        }
-
-        // Helper functions to map raw values to display names
-        function mapUrgencyValue(value) {
-            switch (value) {
-                case 'very_low': return 'ไม่เร่งด่วน';
-                case 'low': return 'เร่งด่วนปานกลาง';
-                case 'medium': return 'เร่งด่วน';
-                case 'high': return 'เร่งด่วนมาก';
-                default: return '';
-            }
-        }
-
-        function mapProcurementTypeValue(value) {
-            switch (value) {
-                case 'general': return 'พัสดุทั่วไป';
-                case 'specialized': return 'พัสดุเฉพาะทาง/เทคนิค';
-                case 'complex': return 'งานที่ซับซ้อน/ที่ปรึกษา';
-                case 'emergency': return 'กรณีฉุกเฉิน/ภัยพิบัติ';
-                case 'catalog': return 'สินค้าในบัญชีราคามาตรฐาน/e-market';
-                default: return '';
-            }
-        }
-
-        function mapVendorCharValue(value) {
-            switch (value) {
-                case 'multiple': return 'มีผู้ขายหลายราย';
-                case 'single': return 'มีผู้ขายเพียงรายเดียว';
-                case 'existing': return 'ต้องการใช้ผู้ขายเดิม';
-                case 'invited': return 'ต้องการเชิญผู้ขายเฉพาะราย';
-                case 'any': return 'ไม่จำกัด';
-                default: return '';
-            }
-        }
-
-        // Modal Functions
-        const documentModal = document.getElementById('documentModal');
-
-        function showDocumentModal() {
-            documentModal.style.display = 'flex'; // Use flex to center
-        }
-
-        function closeDocumentModal() {
-            documentModal.style.display = 'none';
-        }
-
-        function downloadTemplate() {
-            alert('ดาวน์โหลดเทมเพลต (ฟังก์ชันนี้ยังไม่ได้ถูกพัฒนา)');
-            closeDocumentModal();
-        }
-
-        function editInWordDesktop() {
-            alert('แก้ไขใน Word Desktop (ฟังก์ชันนี้ยังไม่ได้ถูกพัฒนา)');
-            closeDocumentModal();
-        }
-
-        // Close modal if user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target == documentModal) {
-                documentModal.style.display = "none";
-            }
-        }
-
-        // Load data when the page content is fully loaded
-        document.addEventListener('DOMContentLoaded', loadProjectAndDocumentData);
-    </script>
-</body>
-</html>
+                <p class="no-documents" style="text-align: center; color
