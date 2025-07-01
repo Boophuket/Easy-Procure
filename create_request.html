@@ -96,7 +96,7 @@
             font-size: 1.1rem;
         }
 
-        /* Main Container for this page */
+        /* Main Container */
         .container {
             max-width: 900px;
             margin: 2rem auto;
@@ -112,22 +112,15 @@
             color: #2c3e50;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .page-description {
-            text-align: center;
-            color: #555;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
         }
 
         /* Form Styling */
         .form-section {
+            margin-bottom: 2rem;
             background: rgba(248, 249, 250, 0.8);
             border-radius: 16px;
             padding: 2rem;
-            margin-bottom: 2rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             border: 1px solid #e0e0e0;
         }
@@ -145,7 +138,7 @@
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 1.5rem 2rem;
         }
 
@@ -158,42 +151,36 @@
             font-weight: 600;
             color: #555;
             margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 0.95rem;
         }
 
-        .form-group label .required-star {
+        .form-group label .required {
             color: #e74c3c;
-            font-size: 0.8em;
-            vertical-align: super;
+            margin-left: 0.2rem;
         }
 
-        .form-group input[type="text"],
-        .form-group input[type="number"],
-        .form-group textarea,
-        .form-group select {
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             padding: 0.8rem 1rem;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
             color: #333;
-            background-color: white;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            width: 100%;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background-color: #fff;
         }
 
-        .form-group input[type="text"]:focus,
-        .form-group input[type="number"]:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
             border-color: #6c63ff;
             box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
             outline: none;
         }
 
         .form-group textarea {
-            min-height: 120px;
+            min-height: 100px;
             resize: vertical;
         }
 
@@ -210,6 +197,11 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             border: 1px solid #c8e6c9;
             text-align: center;
+            /* Initially hidden */
+            display: none;
+        }
+        .recommendation-section.show {
+            display: block; /* Show when active */
         }
 
         .recommendation-section h3 {
@@ -220,84 +212,36 @@
             align-items: center;
             justify-content: center;
             gap: 0.8rem;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 0.5rem;
         }
 
-        .recommendation-method {
-            background: white;
-            border: 1px solid #4CAF50;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem auto 1rem;
-            max-width: 450px;
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.15);
-            text-align: left;
-            position: relative;
+        .recommendation-content p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 1rem;
         }
 
-        .recommendation-method h4 {
-            font-size: 1.3rem;
-            color: #2e7d32;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .recommendation-method p {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 0.5rem;
-        }
-
-        .recommendation-method ul {
-            list-style: none;
-            padding-left: 0;
-            margin-top: 1rem;
-            border-top: 1px dashed #eee;
-            padding-top: 1rem;
-        }
-
-        .recommendation-method ul li {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .recommendation-method ul li i {
+        .recommended-method {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: #6c63ff;
-            margin-top: 0.2em; /* Align icon better with text */
-        }
-
-        .recommended-badge {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: #4CAF50;
-            color: white;
-            padding: 0.4rem 1rem;
-            border-top-right-radius: 12px;
-            border-bottom-left-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        .no-recommendation {
-            color: #777;
-            font-style: italic;
             margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #e6e6ff;
+            border-radius: 10px;
+            display: inline-block;
         }
 
-        /* Action Button */
+        /* Action Buttons */
         .action-buttons {
             display: flex;
             justify-content: center;
+            gap: 1.5rem;
             margin-top: 2.5rem;
         }
 
-        .next-button {
+        .action-button {
             padding: 0.8rem 2.5rem;
             border-radius: 25px;
             font-weight: 600;
@@ -307,21 +251,28 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 1.1rem;
-            background: linear-gradient(45deg, #6c63ff, #8a2be2); /* Blue-purple gradient */
-            color: white;
             border: none;
         }
 
-        .next-button:hover {
+        .action-button.primary {
+            background: linear-gradient(45deg, #6c63ff, #8a2be2); /* Blue-purple gradient */
+            color: white;
+        }
+
+        .action-button.primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
         }
-        
-        .next-button:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
+
+        .action-button.secondary {
+            background: #f0f0f0;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+
+        .action-button.secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         /* Responsive adjustments */
@@ -333,12 +284,8 @@
             .page-title {
                 font-size: 1.8rem;
             }
-            .page-description {
-                font-size: 1rem;
-            }
             .form-grid {
                 grid-template-columns: 1fr;
-                gap: 1.2rem;
             }
             .form-section, .recommendation-section {
                 padding: 1.5rem;
@@ -346,7 +293,11 @@
             .form-section h3, .recommendation-section h3 {
                 font-size: 1.3rem;
             }
-            .next-button {
+            .action-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .action-button {
                 width: 100%;
                 justify-content: center;
             }
@@ -364,9 +315,6 @@
             }
             .page-title {
                 font-size: 1.5rem;
-            }
-            .page-description {
-                font-size: 0.9rem;
             }
         }
     </style>
@@ -392,210 +340,148 @@
     </header>
 
     <div class="container">
-        <h2 class="page-title"><i class="fas fa-file-invoice" style="color: #6c63ff; margin-right: 0.5rem;"></i> สร้างคำขอจัดซื้อจัดจ้าง</h2>
-        <p class="page-description">
-            กรุณากรอกรายละเอียดโครงการจัดซื้อจัดจ้าง เพื่อให้ระบบแนะนำวิธีการที่เหมาะสม
-        </p>
-
+        <h2 class="page-title"><i class="fas fa-file-alt" style="color: #6c63ff; margin-right: 0.5rem;"></i> สร้างคำขอจัดซื้อจัดจ้าง</h2>
+        
         <div class="form-section">
-            <h3><i class="fas fa-info-circle"></i> รายละเอียดโครงการ</h3>
+            <h3><i class="fas fa-info-circle"></i> ข้อมูลโครงการ</h3>
             <div class="form-grid">
-                <div class="form-group full-width">
-                    <label for="projectName"><i class="fas fa-signature"></i> ชื่อโครงการจัดซื้อจัดจ้าง <span class="required-star">*</span></label>
-                    <input type="text" id="projectName" placeholder="เช่น จัดซื้อเครื่องคอมพิวเตอร์สำนักงาน" required onkeyup="updateRecommendation()">
+                <div class="form-group">
+                    <label for="projectName">ชื่อโครงการ <span class="required">*</span></label>
+                    <input type="text" id="projectName" placeholder="เช่น ซื้อเครื่องคอมพิวเตอร์" oninput="updateRecommendation()">
                 </div>
                 <div class="form-group">
-                    <label for="projectBudget"><i class="fas fa-coins"></i> วงเงินงบประมาณ (บาท) <span class="required-star">*</span></label>
-                    <input type="number" id="projectBudget" placeholder="เช่น 95000" min="0" required onkeyup="updateRecommendation()">
+                    <label for="projectBudget">วงเงินงบประมาณ (บาท) <span class="required">*</span></label>
+                    <input type="number" id="projectBudget" placeholder="เช่น 500000" oninput="updateRecommendation()">
                 </div>
                 <div class="form-group">
-                    <label for="urgency"><i class="fas fa-hourglass-half"></i> ความเร่งด่วน <span class="required-star">*</span></label>
-                    <select id="urgency" required onchange="updateRecommendation()">
-                        <option value="">-- กรุณาเลือก --</option>
-                        <option value="very_low">ไม่เร่งด่วน</option>
-                        <option value="low">เร่งด่วนปานกลาง</option>
-                        <option value="medium">เร่งด่วน</option>
-                        <option value="high">เร่งด่วนมาก</option>
+                    <label for="urgency">ความเร่งด่วน <span class="required">*</span></label>
+                    <select id="urgency" onchange="updateRecommendation()">
+                        <option value="">เลือกความเร่งด่วน</option>
+                        <option value="normal">ปกติ</option>
+                        <option value="urgent">เร่งด่วน</option>
+                        <option value="very_urgent">เร่งด่วนมาก</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="procurementType"><i class="fas fa-tags"></i> ประเภทพัสดุ/งาน <span class="required-star">*</span></label>
-                    <select id="procurementType" required onchange="updateRecommendation()">
-                        <option value="">-- กรุณาเลือก --</option>
-                        <option value="general">พัสดุทั่วไป</option>
-                        <option value="specialized">พัสดุเฉพาะทาง/เทคนิค</option>
-                        <option value="complex">งานที่ซับซ้อน/ที่ปรึกษา</option>
-                        <option value="emergency">กรณีฉุกเฉิน/ภัยพิบัติ</option>
-                        <option value="catalog">สินค้าในบัญชีราคามาตรฐาน/e-market</option>
+                    <label for="procurementType">ประเภทพัสดุ/งาน <span class="required">*</span></label>
+                    <select id="procurementType" onchange="updateRecommendation()">
+                        <option value="">เลือกประเภทพัสดุ/งาน</option>
+                        <option value="goods">วัสดุ/ครุภัณฑ์</option>
+                        <option value="services">บริการ</option>
+                        <option value="construction">งานก่อสร้าง</option>
+                        <option value="consulting">งานจ้างที่ปรึกษา</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="vendorChar"><i class="fas fa-users"></i> ลักษณะผู้ขาย <span class="required-star">*</span></label>
-                    <select id="vendorChar" required onchange="updateRecommendation()">
-                        <option value="">-- กรุณาเลือก --</option>
-                        <option value="multiple">มีผู้ขายหลายราย</option>
-                        <option value="single">มีผู้ขายเพียงรายเดียว</option>
-                        <option value="existing">ต้องการใช้ผู้ขายเดิม</option>
-                        <option value="invited">ต้องการเชิญผู้ขายเฉพาะราย</option>
-                        <option value="any">ไม่จำกัด</option>
+                    <label for="vendorChar">ลักษณะผู้ขาย <span class="required">*</span></label>
+                    <select id="vendorChar" onchange="updateRecommendation()">
+                        <option value="">เลือกลักษณะผู้ขาย</option>
+                        <option value="general">ทั่วไป (ไม่ระบุเฉพาะ)</option>
+                        <option value="specific">เฉพาะเจาะจง (ระบุผู้ขายได้)</option>
+                        <option value="contract_list">จากบัญชีรายชื่อผู้รับจ้าง</option>
                     </select>
                 </div>
                 <div class="form-group full-width">
-                    <label for="projectDescription"><i class="fas fa-align-left"></i> รายละเอียด/ขอบเขตงาน (TOR)</label>
-                    <textarea id="projectDescription" placeholder="ระบุรายละเอียด, คุณสมบัติ, หรือขอบเขตงานโดยละเอียด"></textarea>
+                    <label for="projectDescription">รายละเอียด/ขอบเขตงาน (TOR)</label>
+                    <textarea id="projectDescription" placeholder="ใส่รายละเอียดของโครงการ"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="contactPerson"><i class="fas fa-user"></i> ผู้ประสานงาน <span class="required-star">*</span></label>
-                    <input type="text" id="contactPerson" placeholder="ชื่อ-นามสกุล" required>
+                    <label for="contactPerson">ผู้ประสานงาน <span class="required">*</span></label>
+                    <input type="text" id="contactPerson" placeholder="ชื่อ-นามสกุล ผู้ประสานงาน">
                 </div>
                 <div class="form-group">
-                    <label for="contactTel"><i class="fas fa-phone"></i> เบอร์โทรศัพท์ผู้ประสานงาน <span class="required-star">*</span></label>
-                    <input type="text" id="contactTel" placeholder="เช่น 0812345678" required>
+                    <label for="contactTel">เบอร์โทรศัพท์ <span class="required">*</span></label>
+                    <input type="tel" id="contactTel" placeholder="เช่น 08x-xxxxxxx">
                 </div>
             </div>
         </div>
 
-        <div class="recommendation-section">
+        <div class="recommendation-section" id="recommendationSection">
             <h3><i class="fas fa-lightbulb"></i> วิธีจัดซื้อจัดจ้างที่แนะนำ</h3>
-            <div id="recommendationResult">
-                <p class="no-recommendation">กรุณากรอกข้อมูลโครงการให้ครบถ้วนเพื่อรับคำแนะนำ</p>
+            <div class="recommendation-content">
+                <p>จากข้อมูลที่คุณให้มา ระบบแนะนำวิธีจัดซื้อจัดจ้างนี้:</p>
+                <span class="recommended-method" id="recommendedMethod">-- กรุณากรอกข้อมูลเพื่อรับคำแนะนำ --</span>
+            </div>
+            <div class="action-buttons" style="margin-top: 2rem;">
+                <button class="action-button primary" onclick="navigateToDocumentChecklist()">
+                    <i class="fas fa-file-import"></i> ดำเนินการต่อ (ดูเอกสารที่ต้องใช้)
+                </button>
             </div>
         </div>
-
+        
         <div class="action-buttons">
-            <button class="next-button" id="nextButton" onclick="proceedToChecklist()">
-                <i class="fas fa-arrow-circle-right"></i> ถัดไป
+            <button class="action-button secondary">
+                <i class="fas fa-times-circle"></i> ยกเลิก
             </button>
         </div>
     </div>
 
     <script>
-        // Definitions for procurement methods (consistent with pitch deck ideas)
-        const methodDefinitions = {
-            'specific': {
-                name: 'วิธีเฉพาะเจาะจง',
-                description: 'เหมาะสำหรับพัสดุ/งานที่มีผู้ขายจำกัด, วงเงินไม่สูง, หรือมีความจำเป็นเร่งด่วนเป็นพิเศษ',
-                details: [
-                    'วงเงินไม่เกิน 500,000 บาท',
-                    'ผู้ขายเพียงรายเดียว หรือมีผู้ขายไม่กี่ราย',
-                    'มีความเร่งด่วนสูง หรือเป็นพัสดุเฉพาะทาง'
-                ]
-            },
-            'e-market': {
-                name: 'วิธีตลาดอิเล็กทรอนิกส์ (e-market)',
-                description: 'เหมาะสำหรับสินค้า/บริการที่มีมาตรฐานทั่วไป และอยู่ในบัญชี e-catalog',
-                details: [
-                    'สินค้า/บริการอยู่ในบัญชี e-catalog',
-                    'มีการแข่งขันด้านราคา',
-                    'ไม่มีความซับซ้อน'
-                ]
-            },
-            'e-bidding': {
-                name: 'วิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)',
-                description: 'เหมาะสำหรับพัสดุ/งานทั่วไปที่มีมูลค่าสูงและมีผู้ขายหลายราย',
-                details: [
-                    'วงเงินสูง (มากกว่า 500,000 บาทขึ้นไป)',
-                    'มีผู้ขาย/ผู้รับจ้างหลายราย',
-                    'ต้องการการแข่งขันราคาอย่างเป็นธรรม'
-                ]
-            },
-            'selection': {
-                name: 'วิธีคัดเลือก',
-                description: 'เหมาะสำหรับพัสดุ/งานที่ซับซ้อน หรือต้องคำนึงถึงคุณภาพ/เทคนิคเป็นพิเศษ',
-                details: [
-                    'พัสดุ/งานที่ต้องใช้ความเชี่ยวชาญเฉพาะ',
-                    'ต้องการคุณภาพและเทคนิคเป็นหลัก',
-                    'มีการประเมินคุณสมบัติผู้เสนอราคา'
-                ]
-            },
-            'special': {
-                name: 'วิธีพิเศษ',
-                description: 'สำหรับกรณีพิเศษที่ต้องเร่งด่วนมาก หรือเป็นงานที่มีความจำเป็นเร่งด่วนภัยพิบัติ',
-                details: [
-                    'กรณีภัยพิบัติ หรือเหตุฉุกเฉินเร่งด่วน',
-                    'มีกฎหมายรองรับให้ดำเนินการเป็นกรณีพิเศษ',
-                    'ไม่สามารถใช้วิธีอื่นได้'
-                ]
-            }
+        const recommendationRules = {
+            // Simplified rules for demonstration
+            // Key: {budgetRange, urgency, procurementType, vendorChar}
+            // Value: {methodName, methodCode}
+            "direct_purchase_small": { budget: "<50000", urgency: "any", type: "any", vendor: "any", name: "วิธีเฉพาะเจาะจง (วงเงินไม่เกิน 50,000 บาท)", code: "direct_purchase_small" },
+            "direct_purchase_large": { budget: "50000-500000", urgency: "any", type: "any", vendor: "specific", name: "วิธีเฉพาะเจาะจง (วงเงิน 50,000 - 500,000 บาท)", code: "direct_purchase_large" },
+            "e_bidding": { budget: ">500000", urgency: "normal", type: "any", vendor: "general", name: "วิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)", code: "e_bidding" },
+            "negotiated_price": { budget: "any", urgency: "urgent", type: "any", vendor: "any", name: "วิธีสอบราคา (กรณีเร่งด่วน)", code: "negotiated_price" },
+            "e_market": { budget: "any", urgency: "normal", type: "goods", vendor: "general", name: "วิธีตลาดอิเล็กทรอนิกส์ (e-market)", code: "e_market" },
+            // Add more complex rules here
         };
 
-        // Function to update the recommendation based on form inputs
         function updateRecommendation() {
-            const budget = parseFloat(document.getElementById('projectBudget').value);
+            const projectName = document.getElementById('projectName').value.trim();
+            const projectBudget = parseFloat(document.getElementById('projectBudget').value);
             const urgency = document.getElementById('urgency').value;
-            const type = document.getElementById('procurementType').value;
+            const procurementType = document.getElementById('procurementType').value;
             const vendorChar = document.getElementById('vendorChar').value;
-            const recommendationDiv = document.getElementById('recommendationResult');
-            const nextButton = document.getElementById('nextButton');
+            const recommendationSection = document.getElementById('recommendationSection');
+            const recommendedMethodSpan = document.getElementById('recommendedMethod');
 
             // Check if all required fields for recommendation are filled
-            if (!budget || !urgency || !type || !vendorChar || document.getElementById('projectName').value.trim() === '' || document.getElementById('contactPerson').value.trim() === '' || document.getElementById('contactTel').value.trim() === '') {
-                recommendationDiv.innerHTML = '<p class="no-recommendation">กรุณากรอกข้อมูลโครงการให้ครบถ้วนเพื่อรับคำแนะนำ</p>';
-                nextButton.disabled = true; // Disable "Next" button until all required fields are filled
-                return;
-            }
+            if (projectName && projectBudget > 0 && urgency && procurementType && vendorChar) {
+                recommendationSection.classList.add('show');
+                let recommendedMethod = "ไม่พบวิธีที่เหมาะสม"; // Default if no rule matches
+                let recommendedMethodCode = "no_match";
 
-            let recommendedMethod = null;
+                // Basic rule matching (can be expanded to complex logic)
+                for (const key in recommendationRules) {
+                    const rule = recommendationRules[key];
 
-            // Simple Recommendation Logic (can be expanded based on actual regulations)
-            if (urgency === 'emergency' || type === 'emergency') {
-                recommendedMethod = methodDefinitions['special'];
-            } else if (vendorChar === 'single') {
-                recommendedMethod = methodDefinitions['specific'];
-            } else if (budget <= 500000 && (urgency === 'high' || urgency === 'medium')) {
-                recommendedMethod = methodDefinitions['specific'];
-            } else if (type === 'catalog' && budget > 50000) {
-                recommendedMethod = methodDefinitions['e-market'];
-            } else if (budget > 500000 && vendorChar === 'multiple') {
-                recommendedMethod = methodDefinitions['e-bidding'];
-            } else if (type === 'complex' || type === 'specialized') {
-                recommendedMethod = methodDefinitions['selection'];
-            } else if (budget <= 50000) { // Default for small budget if other conditions not met
-                 recommendedMethod = methodDefinitions['specific'];
-            } else {
-                recommendedMethod = methodDefinitions['e-bidding']; // General fallback
-            }
+                    let budgetMatches = false;
+                    if (rule.budget === "any") budgetMatches = true;
+                    else if (rule.budget === "<50000" && projectBudget < 50000) budgetMatches = true;
+                    else if (rule.budget === "50000-500000" && projectBudget >= 50000 && projectBudget <= 500000) budgetMatches = true;
+                    else if (rule.budget === ">500000" && projectBudget > 500000) budgetMatches = true;
 
+                    const urgencyMatches = (rule.urgency === "any" || rule.urgency === urgency);
+                    const typeMatches = (rule.type === "any" || rule.type === procurementType);
+                    const vendorMatches = (rule.vendor === "any" || rule.vendor === vendorChar);
 
-            if (recommendedMethod) {
-                let detailsHtml = '';
-                if (recommendedMethod.details && recommendedMethod.details.length > 0) {
-                    detailsHtml = '<ul>';
-                    recommendedMethod.details.forEach(detail => {
-                        detailsHtml += `<li><i class="fas fa-check-circle"></i> ${detail}</li>`;
-                    });
-                    detailsHtml += '</ul>';
+                    if (budgetMatches && urgencyMatches && typeMatches && vendorMatches) {
+                        recommendedMethod = rule.name;
+                        recommendedMethodCode = rule.code;
+                        break; // Found a match, stop
+                    }
                 }
-
-                recommendationDiv.innerHTML = `
-                    <div class="recommendation-method">
-                        <span class="recommended-badge">แนะนำ</span>
-                        <h4><i class="fas fa-gavel"></i> ${recommendedMethod.name}</h4>
-                        <p>${recommendedMethod.description}</p>
-                        ${detailsHtml}
-                    </div>
-                `;
+                recommendedMethodSpan.textContent = recommendedMethod;
             } else {
-                recommendationDiv.innerHTML = '<p class="no-recommendation">ไม่สามารถแนะนำวิธีจัดซื้อจัดจ้างได้ กรุณาตรวจสอบข้อมูล</p>';
+                recommendationSection.classList.remove('show');
+                recommendedMethodSpan.textContent = "-- กรุณากรอกข้อมูลเพื่อรับคำแนะนำ --";
             }
-
-            nextButton.disabled = false; // Enable the "Next" button once recommendation is shown
         }
 
-        // Function to proceed to the next step (e.g., Checklist page)
-    function proceedToChecklist() {
-            const recommendedMethodElement = document.getElementById('recommendationResult').querySelector('.recommendation-method h4');
-            let recommendedMethodCode = 'default'; // Fallback
+        function navigateToDocumentChecklist() {
+            // Get the current recommended method code and text
+            let recommendedMethodCode = "no_match"; // Default value
+            const recommendedMethodSpan = document.getElementById('recommendedMethod');
+            let recommendedMethodText = recommendedMethodSpan ? recommendedMethodSpan.textContent.trim() : '';
 
-            if (recommendedMethodElement) {
-                // Extract the method name, e.g., "วิธีเฉพาะเจาะจง"
-                const fullMethodText = recommendedMethodElement.textContent.trim();
-                // Find the key in methodDefinitions that matches the full method text
-                for (const key in methodDefinitions) {
-                    if (methodDefinitions[key].name === fullMethodText.replace('💡', '').trim()) { // Remove the icon from the text
-                        recommendedMethodCode = key;
-                        break;
-                    }
+            // Find the corresponding code based on the displayed text
+            for (const key in recommendationRules) {
+                if (recommendationRules[key].name === recommendedMethodText) {
+                    recommendedMethodCode = key;
+                    break;
                 }
             }
             
@@ -607,14 +493,27 @@
             const vendorChar = document.getElementById('vendorChar').value;
             const contactPerson = document.getElementById('contactPerson').value.trim();
             const contactTel = document.getElementById('contactTel').value.trim();
+            const projectDescription = document.getElementById('projectDescription').value.trim(); // Ensure description is also captured
 
             if (!projectName || !projectBudget || !urgency || !procurementType || !vendorChar || !contactPerson || !contactTel) {
                 alert('กรุณากรอกข้อมูลในช่องที่มีเครื่องหมายดอกจัน (*) ให้ครบถ้วนก่อนดำเนินการต่อ');
                 return; // Stop function execution
             }
 
-            // Navigate to the document checklist page, passing the recommended method code
-            window.location.href = `document_checklist.html?method=${recommendedMethodCode}`;
+            // Construct the URL with all parameters
+            let url = `document_checklist.html?` +
+                      `methodCode=${encodeURIComponent(recommendedMethodCode)}` +
+                      `&methodText=${encodeURIComponent(recommendedMethodText)}` +
+                      `&projectName=${encodeURIComponent(projectName)}` +
+                      `&projectBudget=${encodeURIComponent(projectBudget)}` +
+                      `&urgency=${encodeURIComponent(urgency)}` +
+                      `&procurementType=${encodeURIComponent(procurementType)}` +
+                      `&vendorChar=${encodeURIComponent(vendorChar)}` +
+                      `&projectDescription=${encodeURIComponent(projectDescription)}` + // Add description
+                      `&contactPerson=${encodeURIComponent(contactPerson)}` +
+                      `&contactTel=${encodeURIComponent(contactTel)}`;
+            
+            window.location.href = url;
         }
 
         // Initial call to hide recommendation until inputs are filled
