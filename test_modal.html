@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modal</title>
+    <style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            display: flex; /* This makes it flex when the class is present */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* This ensures it's actually hidden unless JavaScript shows it */
+        .modal.is-active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 2.5rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            text-align: center;
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover, .close-button:focus {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="templateModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="document.getElementById('templateModal').style.display = 'none';">&times;</span>
+            <h3><i class="fas fa-file-alt"></i> Test Modal</h3>
+            <p>This is a test modal. It should NOT open automatically.</p>
+            <button onclick="document.getElementById('templateModal').style.display = 'none';">Close</button>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 50px;">If you see this text, the modal should be hidden.</p>
+    <button style="display: block; margin: 20px auto; padding: 10px 20px;" onclick="document.getElementById('templateModal').style.display = 'flex';">Open Modal Manually</button>
+
+    <script>
+        // No code here to open the modal automatically on load.
+        // It should remain hidden until the "Open Modal Manually" button is clicked.
+        // Initial state should be hidden by CSS.
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('templateModal');
+            // Ensure it's hidden when the DOM is ready, just in case.
+            modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
