@@ -529,9 +529,10 @@
             const nextButton = document.getElementById('nextButton');
 
             // Check if all required fields for recommendation are filled
-            if (!budget || !urgency || !type || !vendorChar || document.getElementById('projectName').value.trim() === '' || document.getElementById('contactPerson').value.trim() === '' || document.getElementById('contactTel').value.trim() === '') {
+            // Note: projectName, contactPerson, contactTel are checked in proceedToChecklist
+            if (!budget || !urgency || !type || !vendorChar) {
                 recommendationDiv.innerHTML = '<p class="no-recommendation">กรุณากรอกข้อมูลโครงการให้ครบถ้วนเพื่อรับคำแนะนำ</p>';
-                nextButton.disabled = true; // Disable "Next" button until all required fields are filled
+                nextButton.disabled = true;
                 return;
             }
 
@@ -583,38 +584,54 @@
         }
 
         // Function to proceed to the next step (e.g., Checklist page)
-    function proceedToChecklist() {
-            const recommendedMethodElement = document.getElementById('recommendationResult').querySelector('.recommendation-method h4');
-            let recommendedMethodCode = 'default'; // Fallback
-
-            if (recommendedMethodElement) {
-                // Extract the method name, e.g., "วิธีเฉพาะเจาะจง"
-                const fullMethodText = recommendedMethodElement.textContent.trim();
-                // Find the key in methodDefinitions that matches the full method text
-                for (const key in methodDefinitions) {
-                    if (methodDefinitions[key].name === fullMethodText.replace('💡', '').trim()) { // Remove the icon from the text
-                        recommendedMethodCode = key;
-                        break;
-                    }
-                }
-            }
-            
-            // Validate required form fields before proceeding
+        function proceedToChecklist() {
             const projectName = document.getElementById('projectName').value.trim();
             const projectBudget = document.getElementById('projectBudget').value.trim();
             const urgency = document.getElementById('urgency').value;
             const procurementType = document.getElementById('procurementType').value;
             const vendorChar = document.getElementById('vendorChar').value;
+            const projectDescription = document.getElementById('projectDescription').value.trim();
             const contactPerson = document.getElementById('contactPerson').value.trim();
             const contactTel = document.getElementById('contactTel').value.trim();
 
             if (!projectName || !projectBudget || !urgency || !procurementType || !vendorChar || !contactPerson || !contactTel) {
                 alert('กรุณากรอกข้อมูลในช่องที่มีเครื่องหมายดอกจัน (*) ให้ครบถ้วนก่อนดำเนินการต่อ');
-                return; // Stop function execution
+                return;
             }
 
-            // Navigate to the document checklist page, passing the recommended method code
-            window.location.href = `document_checklist.html?method=${recommendedMethodCode}`;
+            const recommendedMethodElement = document.getElementById('recommendationResult').querySelector('.recommendation-method h4');
+            let recommendedMethodCode = 'default';
+
+            if (recommendedMethodElement) {
+                const fullMethodText = recommendedMethodElement.textContent.trim();
+                for (const key in methodDefinitions) {
+                    // Remove leading/trailing spaces and the icon for comparison
+                    if (methodDefinitions[key].name === fullMethodText.replace('💡', '').trim()) {
+                        recommendedMethodCode = key;
+                        break;
+                    }
+                }
+            }
+
+            // Collect ALL form data into an object
+            const formData = {
+                projectName: projectName,
+                projectBudget: projectBudget,
+                urgency: urgency,
+                procurementType: procurementType,
+                vendorChar: vendorChar,
+                projectDescription: projectDescription,
+                contactPerson: contactPerson,
+                contactTel: contactTel,
+                recommendedMethodCode: recommendedMethodCode,
+                recommendedMethodName: methodDefinitions[recommendedMethodCode] ? methodDefinitions[recommendedMethodCode].name : 'N/A'
+            };
+
+            // Stringify the form data and encode it for URL
+            const encodedFormData = encodeURIComponent(JSON.stringify(formData));
+
+            // Navigate to the document checklist page, passing both method and form data
+            window.location.href = `document_checklist.html?method=${recommendedMethodCode}&formData=${encodedFormData}`;
         }
 
         // Initial call to hide recommendation until inputs are filled
