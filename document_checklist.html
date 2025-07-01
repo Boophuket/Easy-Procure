@@ -138,31 +138,59 @@
             text-align: center;
         }
 
-        /* Method Info Card */
-        .method-info-card {
+        /* Section Cards (Method Info & Project Details) */
+        .info-card {
             background: linear-gradient(135deg, #e0e7ff, #f0f3ff); /* Light blue gradient */
             border-radius: 20px;
             padding: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem; /* Reduced margin */
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             border: 1px solid #cdd6f3;
-            text-align: center;
         }
 
-        .method-info-card h3 {
+        .info-card h3 {
             font-size: 1.8rem;
             color: #3F2B96; /* Darker blue from gradient */
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.8rem;
+            border-bottom: 2px solid rgba(63, 43, 150, 0.2);
+            padding-bottom: 0.5rem;
         }
 
-        .method-info-card p {
+        .info-card p, .info-card div {
             font-size: 1.1rem;
             color: #555;
             margin-bottom: 0.5rem;
+        }
+
+        .info-card strong {
+            color: #2c3e50;
+            margin-right: 0.5rem;
+        }
+
+        /* Project Details specific styling */
+        .project-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 0.8rem 1.5rem; /* Row gap, column gap */
+            margin-top: 1rem;
+        }
+
+        .project-details-grid > div {
+            padding: 0.2rem 0;
+            display: flex;
+            align-items: baseline; /* Align text baselines */
+        }
+
+        .project-details-grid strong {
+            min-width: 100px; /* Ensure labels align */
+            display: inline-block;
+        }
+
+        .project-details-full-width {
+            grid-column: 1 / -1; /* Span across both columns */
         }
 
         /* Document Checklist Section */
@@ -395,11 +423,14 @@
                 font-size: 1rem;
                 margin-bottom: 2rem;
             }
-            .method-info-card, .document-checklist-section {
+            .info-card, .document-checklist-section {
                 padding: 2rem;
             }
-            .method-info-card h3, .document-checklist-section h3 {
+            .info-card h3, .document-checklist-section h3 {
                 font-size: 1.6rem;
+            }
+            .project-details-grid {
+                grid-template-columns: 1fr; /* Single column on small screens */
             }
             .document-item {
                 flex-direction: column;
@@ -494,7 +525,21 @@
             นี่คือเอกสารที่จำเป็นสำหรับวิธีจัดซื้อจัดจ้างที่แนะนำ กรุณาเตรียมเอกสารให้ครบถ้วน
         </p>
 
-        <div class="method-info-card">
+        <div class="info-card">
+            <h3><i class="fas fa-file-invoice"></i> ข้อมูลโครงการ</h3>
+            <div class="project-details-grid">
+                <div><strong>ชื่อโครงการ:</strong> <span id="displayProjectName"></span></div>
+                <div><strong>วงเงินงบประมาณ:</strong> <span id="displayBudget"></span></div>
+                <div><strong>ความเร่งด่วน:</strong> <span id="displayUrgency"></span></div>
+                <div><strong>ประเภทพัสดุ/งาน:</strong> <span id="displayItemType"></span></div>
+                <div><strong>ลักษณะผู้ขาย:</strong> <span id="displayVendorType"></span></div>
+                <div class="project-details-full-width"><strong>รายละเอียด/ขอบเขตงาน (TOR):</strong> <span id="displayTorDetails"></span></div>
+                <div><strong>ผู้ประสานงาน:</strong> <span id="displayContactPerson"></span></div>
+                <div><strong>เบอร์โทรศัพท์:</strong> <span id="displayContactTel"></span></div>
+            </div>
+        </div>
+
+        <div class="info-card">
             <h3><i class="fas fa-gavel"></i> วิธีจัดซื้อจัดจ้าง: <span id="displayMethodName"></span></h3>
             <p id="displayMethodDescription"></p>
         </div>
@@ -590,14 +635,26 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
-        // Function to load documents based on URL parameter
-        function loadDocumentChecklist() {
+        // Function to load and display all information
+        function loadPageData() {
+            // Load Procurement Method Details
             const requestedMethodCode = getUrlParameter('method');
             const methodData = documentRequirements[requestedMethodCode] || documentRequirements['default'];
 
             document.getElementById('displayMethodName').textContent = methodData.name;
             document.getElementById('displayMethodDescription').textContent = methodData.description;
 
+            // Load Project Details from URL Parameters
+            document.getElementById('displayProjectName').textContent = getUrlParameter('projectName') || '- ไม่มีข้อมูล -';
+            document.getElementById('displayBudget').textContent = getUrlParameter('budget') ? `${getUrlParameter('budget')} บาท` : '- ไม่มีข้อมูล -';
+            document.getElementById('displayUrgency').textContent = getUrlParameter('urgency') || '- ไม่มีข้อมูล -';
+            document.getElementById('displayItemType').textContent = getUrlParameter('itemType') || '- ไม่มีข้อมูล -';
+            document.getElementById('displayVendorType').textContent = getUrlParameter('vendorType') || '- ไม่มีข้อมูล -';
+            document.getElementById('displayTorDetails').textContent = getUrlParameter('torDetails') || '- ไม่มีข้อมูล -';
+            document.getElementById('displayContactPerson').textContent = getUrlParameter('contactPerson') || '- ไม่มีข้อมูล -';
+            document.getElementById('displayContactTel').textContent = getUrlParameter('contactTel') || '- ไม่มีข้อมูล -';
+
+            // Load Document Checklist
             const documentList = document.getElementById('documentList');
             documentList.innerHTML = ''; // Clear existing list
 
@@ -674,14 +731,12 @@
                 button.addEventListener('click', function() {
                     const fileUrl = this.dataset.fileUrl;
                     const fileName = this.dataset.fileName;
-                    // Create a temporary anchor element for download
                     const a = document.createElement('a');
                     a.href = fileUrl;
-                    a.download = fileName; // Suggests a filename for download
+                    a.download = fileName;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                    // alert(`กำลังดาวน์โหลด: ${fileName}`); // Removed alert for smoother UX
                 });
             });
 
@@ -689,15 +744,10 @@
                 button.addEventListener('click', function() {
                     const fileUrl = this.dataset.fileUrl;
                     const fileName = this.dataset.fileName;
-                    // Attempt to open in Word using Office URI Scheme
-                    // This relies on the user's system recognizing the ms-word protocol
-                    // and may not work in all browsers/configurations.
-                    // For true collaboration/editing, SharePoint/OneDrive integration is usually required.
                     const wordEditUrl = `ms-word:ofe|u|${encodeURIComponent(fileUrl)}`;
                     
                     try {
-                        window.location.href = wordEditUrl; // Try to open directly
-                        // alert(`พยายามเปิดไฟล์ ${fileName} เพื่อแก้ไขใน Microsoft Word...`); // Removed alert for smoother UX
+                        window.location.href = wordEditUrl;
                     } catch (e) {
                         alert(`ไม่สามารถเปิดไฟล์ ${fileName} ใน Microsoft Word โดยตรงได้\nโปรดตรวจสอบว่าคุณได้ติดตั้ง Microsoft Word และเบราว์เซอร์ของคุณรองรับการเปิดผ่านโปรโตคอล 'ms-word:'`);
                     }
@@ -708,14 +758,11 @@
         // Function for submitting documents (placeholder)
         function submitDocuments() {
             alert('กำลังส่งเอกสารและข้อมูล (Mockup)');
-            // In a real application, this would handle actual document uploads
-            // and submission to a backend system.
-            // You might then navigate to a summary page or confirmation.
-            window.location.href = 'final_summary.html'; // Assuming you have a final_summary.html
+            window.location.href = 'final_summary.html';
         }
 
-        // Load documents when the page loads
-        document.addEventListener('DOMContentLoaded', loadDocumentChecklist);
+        // Load all data when the page loads
+        document.addEventListener('DOMContentLoaded', loadPageData);
     </script>
 </body>
 </html>
