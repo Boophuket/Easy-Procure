@@ -453,8 +453,8 @@
                 <div class="detail-item">
                     <label>เบอร์โทรศัพท์:</label>
                     <span id="displayContactTel"> - ไม่มีข้อมูล - </span>
-                 </div>
-                 <div class="detail-item">
+                </div>
+                <div class="detail-item">
                     <label>วิธีจัดซื้อจัดจ้างที่แนะนำ:</label>
                     <span id="displayRecommendedMethod"> - ไม่มีข้อมูล - </span>
                 </div>
@@ -497,4 +497,80 @@
                         </div>
                     </li>
                 </ul>
-                <p class="no-documents" style="text-align: center; color
+                <p class="no-documents" style="text-align: center; color: #888; font-style: italic; display: none;">ไม่พบเอกสารสำหรับวิธีจัดซื้อจัดจ้างนี้</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="action-button primary">
+                <i class="fas fa-check-circle"></i> ยืนยันและส่งเรื่อง
+            </button>
+            <button class="action-button secondary">
+                <i class="fas fa-arrow-left"></i> กลับไปแก้ไข
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // Function to update a span element's text content
+            function updateDisplay(elementId, paramName) {
+                const element = document.getElementById(elementId);
+                const value = urlParams.get(paramName);
+                if (element && value) {
+                    element.textContent = decodeURIComponent(value);
+                } else if (element) {
+                    element.textContent = '- ไม่มีข้อมูล -'; // Default text if no data
+                }
+            }
+
+            // Update Project Information
+            updateDisplay('displayProjectName', 'projectName');
+            updateDisplay('displayProjectBudget', 'projectBudget');
+            updateDisplay('displayUrgency', 'urgency');
+            updateDisplay('displayProcurementType', 'procurementType');
+            updateDisplay('displayVendorChar', 'vendorChar');
+            updateDisplay('displayProjectDescription', 'projectDescription');
+            updateDisplay('displayContactPerson', 'contactPerson');
+            updateDisplay('displayContactTel', 'contactTel');
+            
+            // Update Recommended Method
+            updateDisplay('displayRecommendedMethod', 'methodText');
+            updateDisplay('methodNameInChecklist', 'methodText'); // For the checklist description
+
+            // TODO: In a real application, you would fetch documents based on 'methodCode' here
+            // const recommendedMethodCode = urlParams.get('methodCode');
+            // if (recommendedMethodCode) {
+            //     // Example: fetch(`/api/documents?method=${recommendedMethodCode}`)
+            //     // .then(response => response.json())
+            //     // .then(data => {
+            //     //     // Dynamically populate document list here
+            //     // });
+            // } else {
+            //     document.getElementById('dynamicDocumentList').innerHTML = '<li class="no-documents" style="text-align: center; color: #888; font-style: italic;">ไม่พบเอกสารสำหรับวิธีจัดซื้อจัดจ้างนี้</li>';
+            // }
+
+            // Example of how to toggle document status (for demonstration, remove in production)
+            // This part is for static examples in your HTML and can be removed if you fetch real data
+            const documentItems = document.querySelectorAll('.document-item');
+            documentItems.forEach(item => {
+                const uploadInput = item.querySelector('.upload-item-input');
+                const uploadedStatus = item.querySelector('.uploaded-status');
+                const missingStatus = item.querySelector('.missing-status');
+
+                if (uploadInput) {
+                    uploadInput.addEventListener('change', function() {
+                        if (this.files && this.files.length > 0) {
+                            if (uploadedStatus) uploadedStatus.style.display = 'inline-block';
+                            if (missingStatus) missingStatus.style.display = 'none';
+                            alert('อัพโหลดไฟล์แล้ว: ' + this.files[0].name); // For demonstration
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
