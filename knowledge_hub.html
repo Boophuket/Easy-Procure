@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ศูนย์รวมความรู้ (Knowledge Hub)</title>
+    </head>
+<body>
+
+    <div class="knowledge-hub-container">
+
+        <header class="hub-header">
+            <h1>ศูนย์รวมความรู้ (Knowledge Hub)</h1>
+            <p>แหล่งรวมคู่มือ, นโยบาย, บทความ และข้อมูลสำคัญทั้งหมดที่คุณต้องการ</p>
+        </header>
+
+        <main class="hub-main-content">
+
+            <aside class="hub-sidebar">
+                <h2>หมวดหมู่</h2>
+                <nav>
+                    <ul>
+                        <li><a href="#category-manuals">คู่มือการใช้งาน <span class="doc-count">(15)</span></a></li>
+                        <li><a href="#category-policies">นโยบายและระเบียบ <span class="doc-count">(8)</span></a></li>
+                        <li><a href="#category-training">เอกสารประกอบการฝึกอบรม <span class="doc-count">(10)</span></a></li>
+                        <li><a href="#category-faqs">คำถามที่พบบ่อย <span class="doc-count">(25)</span></a></li>
+                        <li><a href="#category-articles">บทความและประกาศ <span class="doc-count">(7)</span></a></li>
+                        <li><a href="#category-videos">วิดีโอแนะนำ <span class="doc-count">(5)</span></a></li>
+                        </ul>
+                </nav>
+            </aside>
+
+            <section class="hub-document-area">
+
+                <div class="search-filter-bar">
+                    <input type="text" placeholder="ค้นหาเอกสาร..." class="search-input">
+                    <div class="filters">
+                        <select class="filter-type">
+                            <option value="">ประเภทเอกสารทั้งหมด</option>
+                            <option value="pdf">PDF</option>
+                            <option value="docx">Word</option>
+                            <option value="xlsx">Excel</option>
+                            <option value="video">Video</option>
+                            <option value="link">Web Link</option>
+                        </select>
+                        <select class="filter-sort">
+                            <option value="recent">เรียงตาม: ล่าสุด</option>
+                            <option value="popular">เรียงตาม: ยอดนิยม</option>
+                            <option value="az">เรียงตาม: ก-ฮ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="document-list" id="category-manuals">
+                    <div class="document-item">
+                        <div class="document-icon">📄</div> <div class="document-info">
+                            <h3 class="document-title">คู่มือการติดตั้งโปรแกรมเวอร์ชัน 2.0</h3>
+                            <p class="document-description">คู่มือนี้อธิบายขั้นตอนการติดตั้งโปรแกรมเวอร์ชันล่าสุดอย่างละเอียด พร้อมภาพประกอบ.</p>
+                            <div class="document-meta">
+                                <span class="document-date">เผยแพร่: 15 พฤษภาคม 2567</span>
+                                <span class="document-views">ดูแล้ว: 520 ครั้ง</span>
+                            </div>
+                            <div class="document-actions">
+                                <a href="path/to/document_v2.0.pdf" target="_blank" class="btn btn-view">ดูเอกสาร</a>
+                                <a href="path/to/document_v2.0.pdf" download class="btn btn-download">ดาวน์โหลด</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="document-item">
+                        <div class="document-icon">📄</div>
+                        <div class="document-info">
+                            <h3 class="document-title">นโยบายการลาพักร้อนประจำปี 2567</h3>
+                            <p class="document-description">ระเบียบและเงื่อนไขการลาพักร้อนสำหรับพนักงานทุกคน.</p>
+                            <div class="document-meta">
+                                <span class="document-date">อัปเดต: 10 เมษายน 2567</span>
+                                <span class="document-views">ดูแล้ว: 310 ครั้ง</span>
+                            </div>
+                            <div class="document-actions">
+                                <a href="path/to/leave_policy_2567.docx" target="_blank" class="btn btn-view">ดูเอกสาร</a>
+                                <a href="path/to/leave_policy_2567.docx" download class="btn btn-download">ดาวน์โหลด</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="document-item">
+                        <div class="document-icon">▶️</div>
+                        <div class="document-info">
+                            <h3 class="document-title">วิดีโอแนะนำ: การใช้งานระบบ HR ใหม่</h3>
+                            <p class="document-description">วิดีโอสอนวิธีการใช้งานฟังก์ชันหลักๆ ของระบบ HR เวอร์ชั่นล่าสุด.</p>
+                            <div class="document-meta">
+                                <span class="document-date">เผยแพร่: 01 มิถุนายน 2567</span>
+                                <span class="document-views">ดูแล้ว: 680 ครั้ง</span>
+                            </div>
+                            <div class="document-actions">
+                                <a href="https://youtube.com/link-to-video" target="_blank" class="btn btn-view">ดูวิดีโอ</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+                <div class="pagination">
+                    <a href="#" class="page-link">« ก่อนหน้า</a>
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">ถัดไป »</a>
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer class="hub-footer">
+            <p>© 2025 [ชื่อองค์กรของคุณ]. สงวนลิขสิทธิ์.</p>
+        </footer>
+
+    </div>
+
+    </body>
+</html>
