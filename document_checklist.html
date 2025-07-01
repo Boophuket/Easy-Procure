@@ -825,7 +825,7 @@
 
         // Function to load documents based on URL parameter
         function loadDocumentChecklist() {
-           // const requestedMethodCode = getUrlParameter('method');
+            const requestedMethodCode = getUrlParameter('method');
             const encodedFormData = getUrlParameter('formData');
             
             let formData = null;
@@ -911,19 +911,23 @@
         }
 
         // --- Modal Functions ---
-         const modal = document.getElementById('templateModal');
+        const modal = document.getElementById('templateModal');
         const modalFileNameSpan = document.getElementById('modalFileName');
         const downloadTemplateBtn = document.getElementById('downloadTemplateBtn');
         const editInWordBtn = document.getElementById('editInWordBtn');
 
         function openModal(filename, templateUrl) {
             modalFileNameSpan.textContent = `ไฟล์: ${filename}`;
-
+            
             // Set download link
             downloadTemplateBtn.href = templateUrl;
-
+            
             // Set edit in Word link using ms-word protocol
-            editInWordBtn.href = `ms-word:ofe|u|${window.location.origin}/${templateUrl}`;
+            // **Important**: This protocol requires Office apps to be installed and correctly configured on the user's machine,
+            // and the file to be accessible via a web URL. For a local file system mockup, this might not always work directly
+            // due to browser security or lack of protocol handler for local paths.
+            // In a real Power Platform/SharePoint environment, this URL would be provided by SharePoint itself.
+            editInWordBtn.href = `ms-word:ofe|u|${window.location.origin}/${templateUrl}`; // Construct absolute URL for ms-word protocol
 
             modal.style.display = "flex"; // Show the modal
         }
@@ -942,7 +946,7 @@
         // Function for submitting documents (placeholder)
         function submitDocuments() {
             alert('กำลังส่งเอกสารและข้อมูลเข้าสู่ระบบ...');
-
+            
             // Re-get the parameters that were passed to this page
             const requestedMethodCode = getUrlParameter('method');
             const encodedFormData = getUrlParameter('formData');
@@ -952,6 +956,7 @@
         }
 
         // Load documents and display details when the page loads
+        // THIS IS THE ONLY CALL THAT SHOULD BE HERE FOR INITIAL PAGE LOAD
         document.addEventListener('DOMContentLoaded', loadDocumentChecklist);
     </script>
 </body>
