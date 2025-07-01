@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>รายการเอกสารที่ต้องใช้ - Easy Procure</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles - Consistent with Dashboard */
+        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
@@ -15,21 +14,19 @@
         }
 
         body {
-            font-family: 'Kanit', sans-serif;
-            background: linear-gradient(135deg, #A8C0FF 0%, #3F2B96 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
             line-height: 1.6;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* Header - Consistent with Dashboard */
+        /* Header */
         .header {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(15px);
-            padding: 1rem 3rem;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -42,7 +39,7 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .logo-section {
@@ -52,165 +49,147 @@
         }
 
         .logo {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(45deg, #1abc9c, #2ecc71);
-            border-radius: 15px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.8rem;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         .title-section h1 {
             color: #2c3e50;
-            font-size: 2.1rem;
+            font-size: 1.8rem;
             font-weight: 700;
         }
 
         .title-section p {
             color: #7f8c8d;
-            font-size: 1rem;
-            margin-top: 0.3rem;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
         }
 
         .user-info {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
-            background: rgba(108, 99, 255, 0.15);
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            border: 1px solid rgba(108, 99, 255, 0.3);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            gap: 1rem;
+            background: rgba(108, 99, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 1px solid rgba(108, 99, 255, 0.2);
         }
 
         .user-avatar {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(45deg, #6c63ff, #8a2be2);
+            width: 40px;
+            height: 40px;
+            background: #6c63ff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
         }
 
         /* Main Container */
         .container {
             max-width: 1000px;
-            margin: 2.5rem auto;
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
-            flex-grow: 1;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .page-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #2c3e50;
             font-weight: 700;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
-            justify-content: center; /* Center the title */
-        }
-
-        .page-title .fas {
-            color: #6c63ff;
-            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 1rem;
         }
 
         .page-description {
-            color: #555;
-            margin-bottom: 3rem;
-            font-size: 1.15rem;
             text-align: center;
+            color: #555;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
-        /* Section Cards (Method Info & Project Details) */
-        .info-card {
-            background: linear-gradient(135deg, #e0e7ff, #f0f3ff); /* Light blue gradient */
-            border-radius: 20px;
+        /* Project Info Section */
+        .project-info-section {
+            background: rgba(248, 249, 250, 0.8);
+            border-radius: 16px;
             padding: 2rem;
-            margin-bottom: 2.5rem; /* Reduced margin */
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid #cdd6f3;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
         }
 
-        .info-card h3 {
-            font-size: 1.8rem;
-            color: #3F2B96; /* Darker blue from gradient */
-            margin-bottom: 1rem;
+        .project-info-section h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #6c63ff;
+            padding-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            border-bottom: 2px solid rgba(63, 43, 150, 0.2);
-            padding-bottom: 0.5rem;
         }
 
-        .info-card p, .info-card div {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 0.5rem;
-        }
-
-        .info-card strong {
-            color: #2c3e50;
-            margin-right: 0.5rem;
-        }
-
-        /* Project Details specific styling */
         .project-details-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns */
-            gap: 0.8rem 1.5rem; /* Row gap, column gap */
-            margin-top: 1rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 2rem;
         }
 
-        .project-details-grid > div {
-            padding: 0.2rem 0;
+        .detail-item {
             display: flex;
-            align-items: baseline; /* Align text baselines */
+            flex-direction: column;
         }
 
-        .project-details-grid strong {
-            min-width: 100px; /* Ensure labels align */
-            display: inline-block;
+        .detail-item label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
         }
 
-        .project-details-full-width {
-            grid-column: 1 / -1; /* Span across both columns */
+        .detail-item span {
+            color: #333;
+            font-size: 1rem;
+            word-break: break-word; /* Ensure long text wraps */
+        }
+
+        .detail-item.full-width {
+            grid-column: 1 / -1;
         }
 
         /* Document Checklist Section */
         .document-checklist-section {
-            background: rgba(248, 249, 250, 0.9);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e0e0e0;
+            background: rgba(232, 245, 233, 0.8);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #c8e6c9;
         }
 
         .document-checklist-section h3 {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 1.8rem;
-            border-bottom: 3px solid #6c63ff;
-            padding-bottom: 0.8rem;
+            color: #388e3c;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 0.5rem;
         }
 
         .document-list {
@@ -219,151 +198,61 @@
         }
 
         .document-item {
-            background: white;
-            border: 1px solid #f0f0f0;
-            border-radius: 12px;
-            padding: 1.2rem 1.5rem;
-            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            flex-wrap: wrap; /* Allow wrapping for responsiveness */
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid #eee;
         }
 
         .document-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .document-icon {
-            font-size: 1.8rem;
-            color: #6c63ff;
-        }
-
-        .document-details {
-            flex-grow: 1;
-        }
-
-        .document-details h4 {
-            font-size: 1.15rem;
-            color: #333;
-            margin-bottom: 0.2rem;
-        }
-
-        .document-details p {
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        .document-status {
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 0.4em 0.8em;
-            border-radius: 20px;
-            color: white;
-            text-transform: uppercase;
-        }
-
-        .status-required {
-            background-color: #f39c12; /* Orange */
-        }
-
-        .status-optional {
-            background-color: #3498db; /* Blue */
-        }
-
-        .status-upload {
-            background-color: #27ae60; /* Green */
-        }
-
-        /* Container for file name and action buttons */
-        .file-actions-container {
-            margin-left: auto; /* Push to the right */
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end; /* Align content to the right */
-            gap: 0.5rem; /* Space between file name and buttons */
-        }
-
-        .template-file-name {
-            font-size: 0.9rem;
-            color: #555;
-            background-color: #f8f9fa;
-            padding: 0.4rem 0.8rem;
-            border-radius: 15px;
-            border: 1px solid #eee;
-            white-space: nowrap; /* Prevent filename from wrapping */
-            overflow: hidden;
-            text-overflow: ellipsis; /* Add ellipsis if too long */
-            max-width: 250px; /* Limit width */
-            text-align: right;
-            margin-bottom: 0.5rem; /* Space below filename */
-        }
-
-        /* Action Buttons for each item */
-        .action-buttons-item {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap; /* Allow wrapping for responsiveness */
-            justify-content: flex-end; /* Align buttons to the right */
-        }
-
-        .action-button-item {
-            padding: 0.6rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.95rem;
-            border: 1px solid;
-            background-color: white;
-            color: #555;
-            text-decoration: none;
-            text-align: center;
-            justify-content: center;
-            white-space: nowrap; /* Prevent button text from wrapping */
-        }
-
-        .action-button-item:hover {
             transform: translateY(-2px);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-color: #a5d6a7;
         }
 
-        .download-button {
-            border-color: #3498db;
-            color: #3498db;
+        .document-item i {
+            color: #6c63ff;
+            margin-right: 1rem;
+            font-size: 1.2rem;
         }
 
-        .download-button:hover {
-            background-color: #3498db;
-            color: white;
+        .document-item span {
+            flex-grow: 1;
+            font-size: 1.05rem;
+            color: #333;
+            font-weight: 500;
         }
 
-        .edit-word-button {
-            border-color: #2c3e50;
-            color: #2c3e50;
+        .document-item .status-icon {
+            font-size: 1.1rem;
+            margin-left: 1rem;
+            color: #ccc; /* Default grey */
         }
 
-        .edit-word-button:hover {
-            background-color: #2c3e50;
-            color: white;
+        .document-item.complete .status-icon {
+            color: #4CAF50; /* Green for complete */
         }
 
-        /* Overall Action Buttons */
+        .document-item.missing .status-icon {
+            color: #f44336; /* Red for missing */
+        }
+
+        /* Action Buttons */
         .action-buttons {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin-top: 3rem;
+            margin-top: 2.5rem;
         }
 
         .action-button {
-            padding: 0.9rem 2rem;
+            padding: 0.8rem 2.5rem;
             border-radius: 25px;
             font-weight: 600;
             cursor: pointer;
@@ -372,92 +261,141 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 1.1rem;
-            text-decoration: none; /* For links */
-            text-align: center;
-            justify-content: center;
+            border: none;
         }
 
-        .back-button {
+        .action-button.primary {
+            background: linear-gradient(45deg, #6c63ff, #8a2be2); /* Blue-purple gradient */
+            color: white;
+        }
+
+        .action-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        .action-button.secondary {
             background: #f0f0f0;
             color: #555;
             border: 1px solid #ddd;
         }
 
-        .back-button:hover {
-            background: #e0e0e0;
+        .action-button.secondary:hover {
+            transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .submit-button {
-            background: linear-gradient(45deg, #6c63ff, #8a2be2);
-            color: white;
-            border: none;
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            align-items: center;
+            justify-content: center;
         }
 
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.5);
-            background: linear-gradient(45deg, #564edb, #711cc9);
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content h3 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .modal-content button {
+            display: block;
+            width: 80%;
+            padding: 15px;
+            margin: 15px auto;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .modal-content .download-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .modal-content .download-btn:hover {
+            background-color: #45a049;
+        }
+
+        .modal-content .edit-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .modal-content .edit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .modal-content p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
         }
 
         /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .container {
-                margin: 2rem auto;
-                padding: 2.5rem;
-            }
-            .header {
-                padding: 1rem 2rem;
-            }
-        }
-
         @media (max-width: 768px) {
-            .page-title {
-                font-size: 2rem;
+            .container {
+                padding: 1.5rem;
+                margin: 1rem auto;
             }
-            .page-title .fas {
+            .page-title {
                 font-size: 1.8rem;
             }
             .page-description {
                 font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-            .info-card, .document-checklist-section {
-                padding: 2rem;
-            }
-            .info-card h3, .document-checklist-section h3 {
-                font-size: 1.6rem;
             }
             .project-details-grid {
-                grid-template-columns: 1fr; /* Single column on small screens */
+                grid-template-columns: 1fr;
             }
-            .document-item {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 1rem;
+            .project-info-section, .document-checklist-section {
+                padding: 1.5rem;
             }
-            .document-details {
-                width: 100%;
-                margin-bottom: 0.5rem;
-            }
-            .document-status {
-                margin-top: 0.5rem;
-                align-self: flex-end; /* Align status to the right bottom */
-            }
-            .file-actions-container {
-                width: 100%;
-                align-items: flex-start; /* Align content to the left on small screens */
-                margin-left: 0;
-                margin-top: 1rem;
-            }
-            .template-file-name {
-                max-width: 100%; /* Full width on smaller screens */
-                text-align: left;
-            }
-            .action-buttons-item {
-                width: 100%; /* Take full width on small screens */
-                justify-content: flex-start; /* Align left */
+            .project-info-section h3, .document-checklist-section h3 {
+                font-size: 1.3rem;
             }
             .action-buttons {
                 flex-direction: column;
@@ -465,28 +403,11 @@
             }
             .action-button {
                 width: 100%;
+                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 1.5rem;
-            }
-            .page-title {
-                font-size: 1.8rem;
-            }
-            .page-title .fas {
-                font-size: 1.6rem;
-            }
-            .page-description {
-                font-size: 0.9rem;
-            }
-            .logo-section .title-section h1 {
-                font-size: 1.5rem;
-            }
-            .logo-section .title-section p {
-                font-size: 0.8rem;
-            }
             .header-content {
                 flex-direction: column;
                 align-items: flex-start;
@@ -495,6 +416,12 @@
             .user-info {
                 width: 100%;
                 justify-content: center;
+            }
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .page-description {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -520,249 +447,271 @@
     </header>
 
     <div class="container">
-        <h2 class="page-title"><i class="fas fa-list-check"></i> รายการเอกสารที่ต้องใช้</h2>
+        <h2 class="page-title"><i class="fas fa-clipboard-list" style="color: #6c63ff; margin-right: 0.5rem;"></i> รายการเอกสารที่ต้องใช้</h2>
         <p class="page-description">
-            นี่คือเอกสารที่จำเป็นสำหรับวิธีจัดซื้อจัดจ้างที่แนะนำ กรุณาเตรียมเอกสารให้ครบถ้วน
+            นี่คือเอกสารที่จำเป็นสำหรับวิธีจัดซื้อจัดจ้างที่แนะนำ กรุณาเตรียมเอกสารให้ครบถ้วนก่อนส่งเรื่อง
         </p>
 
-        <div class="info-card">
+        <div class="project-info-section">
             <h3><i class="fas fa-file-invoice"></i> ข้อมูลโครงการ</h3>
             <div class="project-details-grid">
-                <div><strong>ชื่อโครงการ:</strong> <span id="displayProjectName"></span></div>
-                <div><strong>วงเงินงบประมาณ:</strong> <span id="displayBudget"></span></div>
-                <div><strong>ความเร่งด่วน:</strong> <span id="displayUrgency"></span></div>
-                <div><strong>ประเภทพัสดุ/งาน:</strong> <span id="displayItemType"></span></div>
-                <div><strong>ลักษณะผู้ขาย:</strong> <span id="displayVendorType"></span></div>
-                <div class="project-details-full-width"><strong>รายละเอียด/ขอบเขตงาน (TOR):</strong> <span id="displayTorDetails"></span></div>
-                <div><strong>ผู้ประสานงาน:</strong> <span id="displayContactPerson"></span></div>
-                <div><strong>เบอร์โทรศัพท์:</strong> <span id="displayContactTel"></span></div>
+                <div class="detail-item">
+                    <label>ชื่อโครงการ:</label>
+                    <span id="displayProjectName"> - ไม่มีข้อมูล - </span>
+                </div>
+                <div class="detail-item">
+                    <label>วงเงินงบประมาณ:</label>
+                    <span id="displayProjectBudget"> - ไม่มีข้อมูล - </span>
+                </div>
+                <div class="detail-item">
+                    <label>ความเร่งด่วน:</label>
+                    <span id="displayUrgency"> - ไม่มีข้อมูล - </span>
+                </div>
+                <div class="detail-item">
+                    <label>ประเภทพัสดุ/งาน:</label>
+                    <span id="displayProcurementType"> - ไม่มีข้อมูล - </span>
+                </div>
+                <div class="detail-item">
+                    <label>ลักษณะผู้ขาย:</label>
+                    <span id="displayVendorChar"> - ไม่มีข้อมูล - </span>
+                </div>
+                <div class="detail-item full-width">
+                    <label>รายละเอียด/ขอบเขตงาน (TOR):</label>
+                    <span id="displayProjectDescription"> - ไม่มีข้อมูล - </span>
+                </div>
+                <div class="detail-item">
+                    <label>ผู้ประสานงาน:</label>
+                    <span id="displayContactPerson"> - ไม่มีข้อมูล - </span>
+                </div>
+                <div class="detail-item">
+                    <label>เบอร์โทรศัพท์:</label>
+                    <span id="displayContactTel"> - ไม่มีข้อมูล - </span>
+                </div>
+                 <div class="detail-item">
+                    <label>วิธีจัดซื้อจัดจ้างที่แนะนำ:</label>
+                    <span id="displayRecommendedMethod"> - ไม่มีข้อมูล - </span>
+                </div>
             </div>
         </div>
 
-        <div class="info-card">
-            <h3><i class="fas fa-gavel"></i> วิธีจัดซื้อจัดจ้าง: <span id="displayMethodName"></span></h3>
-            <p id="displayMethodDescription"></p>
-        </div>
-
         <div class="document-checklist-section">
-            <h3><i class="fas fa-folder-open"></i> เอกสารที่เกี่ยวข้อง</h3>
-            <ul class="document-list" id="documentList">
+            <h3><i class="fas fa-file-alt"></i> Checklist เอกสาร</h3>
+            <p style="margin-bottom: 1.5rem; color: #666;">
+                นี่คือรายการเอกสารที่คุณต้องเตรียมสำหรับวิธีจัดซื้อจัดจ้าง "<span id="methodNameInChecklist" style="font-weight: 600; color: #2e7d32;">- ไม่มีข้อมูล -</span>"
+            </p>
+            <div id="documentListContainer">
+                <ul class="document-list">
+                    <li class="document-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>เอกสารทั่วไป 1</span>
+                        <i class="fas fa-circle status-icon"></i>
+                    </li>
+                    <li class="document-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>เอกสารทั่วไป 2</span>
+                        <i class="fas fa-circle status-icon"></i>
+                    </li>
                 </ul>
+                <p class="no-documents" style="text-align: center; color: #777; font-style: italic; margin-top: 1rem; display: none;">ไม่มีรายการเอกสารสำหรับวิธีนี้</p>
+            </div>
         </div>
 
         <div class="action-buttons">
-            <a href="create_request.html" class="action-button back-button">
-                <i class="fas fa-arrow-circle-left"></i> กลับไปแก้ไข
-            </a>
-            <button class="action-button submit-button" onclick="submitDocuments()">
-                <i class="fas fa-cloud-arrow-up"></i> ส่งเอกสารและข้อมูล
-            </button>
+            <button class="action-button primary" onclick="showDocumentModal()"><i class="fas fa-plus-circle"></i> เพิ่มเอกสาร</button>
+            <button class="action-button secondary" onclick="window.location.href='create_request.html'"><i class="fas fa-arrow-circle-left"></i> ย้อนกลับ</button>
+        </div>
+    </div>
+
+    <div id="documentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeDocumentModal()">&times;</span>
+            <h3><i class="fas fa-file-upload"></i> เลือกรูปแบบการจัดการเอกสาร</h3>
+            <button class="download-btn" onclick="downloadTemplate()"><i class="fas fa-download"></i> ดาวน์โหลดเทมเพลต</button>
+            <button class="edit-btn" onclick="editInWordDesktop()"><i class="fas fa-edit"></i> แก้ไขใน Word Desktop</button>
+            <p>การแก้ไขใน Word Desktop จะทำงานได้ดีที่สุดในสภาพแวดล้อม Microsoft 365/SharePoint</p>
         </div>
     </div>
 
     <script>
-        // Document definitions for each procurement method
-        const documentRequirements = {
-            'specific': {
-                name: 'วิธีเฉพาะเจาะจง',
-                description: 'เหมาะสำหรับพัสดุ/งานที่มีผู้ขายจำกัด, วงเงินไม่สูง, หรือมีความจำเป็นเร่งด่วนเป็นพิเศษ',
-                documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/specific_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง.docx' },
-                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required', templateUrl: 'templates/specific_pr_po.docx', templateFileName: 'ใบขออนุมัติซื้อ_จ้าง.docx' },
-                    { title: 'ใบเสนอราคา/ขอบเขตงาน (TOR)', description: 'เอกสารเสนอราคาจากผู้ขาย หรือรายละเอียดงาน', status: 'required', templateUrl: 'templates/specific_tor.docx', templateFileName: 'ใบเสนอราคา_ขอบเขตงาน.docx' },
-                    { title: 'เอกสารประกอบการพิจารณาผู้ขาย', description: 'สำเนาทะเบียนพาณิชย์, หนังสือรับรองบริษัท (ถ้ามี)', status: 'optional', templateUrl: '', templateFileName: '' }, // No template for this, just info
-                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required', templateUrl: 'templates/specific_report.docx', templateFileName: 'รายงานผลการพิจารณา.docx' }
-                ]
-            },
-            'e-market': {
-                name: 'วิธีตลาดอิเล็กทรอนิกส์ (e-market)',
-                description: 'เหมาะสำหรับสินค้า/บริการที่มีมาตรฐานทั่วไป และอยู่ในบัญชี e-catalog',
-                documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/e-market_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง_eMarket.docx' },
-                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required', templateUrl: 'templates/e-market_pr_po.docx', templateFileName: 'ใบขออนุมัติซื้อ_จ้าง_eMarket.docx' },
-                    { title: 'ใบเสนอราคาจาก e-market', description: 'ใบเสนอราคาที่ได้จากระบบ e-market', status: 'required', templateUrl: '', templateFileName: '' }, // No template for this, generated by system
-                    { title: 'แคตตาล็อกสินค้า/รายละเอียดผลิตภัณฑ์', description: 'เอกสารแสดงคุณสมบัติของสินค้าที่เลือก', status: 'optional', templateUrl: '', templateFileName: '' }, // No template for this, just info
-                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required', templateUrl: 'templates/e-market_report.docx', templateFileName: 'รายงานผลการพิจารณา_eMarket.docx' }
-                ]
-            },
-            'e-bidding': {
-                name: 'วิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)',
-                description: 'เหมาะสำหรับพัสดุ/งานทั่วไปที่มีมูลค่าสูงและมีผู้ขายหลายราย',
-                documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/e-bidding_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง_eBidding.docx' },
-                    { title: 'ร่างประกาศ/ร่างเอกสารประกวดราคา (TOR)', description: 'เอกสารขอบเขตงานและคุณสมบัติผู้เข้าแข่งขัน', status: 'required', templateUrl: 'templates/e-bidding_tor.docx', templateFileName: 'ร่างประกาศ_TOR_eBidding.docx' },
-                    { title: 'รายงานผลการพิจารณาการประกวดราคา', description: 'บันทึกสรุปผลการพิจารณาจากคณะกรรมการ', status: 'required', templateUrl: 'templates/e-bidding_report.docx', templateFileName: 'รายงานผลการพิจารณา_eBidding.docx' },
-                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required', templateUrl: '', templateFileName: '' }, // No template for this, actual contract
-                    { title: 'หลักประกันซอง/หลักประกันสัญญา (ถ้ามี)', description: 'เอกสารแสดงหลักประกันจากผู้เสนอราคา', status: 'optional', templateUrl: '', templateFileName: '' }
-                ]
-            },
-            'selection': {
-                name: 'วิธีคัดเลือก',
-                description: 'เหมาะสำหรับพัสดุ/งานที่ซับซ้อน หรือต้องคำนึงถึงคุณภาพ/เทคนิคเป็นพิเศษ',
-                documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/selection_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง_Selection.docx' },
-                    { title: 'เอกสารเชิญชวน/เอกสารคัดเลือก (RfP)', description: 'เอกสารสำหรับเชิญชวนผู้ขายที่ถูกคัดเลือก', status: 'required', templateUrl: 'templates/selection_rfp.docx', templateFileName: 'เอกสารเชิญชวน_RfP_Selection.docx' },
-                    { title: 'แผนการดำเนินงาน/Proposal จากผู้ขาย', description: 'ข้อเสนอทางเทคนิคและราคาจากผู้ขาย', status: 'required', templateUrl: '', templateFileName: '' }, // From vendor
-                    { title: 'รายงานผลการคัดเลือก', description: 'บันทึกสรุปผลการพิจารณาและเหตุผลการคัดเลือก', status: 'required', templateUrl: 'templates/selection_report.docx', templateFileName: 'รายงานผลการคัดเลือก_Selection.docx' },
-                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required', templateUrl: '', templateFileName: '' } // Actual contract
-                ]
-            },
-            'special': {
-                name: 'วิธีพิเศษ',
-                description: 'สำหรับกรณีพิเศษที่ต้องเร่งด่วนมาก หรือเป็นงานที่มีความจำเป็นเร่งด่วนภัยพิบัติ',
-                documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง (กรณีพิเศษ)', description: 'ระบุเหตุผลความจำเป็นและเร่งด่วน', status: 'required', templateUrl: 'templates/special_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง_Special.docx' },
-                    { title: 'รายงานการสำรวจราคาจากผู้ขาย', description: 'เอกสารแสดงการสืบราคาจากผู้ขาย', status: 'required', templateUrl: '', templateFileName: '' }, // From survey
-                    { title: 'ใบเสนอราคา/ขอบเขตงาน (กรณีพิเศษ)', description: 'เอกสารเสนอราคาจากผู้ขาย', status: 'required', templateUrl: '', templateFileName: '' }, // From vendor
-                    { title: 'หลักฐานการเกิดเหตุฉุกเฉิน/ภัยพิบัติ', description: 'เช่น รูปภาพ, รายงานสถานการณ์', status: 'required', templateUrl: '', templateFileName: '' }, // Evidence
-                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required', templateUrl: '', templateFileName: '' } // Actual contract
-                ]
-            },
-            'default': { // Fallback if method is not found
-                name: 'ไม่พบข้อมูลวิธีจัดซื้อจัดจ้าง',
-                description: 'กรุณากลับไปหน้าก่อนหน้าเพื่อเลือกวิธีจัดซื้อจัดจ้างอีกครั้ง',
-                documents: [
-                    { title: 'ไม่พบเอกสารที่เกี่ยวข้อง', description: 'กรุณาติดต่อผู้ดูแลระบบ', status: 'required', templateUrl: '', templateFileName: '' }
-                ]
-            }
+        const documentTemplates = {
+            'specific': [
+                'หนังสือขออนุมัติจัดซื้อจัดจ้างวิธีเฉพาะเจาะจง',
+                'ใบเสนอราคา (ถ้ามี)',
+                'รายงานผลการพิจารณา (บก.06)',
+                'สัญญา/ใบสั่งซื้อสั่งจ้าง',
+                'เอกสารแต่งตั้งคณะกรรมการ (ถ้ามี)'
+            ],
+            'e-market': [
+                'ใบเสนอราคาจาก e-market',
+                'รายงานผลการพิจารณา (บก.06) จาก e-market',
+                'สัญญา/ใบสั่งซื้อสั่งจ้าง (ในระบบ e-GP)',
+                'รายงานขอซื้อขอจ้าง'
+            ],
+            'e-bidding': [
+                'ประกาศประกวดราคาอิเล็กทรอนิกส์',
+                'เอกสารประกวดราคา (TOR)',
+                'ใบเสนอราคาจากผู้เสนอราคา',
+                'รายงานผลการพิจารณา (บก.06)',
+                'สัญญา/ข้อตกลง',
+                'หนังสือค้ำประกัน (ถ้ามี)'
+            ],
+            'selection': [
+                'หนังสือเชิญชวน (ถ้ามี)',
+                'เอกสารคัดเลือก (TOR)',
+                'ข้อเสนอทางเทคนิค/ราคาจากผู้เสนอราคา',
+                'รายงานผลการพิจารณา (บก.06) คัดเลือก',
+                'สัญญา/ข้อตกลง',
+                'เอกสารคุณสมบัติผู้เสนอราคา'
+            ],
+            'special': [
+                'หนังสืออนุมัติจัดซื้อจัดจ้างกรณีพิเศษ',
+                'รายงานขอซื้อขอจ้างกรณีพิเศษ',
+                'ใบเสนอราคา (ถ้ามี)',
+                'สัญญา/ใบสั่งซื้อสั่งจ้าง'
+            ]
         };
 
         // Function to parse URL parameters
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        function getUrlParams() {
+            const params = {};
+            window.location.search.substring(1).split('&').forEach(param => {
+                const parts = param.split('=');
+                if (parts.length === 2) {
+                    params[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+                }
+            });
+            return params;
         }
 
-        // Function to load and display all information
-        function loadPageData() {
-            // Load Procurement Method Details
-            const requestedMethodCode = getUrlParameter('method');
-            const methodData = documentRequirements[requestedMethodCode] || documentRequirements['default'];
+        // Function to display project data and checklist
+        function loadProjectAndDocumentData() {
+            const params = getUrlParams();
+            let formData = {};
 
-            document.getElementById('displayMethodName').textContent = methodData.name;
-            document.getElementById('displayMethodDescription').textContent = methodData.description;
-
-            // Load Project Details from URL Parameters
-            document.getElementById('displayProjectName').textContent = getUrlParameter('projectName') || '- ไม่มีข้อมูล -';
-            document.getElementById('displayBudget').textContent = getUrlParameter('budget') ? `${getUrlParameter('budget')} บาท` : '- ไม่มีข้อมูล -';
-            document.getElementById('displayUrgency').textContent = getUrlParameter('urgency') || '- ไม่มีข้อมูล -';
-            document.getElementById('displayItemType').textContent = getUrlParameter('itemType') || '- ไม่มีข้อมูล -';
-            document.getElementById('displayVendorType').textContent = getUrlParameter('vendorType') || '- ไม่มีข้อมูล -';
-            document.getElementById('displayTorDetails').textContent = getUrlParameter('torDetails') || '- ไม่มีข้อมูล -';
-            document.getElementById('displayContactPerson').textContent = getUrlParameter('contactPerson') || '- ไม่มีข้อมูล -';
-            document.getElementById('displayContactTel').textContent = getUrlParameter('contactTel') || '- ไม่มีข้อมูล -';
-
-            // Load Document Checklist
-            const documentList = document.getElementById('documentList');
-            documentList.innerHTML = ''; // Clear existing list
-
-            if (methodData.documents.length === 0) {
-                documentList.innerHTML = '<li><p class="no-documents">ไม่พบรายการเอกสารสำหรับวิธีนี้</p></li>';
-                return;
+            if (params.formData) {
+                try {
+                    formData = JSON.parse(params.formData);
+                } catch (e) {
+                    console.error("Error parsing formData:", e);
+                }
             }
 
-            methodData.documents.forEach(doc => {
-                const li = document.createElement('li');
-                li.className = 'document-item';
-                let statusClass = '';
-                let statusText = '';
-                let iconClass = '';
+            // Get the recommended method code directly from formData if available, else default
+            const recommendedMethodCode = formData.recommendedMethodCode || 'default';
+            // Get the recommended method display name from formData if available, else 'N/A'
+            const recommendedMethodName = formData.recommendedMethodName || 'N/A';
 
-                switch (doc.status) {
-                    case 'required':
-                        statusClass = 'status-required';
-                        statusText = 'จำเป็น';
-                        iconClass = 'fa-solid fa-file-circle-check';
-                        break;
-                    case 'optional':
-                        statusClass = 'status-optional';
-                        statusText = 'ตัวเลือก';
-                        iconClass = 'fa-solid fa-file-circle-exclamation';
-                        break;
-                    case 'upload': // If we later add an upload step, for example
-                        statusClass = 'status-upload';
-                        statusText = 'อัปโหลด';
-                        iconClass = 'fa-solid fa-cloud-arrow-up';
-                        break;
-                    default:
-                        statusClass = 'status-required';
-                        statusText = 'จำเป็น';
-                        iconClass = 'fa-solid fa-file';
-                }
+            // Populate Project Information
+            document.getElementById('displayProjectName').textContent = formData.projectName || '- ไม่มีข้อมูล -';
+            document.getElementById('displayProjectBudget').textContent = (formData.projectBudget ? parseFloat(formData.projectBudget).toLocaleString('th-TH', { style: 'currency', currency: 'THB' }).replace('฿', '') + ' บาท' : '- ไม่มีข้อมูล -');
+            document.getElementById('displayUrgency').textContent = mapUrgencyValue(formData.urgency) || '- ไม่มีข้อมูล -';
+            document.getElementById('displayProcurementType').textContent = mapProcurementTypeValue(formData.procurementType) || '- ไม่มีข้อมูล -';
+            document.getElementById('displayVendorChar').textContent = mapVendorCharValue(formData.vendorChar) || '- ไม่มีข้อมูล -';
+            document.getElementById('displayProjectDescription').textContent = formData.projectDescription || '- ไม่มีข้อมูล -';
+            document.getElementById('displayContactPerson').textContent = formData.contactPerson || '- ไม่มีข้อมูล -';
+            document.getElementById('displayContactTel').textContent = formData.contactTel || '- ไม่มีข้อมูล -';
+            document.getElementById('displayRecommendedMethod').textContent = recommendedMethodName; // Use the name from formData
 
-                let fileActionsHtml = '';
-                // Only show buttons if templateUrl is provided
-                if (doc.templateUrl) {
-                    fileActionsHtml = `
-                        <div class="file-actions-container">
-                            <div class="template-file-name">${doc.templateFileName}</div>
-                            <div class="action-buttons-item">
-                                <button class="action-button-item download-button"
-                                        data-file-url="${doc.templateUrl}"
-                                        data-file-name="${doc.templateFileName}">
-                                    <i class="fas fa-download"></i> ดาวน์โหลด
-                                </button>
-                                <button class="action-button-item edit-word-button"
-                                        data-file-url="${doc.templateUrl}"
-                                        data-file-name="${doc.templateFileName}">
-                                    <i class="fas fa-file-word"></i> แก้ไข
-                                </button>
-                            </div>
-                        </div>
+
+            // Populate Document Checklist
+            document.getElementById('methodNameInChecklist').textContent = recommendedMethodName; // Use the name from formData
+
+            const documents = documentTemplates[recommendedMethodCode]; // Use the code from formData
+            const documentListContainer = document.getElementById('documentListContainer');
+            const noDocumentsMessage = documentListContainer.querySelector('.no-documents');
+            let documentListHtml = '';
+
+            if (documents && documents.length > 0) {
+                documentListHtml += '<ul class="document-list">';
+                documents.forEach(doc => {
+                    documentListHtml += `
+                        <li class="document-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>${doc}</span>
+                            <i class="fas fa-circle status-icon" title="ยังไม่ได้ดำเนินการ"></i>
+                        </li>
                     `;
-                }
-
-                li.innerHTML = `
-                    <div class="document-icon"><i class="${iconClass}"></i></div>
-                    <div class="document-details">
-                        <h4>${doc.title}</h4>
-                        <p>${doc.description}</p>
-                    </div>
-                    <span class="document-status ${statusClass}">${statusText}</span>
-                    ${fileActionsHtml}
-                `;
-                documentList.appendChild(li);
-            });
-
-            // Add event listeners for the newly created buttons
-            document.querySelectorAll('.download-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const fileUrl = this.dataset.fileUrl;
-                    const fileName = this.dataset.fileName;
-                    const a = document.createElement('a');
-                    a.href = fileUrl;
-                    a.download = fileName;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
                 });
-            });
+                documentListHtml += '</ul>';
+                noDocumentsMessage.style.display = 'none';
+            } else {
+                documentListHtml = '<ul class="document-list"></ul>'; // Ensure ul element is present
+                noDocumentsMessage.style.display = 'block';
+            }
+            documentListContainer.querySelector('.document-list').outerHTML = documentListHtml; // Replace existing ul
 
-            document.querySelectorAll('.edit-word-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const fileUrl = this.dataset.fileUrl;
-                    const fileName = this.dataset.fileName;
-                    const wordEditUrl = `ms-word:ofe|u|${encodeURIComponent(fileUrl)}`;
-                    
-                    try {
-                        window.location.href = wordEditUrl;
-                    } catch (e) {
-                        alert(`ไม่สามารถเปิดไฟล์ ${fileName} ใน Microsoft Word โดยตรงได้\nโปรดตรวจสอบว่าคุณได้ติดตั้ง Microsoft Word และเบราว์เซอร์ของคุณรองรับการเปิดผ่านโปรโตคอล 'ms-word:'`);
-                    }
+            // Add click event listeners to document items
+            document.querySelectorAll('.document-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    // Placeholder for future functionality like marking as complete or opening modal for this specific document
+                    console.log('Document item clicked:', item.querySelector('span').textContent);
                 });
             });
         }
 
-        // Function for submitting documents (placeholder)
-        function submitDocuments() {
-            alert('กำลังส่งเอกสารและข้อมูล (Mockup)');
-            window.location.href = 'final_summary.html';
+        // Helper functions to map raw values to display names
+        function mapUrgencyValue(value) {
+            switch (value) {
+                case 'very_low': return 'ไม่เร่งด่วน';
+                case 'low': return 'เร่งด่วนปานกลาง';
+                case 'medium': return 'เร่งด่วน';
+                case 'high': return 'เร่งด่วนมาก';
+                default: return '';
+            }
         }
 
-        // Load all data when the page loads
-        document.addEventListener('DOMContentLoaded', loadPageData);
+        function mapProcurementTypeValue(value) {
+            switch (value) {
+                case 'general': return 'พัสดุทั่วไป';
+                case 'specialized': return 'พัสดุเฉพาะทาง/เทคนิค';
+                case 'complex': return 'งานที่ซับซ้อน/ที่ปรึกษา';
+                case 'emergency': return 'กรณีฉุกเฉิน/ภัยพิบัติ';
+                case 'catalog': return 'สินค้าในบัญชีราคามาตรฐาน/e-market';
+                default: return '';
+            }
+        }
+
+        function mapVendorCharValue(value) {
+            switch (value) {
+                case 'multiple': return 'มีผู้ขายหลายราย';
+                case 'single': return 'มีผู้ขายเพียงรายเดียว';
+                case 'existing': return 'ต้องการใช้ผู้ขายเดิม';
+                case 'invited': return 'ต้องการเชิญผู้ขายเฉพาะราย';
+                case 'any': return 'ไม่จำกัด';
+                default: return '';
+            }
+        }
+
+        // Modal Functions
+        const documentModal = document.getElementById('documentModal');
+
+        function showDocumentModal() {
+            documentModal.style.display = 'flex'; // Use flex to center
+        }
+
+        function closeDocumentModal() {
+            documentModal.style.display = 'none';
+        }
+
+        function downloadTemplate() {
+            alert('ดาวน์โหลดเทมเพลต (ฟังก์ชันนี้ยังไม่ได้ถูกพัฒนา)');
+            closeDocumentModal();
+        }
+
+        function editInWordDesktop() {
+            alert('แก้ไขใน Word Desktop (ฟังก์ชันนี้ยังไม่ได้ถูกพัฒนา)');
+            closeDocumentModal();
+        }
+
+        // Close modal if user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target == documentModal) {
+                documentModal.style.display = "none";
+            }
+        }
+
+        // Load data when the page content is fully loaded
+        document.addEventListener('DOMContentLoaded', loadProjectAndDocumentData);
     </script>
 </body>
 </html>
