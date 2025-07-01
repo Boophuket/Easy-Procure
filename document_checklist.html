@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายการเอกสารที่ต้องใช้ - Easy Procure</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles - Consistent with Dashboard */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #A8C0FF 0%, #3F2B96 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - Consistent with Dashboard */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 1rem 3rem;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(45deg, #1abc9c, #2ecc71);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .title-section h1 {
+            color: #2c3e50;
+            font-size: 2.1rem;
+            font-weight: 700;
+        }
+
+        .title-section p {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: rgba(108, 99, 255, 0.15);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(45deg, #6c63ff, #8a2be2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 2.5rem auto;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+            flex-grow: 1;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+            justify-content: center; /* Center the title */
+        }
+
+        .page-title .fas {
+            color: #6c63ff;
+            font-size: 2.2rem;
+        }
+
+        .page-description {
+            color: #555;
+            margin-bottom: 3rem;
+            font-size: 1.15rem;
+            text-align: center;
+        }
+
+        /* Method Info Card */
+        .method-info-card {
+            background: linear-gradient(135deg, #e0e7ff, #f0f3ff); /* Light blue gradient */
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #cdd6f3;
+            text-align: center;
+        }
+
+        .method-info-card h3 {
+            font-size: 1.8rem;
+            color: #3F2B96; /* Darker blue from gradient */
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .method-info-card p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Document Checklist Section */
+        .document-checklist-section {
+            background: rgba(248, 249, 250, 0.9);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        .document-checklist-section h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.8rem;
+            border-bottom: 3px solid #6c63ff;
+            padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .document-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .document-item {
+            background: white;
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .document-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .document-icon {
+            font-size: 1.8rem;
+            color: #6c63ff;
+        }
+
+        .document-details {
+            flex-grow: 1;
+        }
+
+        .document-details h4 {
+            font-size: 1.15rem;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+
+        .document-details p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .document-status {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.4em 0.8em;
+            border-radius: 20px;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .status-required {
+            background-color: #f39c12; /* Orange */
+        }
+
+        .status-optional {
+            background-color: #3498db; /* Blue */
+        }
+
+        .status-upload {
+            background-color: #27ae60; /* Green */
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .action-button {
+            padding: 0.9rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            text-decoration: none; /* For links */
+            text-align: center;
+            justify-content: center;
+        }
+
+        .back-button {
+            background: #f0f0f0;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+
+        .back-button:hover {
+            background: #e0e0e0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #6c63ff, #8a2be2);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.5);
+            background: linear-gradient(45deg, #564edb, #711cc9);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .container {
+                margin: 2rem auto;
+                padding: 2.5rem;
+            }
+            .header {
+                padding: 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            .page-title .fas {
+                font-size: 1.8rem;
+            }
+            .page-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            .method-info-card, .document-checklist-section {
+                padding: 2rem;
+            }
+            .method-info-card h3, .document-checklist-section h3 {
+                font-size: 1.6rem;
+            }
+            .document-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+            .document-details {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            .document-status {
+                margin-top: 0.5rem;
+                align-self: flex-end; /* Align status to the right bottom */
+            }
+            .action-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .action-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+            .page-title .fas {
+                font-size: 1.6rem;
+            }
+            .page-description {
+                font-size: 0.9rem;
+            }
+            .logo-section .title-section h1 {
+                font-size: 1.5rem;
+            }
+            .logo-section .title-section p {
+                font-size: 0.8rem;
+            }
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .user-info {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">EP</div>
+                <div class="title-section">
+                    <h1>Easy Procure</h1>
+                    <p>ระบบช่วยเลือกแบบจัดซื้ออัจฉริยะ</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">จ</div>
+                <div>
+                    <div style="font-weight: 600; color: #2c3e50;">นายจิฑาวัฒน์ ชาญปราณีต</div>
+                    <div style="font-size: 0.8rem; color: #7f8c8d;">จนท.วรค.3 สรล.ฝบร.ทภก.</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="page-title"><i class="fas fa-list-check"></i> รายการเอกสารที่ต้องใช้</h2>
+        <p class="page-description">
+            นี่คือเอกสารที่จำเป็นสำหรับวิธีจัดซื้อจัดจ้างที่แนะนำ กรุณาเตรียมเอกสารให้ครบถ้วน
+        </p>
+
+        <div class="method-info-card">
+            <h3><i class="fas fa-gavel"></i> วิธีจัดซื้อจัดจ้าง: <span id="displayMethodName"></span></h3>
+            <p id="displayMethodDescription"></p>
+        </div>
+
+        <div class="document-checklist-section">
+            <h3><i class="fas fa-folder-open"></i> เอกสารที่เกี่ยวข้อง</h3>
+            <ul class="document-list" id="documentList">
+                </ul>
+        </div>
+
+        <div class="action-buttons">
+            <a href="create_request.html" class="action-button back-button">
+                <i class="fas fa-arrow-circle-left"></i> กลับไปแก้ไข
+            </a>
+            <button class="action-button submit-button" onclick="submitDocuments()">
+                <i class="fas fa-cloud-arrow-up"></i> ส่งเอกสารและข้อมูล
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Document definitions for each procurement method
+        const documentRequirements = {
+            'specific': {
+                name: 'วิธีเฉพาะเจาะจง',
+                description: 'เหมาะสำหรับพัสดุ/งานที่มีผู้ขายจำกัด, วงเงินไม่สูง, หรือมีความจำเป็นเร่งด่วนเป็นพิเศษ',
+                documents: [
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
+                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required' },
+                    { title: 'ใบเสนอราคา/ขอบเขตงาน (TOR)', description: 'เอกสารเสนอราคาจากผู้ขาย หรือรายละเอียดงาน', status: 'required' },
+                    { title: 'เอกสารประกอบการพิจารณาผู้ขาย', description: 'สำเนาทะเบียนพาณิชย์, หนังสือรับรองบริษัท (ถ้ามี)', status: 'optional' },
+                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required' }
+                ]
+            },
+            'e-market': {
+                name: 'วิธีตลาดอิเล็กทรอนิกส์ (e-market)',
+                description: 'เหมาะสำหรับสินค้า/บริการที่มีมาตรฐานทั่วไป และอยู่ในบัญชี e-catalog',
+                documents: [
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
+                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required' },
+                    { title: 'ใบเสนอราคาจาก e-market', description: 'ใบเสนอราคาที่ได้จากระบบ e-market', status: 'required' },
+                    { title: 'แคตตาล็อกสินค้า/รายละเอียดผลิตภัณฑ์', description: 'เอกสารแสดงคุณสมบัติของสินค้าที่เลือก', status: 'optional' },
+                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required' }
+                ]
+            },
+            'e-bidding': {
+                name: 'วิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)',
+                description: 'เหมาะสำหรับพัสดุ/งานทั่วไปที่มีมูลค่าสูงและมีผู้ขายหลายราย',
+                documents: [
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
+                    { title: 'ร่างประกาศ/ร่างเอกสารประกวดราคา (TOR)', description: 'เอกสารขอบเขตงานและคุณสมบัติผู้เข้าแข่งขัน', status: 'required' },
+                    { title: 'รายงานผลการพิจารณาการประกวดราคา', description: 'บันทึกสรุปผลการพิจารณาจากคณะกรรมการ', status: 'required' },
+                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required' },
+                    { title: 'หลักประกันซอง/หลักประกันสัญญา (ถ้ามี)', description: 'เอกสารแสดงหลักประกันจากผู้เสนอราคา', status: 'optional' }
+                ]
+            },
+            'selection': {
+                name: 'วิธีคัดเลือก',
+                description: 'เหมาะสำหรับพัสดุ/งานที่ซับซ้อน หรือต้องคำนึงถึงคุณภาพ/เทคนิคเป็นพิเศษ',
+                documents: [
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
+                    { title: 'เอกสารเชิญชวน/เอกสารคัดเลือก (RfP)', description: 'เอกสารสำหรับเชิญชวนผู้ขายที่ถูกคัดเลือก', status: 'required' },
+                    { title: 'แผนการดำเนินงาน/Proposal จากผู้ขาย', description: 'ข้อเสนอทางเทคนิคและราคาจากผู้ขาย', status: 'required' },
+                    { title: 'รายงานผลการคัดเลือก', description: 'บันทึกสรุปผลการพิจารณาและเหตุผลการคัดเลือก', status: 'required' },
+                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required' }
+                ]
+            },
+            'special': {
+                name: 'วิธีพิเศษ',
+                description: 'สำหรับกรณีพิเศษที่ต้องเร่งด่วนมาก หรือเป็นงานที่มีความจำเป็นเร่งด่วนภัยพิบัติ',
+                documents: [
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง (กรณีพิเศษ)', description: 'ระบุเหตุผลความจำเป็นและเร่งด่วน', status: 'required' },
+                    { title: 'รายงานการสำรวจราคาจากผู้ขาย', description: 'เอกสารแสดงการสืบราคาจากผู้ขาย', status: 'required' },
+                    { title: 'ใบเสนอราคา/ขอบเขตงาน (กรณีพิเศษ)', description: 'เอกสารเสนอราคาจากผู้ขาย', status: 'required' },
+                    { title: 'หลักฐานการเกิดเหตุฉุกเฉิน/ภัยพิบัติ', description: 'เช่น รูปภาพ, รายงานสถานการณ์', status: 'required' },
+                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required' }
+                ]
+            },
+            'default': { // Fallback if method is not found
+                name: 'ไม่พบข้อมูลวิธีจัดซื้อจัดจ้าง',
+                description: 'กรุณากลับไปหน้าก่อนหน้าเพื่อเลือกวิธีจัดซื้อจัดจ้างอีกครั้ง',
+                documents: [
+                    { title: 'ไม่พบเอกสารที่เกี่ยวข้อง', description: 'กรุณาติดต่อผู้ดูแลระบบ', status: 'required' }
+                ]
+            }
+        };
+
+        // Function to parse URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Function to load documents based on URL parameter
+        function loadDocumentChecklist() {
+            const requestedMethodCode = getUrlParameter('method');
+            const methodData = documentRequirements[requestedMethodCode] || documentRequirements['default'];
+
+            document.getElementById('displayMethodName').textContent = methodData.name;
+            document.getElementById('displayMethodDescription').textContent = methodData.description;
+
+            const documentList = document.getElementById('documentList');
+            documentList.innerHTML = ''; // Clear existing list
+
+            if (methodData.documents.length === 0) {
+                documentList.innerHTML = '<li><p class="no-documents">ไม่พบรายการเอกสารสำหรับวิธีนี้</p></li>';
+                return;
+            }
+
+            methodData.documents.forEach(doc => {
+                const li = document.createElement('li');
+                li.className = 'document-item';
+                let statusClass = '';
+                let statusText = '';
+                let iconClass = '';
+
+                switch (doc.status) {
+                    case 'required':
+                        statusClass = 'status-required';
+                        statusText = 'จำเป็น';
+                        iconClass = 'fa-solid fa-file-circle-check';
+                        break;
+                    case 'optional':
+                        statusClass = 'status-optional';
+                        statusText = 'ตัวเลือก';
+                        iconClass = 'fa-solid fa-file-circle-exclamation';
+                        break;
+                    case 'upload': // If we later add an upload step, for example
+                        statusClass = 'status-upload';
+                        statusText = 'อัปโหลด';
+                        iconClass = 'fa-solid fa-cloud-arrow-up';
+                        break;
+                    default:
+                        statusClass = 'status-required';
+                        statusText = 'จำเป็น';
+                        iconClass = 'fa-solid fa-file';
+                }
+
+                li.innerHTML = `
+                    <div class="document-icon"><i class="${iconClass}"></i></div>
+                    <div class="document-details">
+                        <h4>${doc.title}</h4>
+                        <p>${doc.description}</p>
+                    </div>
+                    <span class="document-status ${statusClass}">${statusText}</span>
+                `;
+                documentList.appendChild(li);
+            });
+        }
+
+        // Function for submitting documents (placeholder)
+        function submitDocuments() {
+            alert('กำลังส่งเอกสารและข้อมูล (Mockup)');
+            // In a real application, this would handle actual document uploads
+            // and submission to a backend system.
+            // You might then navigate to a summary page or confirmation.
+            window.location.href = 'final_summary.html'; // Assuming you have a final_summary.html
+        }
+
+        // Load documents when the page loads
+        document.addEventListener('DOMContentLoaded', loadDocumentChecklist);
+    </script>
+</body>
+</html>
