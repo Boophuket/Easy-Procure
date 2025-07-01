@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>รายการเอกสารที่ต้องใช้ - Easy Procure</title>
+    <title>ยืนยันการส่งคำขอ - Easy Procure</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Global Styles */
@@ -105,34 +105,38 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .page-title {
-            font-size: 2rem;
-            color: #2c3e50;
+            font-size: 2.2rem;
+            color: #28a745; /* Green for success */
             font-weight: 700;
-            text-align: center;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
         }
 
         .page-description {
-            text-align: center;
             color: #555;
             margin-bottom: 2rem;
             font-size: 1.1rem;
         }
 
-        /* Project Info Section */
-        .project-info-section {
+        /* Confirmation Details Section */
+        .confirmation-details-section {
             background: rgba(248, 249, 250, 0.8);
             border-radius: 16px;
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             border: 1px solid #e0e0e0;
+            text-align: left; /* Align text to left inside this section */
         }
 
-        .project-info-section h3 {
+        .confirmation-details-section h3 {
             font-size: 1.5rem;
             color: #2c3e50;
             margin-bottom: 1.5rem;
@@ -143,15 +147,10 @@
             gap: 0.8rem;
         }
 
-        .project-details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem 2rem;
-        }
-
         .detail-item {
             display: flex;
             flex-direction: column;
+            margin-bottom: 1rem;
         }
 
         .detail-item label {
@@ -167,228 +166,83 @@
             word-break: break-word; /* Ensure long text wraps */
         }
 
-        .detail-item.full-width {
-            grid-column: 1 / -1;
+        /* Unique Request ID Styling */
+        .request-id-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6c63ff;
+            background: #e6e6ff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Document Checklist Section */
-        .document-checklist-section {
-            background: rgba(232, 245, 233, 0.8);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-top: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #c8e6c9;
-        }
-
-        .document-checklist-section h3 {
-            color: #388e3c;
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 0.5rem;
-        }
-
-        .document-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .document-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Distribute content */
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 0.8rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
-            cursor: default; /* Change cursor back to default as the whole item is not just clickable */
-            border: 1px solid #eee;
-        }
-
-        .document-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border-color: #a5d6a7;
-        }
-
-        .document-item .document-name {
-            flex-grow: 1; /* Allows the name to take available space */
-            font-size: 1.05rem;
-            color: #333;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .document-item .document-name i {
-            color: #6c63ff; /* Icon for document type */
-        }
-
-        .document-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        /* Small Action Buttons for Download/Upload */
-        .action-button.small {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-            border-radius: 20px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            border: none; /* Ensure no default border */
-            cursor: pointer; /* Make sure it looks clickable */
-        }
-        .action-button.small.primary {
-            background: linear-gradient(45deg, #4CAF50, #28a745); /* Green for download */
-            color: white;
-        }
-        .action-button.small.primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
-        }
-        .action-button.small.secondary {
-            background: #007bff; /* Blue for upload */
-            color: white;
-        }
-        .action-button.small.secondary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-        }
-        .action-button.small.disabled {
-            background: #cccccc;
-            color: #666666;
-            cursor: not-allowed;
-        }
-
-        /* Status Icons */
-        .status-icon {
-            font-size: 1.3rem;
-            margin-left: 0.5rem;
-        }
-        .uploaded-status {
-            color: #4CAF50; /* Green for check */
-        }
-        .missing-status {
-            color: #f44336; /* Red for cross */
-        }
-
-
-        /* Action Buttons (main buttons at bottom) */
-        .action-buttons {
+        /* Call to Action Buttons */
+        .cta-buttons {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             margin-top: 2.5rem;
         }
 
-        .action-button {
-            padding: 0.8rem 2.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .cta-button {
+            padding: 1.2rem 2.5rem;
             font-size: 1.1rem;
+            font-weight: 600;
             border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .action-button.primary {
-            background: linear-gradient(45deg, #6c63ff, #8a2be2); /* Blue-purple gradient */
+        .cta-button.primary {
+            background-color: #6c63ff; /* Purple for home */
             color: white;
         }
 
-        .action-button.primary:hover {
+        .cta-button.primary:hover {
+            background-color: #5a55e0;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .action-button.secondary {
-            background: #f0f0f0;
-            color: #555;
-            border: 1px solid #ddd;
+        .cta-button.secondary {
+            background-color: #6c757d; /* Grey for view status */
+            color: white;
         }
 
-        .action-button.secondary:hover {
+        .cta-button.secondary:hover {
+            background-color: #5a6268;
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .container {
-                padding: 1.5rem;
-                margin: 1rem auto;
-            }
-            .page-title {
-                font-size: 1.8rem;
-            }
-            .page-description {
-                font-size: 1rem;
-            }
-            .project-details-grid {
-                grid-template-columns: 1fr;
-            }
-            .project-info-section, .document-checklist-section {
-                padding: 1.5rem;
-            }
-            .project-info-section h3, .document-checklist-section h3 {
-                font-size: 1.3rem;
-            }
-            .action-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .action-button {
-                width: 100%;
-                justify-content: center;
-            }
-            .document-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.8rem;
-            }
-            .document-actions {
-                width: 100%;
-                justify-content: flex-end; /* Align buttons to the right on small screens */
-            }
-        }
-
-        @media (max-width: 480px) {
             .header-content {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+                text-align: center;
+            }
+            .logo-section {
+                flex-direction: column;
             }
             .user-info {
                 width: 100%;
                 justify-content: center;
             }
+            .container {
+                margin: 1rem auto;
+                padding: 1.5rem;
+            }
             .page-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
-            .page-description {
-                font-size: 0.9rem;
-            }
-            .document-actions {
+            .cta-buttons {
                 flex-direction: column;
-                align-items: flex-end;
-                gap: 0.5rem;
-            }
-            .action-button.small {
-                width: 100%;
-                justify-content: center;
+                gap: 1rem;
             }
         }
     </style>
@@ -404,81 +258,68 @@
                 </div>
             </div>
             <div class="user-info">
-                <div class="user-avatar">จ</div>
-                <div>
-                    <div style="font-weight: 600; color: #2c3e50;">นายจิฑาวัฒน์ ชาญปราณีต</div>
-                    <div style="font-size: 0.8rem; color: #7f8c8d;">จนท.วรค.3 สรล.ฝบร.ทภก.</div>
-                </div>
+                <div class="user-avatar">จว.</div>
+                <span>จิฑาวัฒน์ ชาญปราณีต</span>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <h2 class="page-title"><i class="fas fa-clipboard-list" style="color: #6c63ff; margin-right: 0.5rem;"></i> รายการเอกสารที่ต้องใช้</h2>
+        <h2 class="page-title">
+            <i class="fas fa-check-circle"></i> ส่งคำขอจัดซื้อจัดจ้างสำเร็จ!
+        </h2>
         <p class="page-description">
-            นี่คือเอกสารที่จำเป็นสำหรับวิธีจัดซื้อจัดจ้างที่แนะนำ กรุณาเตรียมเอกสารให้ครบถ้วนก่อนส่งเรื่อง
+            คำขอของคุณได้ถูกส่งเข้าระบบเรียบร้อยแล้ว โปรดติดตามสถานะจากหมายเลขคำขอ
         </p>
 
-        <div class="project-info-section">
-            <h3><i class="fas fa-file-invoice"></i> ข้อมูลโครงการ</h3>
-            <div class="project-details-grid">
-                <div class="detail-item">
-                    <label>ชื่อโครงการ:</label>
-                    <span id="displayProjectName"> - ไม่มีข้อมูล - </span>
-                </div>
-                <div class="detail-item">
-                    <label>วงเงินงบประมาณ:</label>
-                    <span id="displayProjectBudget"> - ไม่มีข้อมูล - </span>
-                </div>
-                <div class="detail-item">
-                    <label>ความเร่งด่วน:</label>
-                    <span id="displayUrgency"> - ไม่มีข้อมูล - </span>
-                </div>
-                <div class="detail-item">
-                    <label>ประเภทพัสดุ/งาน:</label>
-                    <span id="displayProcurementType"> - ไม่มีข้อมูล - </span>
-                </div>
-                <div class="detail-item">
-                    <label>ลักษณะผู้ขาย:</label>
-                    <span id="displayVendorChar"> - ไม่มีข้อมูล - </span>
-                </div>
-                <div class="detail-item full-width">
-                    <label>รายละเอียด/ขอบเขตงาน (TOR):</label>
-                    <span id="displayProjectDescription"> - ไม่มีข้อมูล - </span>
-                </div>
-                <div class="detail-item">
-                    <label>ผู้ประสานงาน:</label>
-                    <span id="displayContactPerson"> - ไม่มีข้อมูล - </span>
-                </div>
-                <div class="detail-item">
-                    <label>เบอร์โทรศัพท์:</label>
-                    <span id="displayContactTel"> - ไม่มีข้อมูล - </span>
-                </div>
-                <div class="detail-item">
-                    <label>วิธีจัดซื้อจัดจ้างที่แนะนำ:</label>
-                    <span id="displayRecommendedMethod"> - ไม่มีข้อมูล - </span>
-                </div>
-            </div>
-        </div>
+        <span class="request-id-display" id="displayRequestId">#REQ-XXXXXX</span>
 
-        <div class="document-checklist-section">
-            <h3><i class="fas fa-file-alt"></i> Checklist เอกสาร</h3>
-            <p style="margin-bottom: 1.5rem; color: #666;">
-                นี่คือรายการเอกสารที่คุณต้องเตรียมสำหรับวิธีจัดซื้อจัดจ้าง "<span id="methodNameInChecklist" style="font-weight: 600; color: #2e7d32;">- ไม่มีข้อมูล -</span>"
-            </p>
-            <div id="documentListContainer">
-                <ul class="document-list" id="dynamicDocumentList">
-                    </ul>
-                <p class="no-documents-found" style="text-align: center; color: #888; font-style: italic; display: none;">ไม่พบรายการเอกสารสำหรับวิธีจัดซื้อจัดจ้างนี้</p>
+        <section class="confirmation-details-section">
+            <h3><i class="fas fa-file-alt"></i> สรุปข้อมูลคำขอ</h3>
+            <div class="detail-item">
+                <label>ชื่อโครงการ:</label>
+                <span id="displayProjectName"></span>
             </div>
-        </div>
+            <div class="detail-item">
+                <label>วงเงินงบประมาณ:</label>
+                <span id="displayProjectBudget"></span>
+            </div>
+            <div class="detail-item">
+                <label>วิธีการจัดซื้อจัดจ้างที่แนะนำ:</label>
+                <span id="displayMethodText"></span>
+            </div>
+            <div class="detail-item">
+                <label>ความเร่งด่วน:</label>
+                <span id="displayUrgency"></span>
+            </div>
+            <div class="detail-item">
+                <label>ประเภทการจัดซื้อ:</label>
+                <span id="displayProcurementType"></span>
+            </div>
+            <div class="detail-item">
+                <label>ลักษณะผู้ขาย:</label>
+                <span id="displayVendorChar"></span>
+            </div>
+            <div class="detail-item">
+                <label>รายละเอียดโครงการ:</label>
+                <span id="displayProjectDescription"></span>
+            </div>
+            <div class="detail-item">
+                <label>ผู้ประสานงาน:</label>
+                <span id="displayContactPerson"></span>
+            </div>
+            <div class="detail-item">
+                <label>เบอร์โทรศัพท์ผู้ประสานงาน:</label>
+                <span id="displayContactTel"></span>
+            </div>
+        </section>
 
-        <div class="action-buttons">
-            <button class="action-button primary" onclick="confirmAndSubmit()">
-                <i class="fas fa-check-circle"></i> ยืนยันและส่งเรื่อง
+        <div class="cta-buttons">
+            <button class="cta-button primary" onclick="window.location.href='create_request.html';">
+                <i class="fas fa-home"></i> กลับหน้าแรก
             </button>
-            <button class="action-button secondary" onclick="window.history.back()">
-                <i class="fas fa-arrow-left"></i> กลับไปแก้ไข
+            <button class="cta-button secondary" onclick="alert('ฟังก์ชันดูสถานะยังไม่พร้อมใช้งาน');">
+                <i class="fas fa-search"></i> ดูสถานะคำขอ
             </button>
         </div>
     </div>
@@ -486,131 +327,32 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const dynamicDocumentList = document.getElementById('dynamicDocumentList');
-            
-            // Function to update a span element's text content
-            function updateDisplay(elementId, paramName, defaultValue = '- ไม่มีข้อมูล -') {
-                const element = document.getElementById(elementId);
-                const value = urlParams.get(paramName);
-                if (element) {
-                    element.textContent = value ? decodeURIComponent(value) : defaultValue;
-                }
-            }
 
-            // Display project information from URL parameters
-            updateDisplay('displayProjectName', 'projectName');
-            updateDisplay('displayProjectBudget', 'projectBudget');
-            updateDisplay('displayUrgency', 'urgency');
-            updateDisplay('displayProcurementType', 'procurementType');
-            updateDisplay('displayVendorChar', 'vendorChar');
-            updateDisplay('displayProjectDescription', 'projectDescription');
-            updateDisplay('displayContactPerson', 'contactPerson');
-            updateDisplay('displayContactTel', 'contactTel');
-            
-            // Update Recommended Method
-            updateDisplay('displayRecommendedMethod', 'methodText');
-            updateDisplay('methodNameInChecklist', 'methodText'); // For the checklist description
-
-
-            // --- Document Loading Logic ---
-            const documentTemplates = {
-                "direct_purchase_small": [
-                    { name: "ใบปะหน้าขออนุมัติจัดซื้อ (เฉพาะเจาะจงไม่เกิน 50,000)", icon: "fas fa-file-alt", downloadUrl: "#" },
-                    { name: "ใบเสนอราคา", icon: "fas fa-file-invoice-dollar", downloadUrl: "#" }
-                ],
-                "direct_purchase_large": [
-                    { name: "ใบปะหน้าขออนุมัติจัดซื้อ (เฉพาะเจาะจง 50,000 - 500,000)", icon: "fas fa-file-alt", downloadUrl: "#" },
-                    { name: "เอกสาร TOR", icon: "fas fa-file-contract", downloadUrl: "#" },
-                    { name: "ใบเสนอราคา", icon: "fas fa-file-invoice-dollar", downloadUrl: "#" }
-                ],
-                "e_bidding": [
-                    { name: "แบบฟอร์มขออนุมัติประกวดราคา e-bidding", icon: "fas fa-gavel", downloadUrl: "#" },
-                    { name: "เอกสาร TOR/คุณลักษณะเฉพาะ", icon: "fas fa-file-contract", downloadUrl: "#" },
-                    { name: "รายงานผลการพิจารณา", icon: "fas fa-chart-bar", downloadUrl: "#" }
-                ],
-                "negotiated_price": [
-                    { name: "ใบปะหน้าขออนุมัติสอบราคา", icon: "fas fa-file-alt", downloadUrl: "#" },
-                    { name: "เอกสาร TOR/ขอบเขตงาน", icon: "fas fa-file-contract", downloadUrl: "#" }
-                ],
-                "e_market": [
-                    { name: "แบบฟอร์มขออนุมัติจัดซื้อ e-market", icon: "fas fa-shopping-cart", downloadUrl: "#" },
-                    { name: "ใบแจ้งความจำนงค์", icon: "fas fa-file-signature", downloadUrl: "#" }
-                ],
-                "no_match": [] // No documents for a no_match case
-            };
-
-            const recommendedMethodCode = urlParams.get('methodCode');
-            const documentsToDisplay = documentTemplates[recommendedMethodCode] || [];
-
-            if (documentsToDisplay.length > 0) {
-                documentsToDisplay.forEach(doc => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'document-item';
-                    listItem.innerHTML = `
-                        <span class="document-name"><i class="${doc.icon}"></i> ${doc.name}</span>
-                        <div class="document-actions">
-                            <button class="action-button small primary download-item-btn" ${doc.downloadUrl ? `data-template-url="${doc.downloadUrl}"` : 'disabled'} ${doc.noDownloadUpload ? 'style="display:none;"' : ''}>
-                                <i class="fas fa-download"></i> ดาวน์โหลด
-                            </button>
-                            <label class="action-button small secondary upload-item-label" ${doc.noDownloadUpload ? 'style="display:none;"' : ''}>
-                                <input type="file" class="upload-item-input" style="display: none;">
-                                <i class="fas fa-upload"></i> อัพโหลด
-                            </label>
-                            <i class="fas fa-check-circle status-icon uploaded-status" style="display:none;" title="อัพโหลดแล้ว"></i>
-                            <i class="fas fa-times-circle status-icon missing-status" style="display:inline-block;" title="ยังไม่อัพโหลด"></i>
-                        </div>
-                    `;
-                    dynamicDocumentList.appendChild(listItem);
-
-                    // Re-attach event listeners for newly created elements
-                    const uploadInput = listItem.querySelector('.upload-item-input');
-                    const uploadedStatus = listItem.querySelector('.uploaded-status');
-                    const missingStatus = listItem.querySelector('.missing-status');
-
-                    if (uploadInput) {
-                        uploadInput.addEventListener('change', function() {
-                            if (this.files && this.files.length > 0) {
-                                if (uploadedStatus) uploadedStatus.style.display = 'inline-block';
-                                if (missingStatus) missingStatus.style.display = 'none';
-                                // In a real app, you'd send this file to a server
-                                alert('อัพโหลดไฟล์แล้ว: ' + this.files[0].name); // For demonstration
-                            }
-                        });
-                    }
-                });
-            } else {
-                // If no documents found for the method, display a message
-                const noDocumentsFoundElement = document.querySelector('.no-documents-found');
-                if (noDocumentsFoundElement) {
-                    noDocumentsFoundElement.style.display = 'block';
-                }
-            }
-        });
-
-        // --- NEW FUNCTION FOR SUBMISSION ---
-        function confirmAndSubmit() {
-            // In a real application, you would perform validation here,
-            // e.g., check if all required documents are uploaded.
-            // For now, we'll just simulate a successful submission.
-
-            // Get relevant data from URL parameters to pass to the confirmation page
-            const urlParams = new URLSearchParams(window.location.search);
+            // Get parameters passed from document_checklist.html
+            const requestId = urlParams.get('requestId');
             const projectName = urlParams.get('projectName');
             const projectBudget = urlParams.get('projectBudget');
             const methodText = urlParams.get('methodText');
+            const urgency = urlParams.get('urgency'); // NEW
+            const procurementType = urlParams.get('procurementType'); // NEW
+            const vendorChar = urlParams.get('vendorChar'); // NEW
+            const projectDescription = urlParams.get('projectDescription'); // NEW
+            const contactPerson = urlParams.get('contactPerson'); // NEW
+            const contactTel = urlParams.get('contactTel'); // NEW
 
-            // Simulate a request ID
-            const requestId = '#REQ-' + Math.floor(Math.random() * 900000 + 100000); // Random 6-digit number
 
-            // Construct the URL for the submission confirmation page
-            let submissionUrl = `submission_confirmation.html?` +
-                                `projectName=${encodeURIComponent(projectName || '')}` +
-                                `&projectBudget=${encodeURIComponent(projectBudget || '')}` +
-                                `&methodText=${encodeURIComponent(methodText || '')}` +
-                                `&requestId=${encodeURIComponent(requestId)}`;
-            
-            window.location.href = submissionUrl;
-        }
+            // Display confirmation details
+            document.getElementById('displayRequestId').textContent = requestId || '#REQ-XXXXXX';
+            document.getElementById('displayProjectName').textContent = projectName || 'N/A';
+            document.getElementById('displayProjectBudget').textContent = projectBudget ? `${parseInt(projectBudget).toLocaleString()} บาท` : 'N/A';
+            document.getElementById('displayMethodText').textContent = methodText || 'N/A';
+            document.getElementById('displayUrgency').textContent = urgency || 'N/A'; // NEW
+            document.getElementById('displayProcurementType').textContent = procurementType || 'N/A'; // NEW
+            document.getElementById('displayVendorChar').textContent = vendorChar || 'N/A'; // NEW
+            document.getElementById('displayProjectDescription').textContent = projectDescription || 'N/A'; // NEW
+            document.getElementById('displayContactPerson').textContent = contactPerson || 'N/A'; // NEW
+            document.getElementById('displayContactTel').textContent = contactTel || 'N/A'; // NEW
+        });
     </script>
 </body>
 </html>
