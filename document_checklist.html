@@ -250,12 +250,35 @@
             background-color: #27ae60; /* Green */
         }
 
+        /* Container for file name and action buttons */
+        .file-actions-container {
+            margin-left: auto; /* Push to the right */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align content to the right */
+            gap: 0.5rem; /* Space between file name and buttons */
+        }
+
+        .template-file-name {
+            font-size: 0.9rem;
+            color: #555;
+            background-color: #f8f9fa;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            border: 1px solid #eee;
+            white-space: nowrap; /* Prevent filename from wrapping */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Add ellipsis if too long */
+            max-width: 250px; /* Limit width */
+            text-align: right;
+            margin-bottom: 0.5rem; /* Space below filename */
+        }
+
         /* Action Buttons for each item */
         .action-buttons-item {
             display: flex;
             gap: 0.8rem;
-            margin-left: auto; /* Push to the right */
-            flex-wrap: wrap; /* Allow wrapping */
+            flex-wrap: wrap; /* Allow wrapping for responsiveness */
             justify-content: flex-end; /* Align buttons to the right */
         }
 
@@ -391,11 +414,19 @@
                 margin-top: 0.5rem;
                 align-self: flex-end; /* Align status to the right bottom */
             }
+            .file-actions-container {
+                width: 100%;
+                align-items: flex-start; /* Align content to the left on small screens */
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            .template-file-name {
+                max-width: 100%; /* Full width on smaller screens */
+                text-align: left;
+            }
             .action-buttons-item {
                 width: 100%; /* Take full width on small screens */
                 justify-content: flex-start; /* Align left */
-                margin-left: 0;
-                margin-top: 1rem; /* Space from details */
             }
             .action-buttons {
                 flex-direction: column;
@@ -604,21 +635,24 @@
                         iconClass = 'fa-solid fa-file';
                 }
 
-                let actionButtonsHtml = '';
+                let fileActionsHtml = '';
                 // Only show buttons if templateUrl is provided
                 if (doc.templateUrl) {
-                    actionButtonsHtml = `
-                        <div class="action-buttons-item">
-                            <button class="action-button-item download-button"
-                                    data-file-url="${doc.templateUrl}"
-                                    data-file-name="${doc.templateFileName}">
-                                <i class="fas fa-download"></i> ดาวน์โหลด Template
-                            </button>
-                            <button class="action-button-item edit-word-button"
-                                    data-file-url="${doc.templateUrl}"
-                                    data-file-name="${doc.templateFileName}">
-                                <i class="fas fa-file-word"></i> แก้ไขผ่าน Word
-                            </button>
+                    fileActionsHtml = `
+                        <div class="file-actions-container">
+                            <div class="template-file-name">${doc.templateFileName}</div>
+                            <div class="action-buttons-item">
+                                <button class="action-button-item download-button"
+                                        data-file-url="${doc.templateUrl}"
+                                        data-file-name="${doc.templateFileName}">
+                                    <i class="fas fa-download"></i> ดาวน์โหลด
+                                </button>
+                                <button class="action-button-item edit-word-button"
+                                        data-file-url="${doc.templateUrl}"
+                                        data-file-name="${doc.templateFileName}">
+                                    <i class="fas fa-file-word"></i> แก้ไข
+                                </button>
+                            </div>
                         </div>
                     `;
                 }
@@ -630,7 +664,7 @@
                         <p>${doc.description}</p>
                     </div>
                     <span class="document-status ${statusClass}">${statusText}</span>
-                    ${actionButtonsHtml}
+                    ${fileActionsHtml}
                 `;
                 documentList.appendChild(li);
             });
@@ -647,7 +681,7 @@
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                    alert(`กำลังดาวน์โหลด: ${fileName}`);
+                    // alert(`กำลังดาวน์โหลด: ${fileName}`); // Removed alert for smoother UX
                 });
             });
 
@@ -663,7 +697,7 @@
                     
                     try {
                         window.location.href = wordEditUrl; // Try to open directly
-                        alert(`พยายามเปิดไฟล์ ${fileName} เพื่อแก้ไขใน Microsoft Word...`);
+                        // alert(`พยายามเปิดไฟล์ ${fileName} เพื่อแก้ไขใน Microsoft Word...`); // Removed alert for smoother UX
                     } catch (e) {
                         alert(`ไม่สามารถเปิดไฟล์ ${fileName} ใน Microsoft Word โดยตรงได้\nโปรดตรวจสอบว่าคุณได้ติดตั้ง Microsoft Word และเบราว์เซอร์ของคุณรองรับการเปิดผ่านโปรโตคอล 'ms-word:'`);
                     }
