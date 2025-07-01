@@ -466,19 +466,25 @@
             const contactTel = urlParams.get('contactTel'); // NEW
 
             // Display project details
-            document.getElementById('displayProjectName').textContent = projectName || 'N/A';
+            document.getElementById('displayProjectName').textContent = decodeURIComponent(projectName || 'N/A');
             document.getElementById('displayProjectBudget').textContent = projectBudget ? `${parseInt(projectBudget).toLocaleString()} บาท` : 'N/A';
-            document.getElementById('displayMethodText').textContent = methodText || 'N/A';
-            document.getElementById('displayUrgency').textContent = urgency || 'N/A'; // NEW
-            document.getElementById('displayProcurementType').textContent = procurementType || 'N/A'; // NEW
-            document.getElementById('displayVendorChar').textContent = vendorChar || 'N/A'; // NEW
-            document.getElementById('displayProjectDescription').textContent = projectDescription || 'N/A'; // NEW
-            document.getElementById('displayContactPerson').textContent = contactPerson || 'N/A'; // NEW
-            document.getElementById('displayContactTel').textContent = contactTel || 'N/A'; // NEW
+            document.getElementById('displayMethodText').textContent = decodeURIComponent(methodText || 'N/A');
+            document.getElementById('displayUrgency').textContent = decodeURIComponent(urgency || 'N/A'); // NEW
+            document.getElementById('displayProcurementType').textContent = decodeURIComponent(procurementType || 'N/A'); // NEW
+            document.getElementById('displayVendorChar').textContent = decodeURIComponent(vendorChar || 'N/A'); // NEW
+            document.getElementById('displayProjectDescription').textContent = decodeURIComponent(projectDescription || 'N/A'); // NEW
+            document.getElementById('displayContactPerson').textContent = decodeURIComponent(contactPerson || 'N/A'); // NEW
+            document.getElementById('displayContactTel').textContent = decodeURIComponent(contactTel || 'N/A'); // NEW
 
             const documentRules = {
-                "direct_procurement_under_500k": [
-                    "หนังสือขออนุมัติจัดซื้อจัดจ้างโดยวิธีเฉพาะเจาะจง",
+                "direct_purchase_small": [ // Updated to match methodCode from create_request.html
+                    "หนังสือขออนุมัติจัดซื้อจัดจ้างโดยวิธีเฉพาะเจาะจง (วงเงินไม่เกิน 50,000 บาท)",
+                    "ใบเสนอราคา/ใบสำคัญรับเงิน/ใบแจ้งหนี้",
+                    "รายงานขอซื้อขอจ้าง",
+                    "รูปภาพของสินค้า/บริการ (ถ้ามี)"
+                ],
+                "direct_purchase_large": [ // Updated to match methodCode from create_request.html
+                    "หนังสือขออนุมัติจัดซื้อจัดจ้างโดยวิธีเฉพาะเจาะจง (วงเงิน 50,001 - 500,000 บาท)",
                     "ใบเสนอราคา/ใบสำคัญรับเงิน/ใบแจ้งหนี้",
                     "รายงานขอซื้อขอจ้าง",
                     "คำสั่งแต่งตั้งคณะกรรมการตรวจรับ (ถ้ามี)",
@@ -487,7 +493,7 @@
                     "รูปภาพของสินค้า/บริการ (ถ้ามี)",
                     "บันทึกหลักฐานการสืบราคา (ถ้ามี)"
                 ],
-                "etendering_above_500k": [
+                "e_bidding": [ // Updated to match methodCode from create_request.html
                     "ประกาศเชิญชวน",
                     "เอกสารประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
                     "TOR/คุณลักษณะเฉพาะ",
@@ -496,13 +502,19 @@
                     "หนังสือค้ำประกันซอง (ถ้ามี)",
                     "หลักประกันสัญญา (ถ้ามี)"
                 ],
-                "negotiated_procurement": [
-                    "หนังสือขออนุมัติจัดซื้อจัดจ้างโดยวิธีคัดเลือก",
+                "negotiated_price": [ // Updated to match methodCode from create_request.html
+                    "หนังสือขออนุมัติจัดซื้อจัดจ้างโดยวิธีคัดเลือก (สอบราคา)",
                     "รายงานผลการคัดเลือกผู้ขาย",
                     "TOR/คุณลักษณะเฉพาะ",
                     "สัญญา/บันทึกข้อตกลง",
                     "หนังสือเชิญชวน/หนังสือสอบถามราคา",
                     "หลักประกันสัญญา (ถ้ามี)"
+                ],
+                "e_market": [ // Updated to match methodCode from create_request.html
+                    "หนังสือขออนุมัติจัดซื้อจัดจ้างผ่านระบบ e-market",
+                    "ใบเสนอราคา/ใบสำคัญรับเงิน/ใบแจ้งหนี้",
+                    "รายงานขอซื้อขอจ้าง (กรณี e-market)",
+                    "เอกสารการลงทะเบียนในระบบ e-market (ถ้ามี)"
                 ],
                 "no_match": [
                     "ไม่สามารถแนะนำวิธีการได้ โปรดปรึกษาเจ้าหน้าที่พัสดุ"
