@@ -138,61 +138,9 @@
             text-align: center;
         }
 
-        /* Procurement Details Card */
-        .procurement-details-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e0e0e0;
-        }
-
-        .procurement-details-card h3 {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            border-bottom: 3px solid #6c63ff;
-            padding-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .detail-item {
-            background: #f8f8f8;
-            padding: 1rem 1.2rem;
-            border-radius: 10px;
-            border: 1px solid #eee;
-        }
-
-        .detail-item strong {
-            display: block;
-            font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 0.3rem;
-        }
-
-        .detail-item span {
-            font-size: 1.05rem;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .detail-item.full-width {
-            grid-column: 1 / -1;
-        }
-
-
         /* Method Info Card */
         .method-info-card {
-            background: linear-gradient(135deg, #e0e7ff 0%, #f0f3ff 100%); /* Light blue gradient */
+            background: linear-gradient(135deg, #e0e7ff, #f0f3ff); /* Light blue gradient */
             border-radius: 20px;
             padding: 2rem;
             margin-bottom: 3rem;
@@ -253,7 +201,6 @@
             gap: 1rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            flex-wrap: wrap; /* Allow wrapping for smaller screens */
         }
 
         .document-item:hover {
@@ -264,12 +211,10 @@
         .document-icon {
             font-size: 1.8rem;
             color: #6c63ff;
-            flex-shrink: 0; /* Prevent shrinking */
         }
 
         .document-details {
             flex-grow: 1;
-            min-width: 200px; /* Ensure text area doesn't get too small */
         }
 
         .document-details h4 {
@@ -283,14 +228,6 @@
             color: #777;
         }
 
-        .document-actions {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap; /* Allow buttons to wrap */
-            margin-left: auto; /* Push to the right */
-            align-items: center;
-        }
-
         .document-status {
             font-size: 0.9rem;
             font-weight: 600;
@@ -298,8 +235,6 @@
             border-radius: 20px;
             color: white;
             text-transform: uppercase;
-            align-self: flex-start; /* Align with top of item in column layout */
-            margin-right: 0.5rem; /* Space before download button */
         }
 
         .status-required {
@@ -312,149 +247,6 @@
 
         .status-upload {
             background-color: #27ae60; /* Green */
-        }
-
-        /* Styles for the Template button/trigger */
-        .template-trigger-button {
-            background: #4CAF50; /* Green for template action */
-            color: white;
-            border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .template-trigger-button:hover {
-            background-color: #388e3c;
-            transform: translateY(-1px);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 200; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            display: flex; /* Use flexbox for centering */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto; /* Auto margin for centering */
-            padding: 2.5rem;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            position: relative;
-            text-align: center;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .close-button {
-            color: #aaa;
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: #333;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-content h3 {
-            color: #2c3e50;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        .modal-content p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        .modal-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal-action-button {
-            padding: 0.9rem 1.5rem;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none; /* For links */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .download-action {
-            background: #3498db; /* Blue */
-            color: white;
-            border: none;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-        }
-        .download-action:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
-        }
-
-        .edit-action {
-            background: #27ae60; /* Green */
-            color: white;
-            border: none;
-            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
-        }
-        .edit-action:hover {
-            background-color: #229954;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);
-        }
-
-        .modal-note {
-            font-size: 0.85rem;
-            color: #999;
-            margin-top: 1.5rem;
-            line-height: 1.4;
-        }
-        .modal-note i {
-            margin-right: 5px;
-            color: #666;
         }
 
         /* Action Buttons */
@@ -526,14 +318,11 @@
                 font-size: 1rem;
                 margin-bottom: 2rem;
             }
-            .procurement-details-card, .method-info-card, .document-checklist-section {
+            .method-info-card, .document-checklist-section {
                 padding: 2rem;
             }
-            .procurement-details-card h3, .method-info-card h3, .document-checklist-section h3 {
+            .method-info-card h3, .document-checklist-section h3 {
                 font-size: 1.6rem;
-            }
-            .detail-grid {
-                grid-template-columns: 1fr;
             }
             .document-item {
                 flex-direction: column;
@@ -544,15 +333,9 @@
                 width: 100%;
                 margin-bottom: 0.5rem;
             }
-            .document-actions {
-                margin-left: 0; /* Remove auto margin */
-                width: 100%;
-                justify-content: flex-end; /* Push buttons to right within item */
-                margin-top: 0.5rem;
-            }
             .document-status {
-                align-self: flex-start; /* Align status to the top-left */
-                margin-right: 0;
+                margin-top: 0.5rem;
+                align-self: flex-end; /* Align status to the right bottom */
             }
             .action-buttons {
                 flex-direction: column;
@@ -560,9 +343,6 @@
             }
             .action-button {
                 width: 100%;
-            }
-            .modal-content {
-                padding: 1.5rem;
             }
         }
 
@@ -620,14 +400,8 @@
     <div class="container">
         <h2 class="page-title"><i class="fas fa-list-check"></i> รายการเอกสารที่ต้องใช้</h2>
         <p class="page-description">
-            นี่คือเอกสารที่จำเป็นสำหรับวิธีจัดซื้อจัดจ้างที่แนะนำ กรุณาเตรียมเอกสารให้ครบถ้วนก่อนส่งเรื่อง
+            นี่คือเอกสารที่จำเป็นสำหรับวิธีจัดซื้อจัดจ้างที่แนะนำ กรุณาเตรียมเอกสารให้ครบถ้วน
         </p>
-
-        <div class="procurement-details-card">
-            <h3><i class="fas fa-file-invoice"></i> ข้อมูลโครงการจัดซื้อจัดจ้าง</h3>
-            <div class="detail-grid" id="procurementDetailsDisplay">
-                </div>
-        </div>
 
         <div class="method-info-card">
             <h3><i class="fas fa-gavel"></i> วิธีจัดซื้อจัดจ้าง: <span id="displayMethodName"></span></h3>
@@ -650,90 +424,69 @@
         </div>
     </div>
 
-    <div id="templateModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h3><i class="fas fa-file-alt"></i> เลือกรูปแบบการจัดการเอกสาร</h3>
-            <p id="modalFileName">ไฟล์: [ชื่อไฟล์]</p>
-            <div class="modal-actions">
-                <a id="downloadTemplateBtn" href="#" class="modal-action-button download-action" download>
-                    <i class="fas fa-download"></i> ดาวน์โหลด
-                </a>
-                <a id="editInWordBtn" href="#" class="modal-action-button edit-action">
-                    <i class="fas fa-edit"></i> แก้ไขใน Word Desktop
-                </a>
-            </div>
-            <p class="modal-note">
-                <i class="fas fa-info-circle"></i> การแก้ไขใน Word Desktop จะทำงานได้ดีที่สุดในสภาพแวดล้อม Microsoft 365/SharePoint
-            </p>
-        </div>
-    </div>
-
     <script>
-        // Document definitions for each procurement method including template URLs
-        // **IMPORTANT:** Ensure these template URLs lead to actual files in your 'templates' folder.
-        // For testing, they can be placeholder files like .txt renamed to .docx.
+        // Document definitions for each procurement method
         const documentRequirements = {
             'specific': {
                 name: 'วิธีเฉพาะเจาะจง',
                 description: 'เหมาะสำหรับพัสดุ/งานที่มีผู้ขายจำกัด, วงเงินไม่สูง, หรือมีความจำเป็นเร่งด่วนเป็นพิเศษ',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/บันทึกเสนอขออนุมัติ_เฉพาะเจาะจง.docx' },
-                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required', templateUrl: 'templates/ใบขออนุมัติซื้อ_จ้าง.xlsx' },
-                    { title: 'ใบเสนอราคา/ขอบเขตงาน (TOR)', description: 'เอกสารเสนอราคาจากผู้ขาย หรือรายละเอียดงาน', status: 'required', templateUrl: null }, // No specific template, depends on vendor
-                    { title: 'เอกสารประกอบการพิจารณาผู้ขาย', description: 'สำเนาทะเบียนพาณิชย์, หนังสือรับรองบริษัท (ถ้ามี)', status: 'optional', templateUrl: null },
-                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required', templateUrl: 'templates/รายงานผลการพิจารณา_เฉพาะเจาะจง.docx' }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
+                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required' },
+                    { title: 'ใบเสนอราคา/ขอบเขตงาน (TOR)', description: 'เอกสารเสนอราคาจากผู้ขาย หรือรายละเอียดงาน', status: 'required' },
+                    { title: 'เอกสารประกอบการพิจารณาผู้ขาย', description: 'สำเนาทะเบียนพาณิชย์, หนังสือรับรองบริษัท (ถ้ามี)', status: 'optional' },
+                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required' }
                 ]
             },
             'e-market': {
                 name: 'วิธีตลาดอิเล็กทรอนิกส์ (e-market)',
                 description: 'เหมาะสำหรับสินค้า/บริการที่มีมาตรฐานทั่วไป และอยู่ในบัญชี e-catalog',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/บันทึกเสนอขออนุมัติ_e-market.docx' },
-                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required', templateUrl: 'templates/ใบขออนุมัติซื้อ_จ้าง.xlsx' },
-                    { title: 'ใบเสนอราคาจาก e-market', description: 'ใบเสนอราคาที่ได้จากระบบ e-market', status: 'required', templateUrl: null },
-                    { title: 'แคตตาล็อกสินค้า/รายละเอียดผลิตภัณฑ์', description: 'เอกสารแสดงคุณสมบัติของสินค้าที่เลือก', status: 'optional', templateUrl: null },
-                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required', templateUrl: 'templates/รายงานผลการพิจารณา_e-market.docx' }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
+                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required' },
+                    { title: 'ใบเสนอราคาจาก e-market', description: 'ใบเสนอราคาที่ได้จากระบบ e-market', status: 'required' },
+                    { title: 'แคตตาล็อกสินค้า/รายละเอียดผลิตภัณฑ์', description: 'เอกสารแสดงคุณสมบัติของสินค้าที่เลือก', status: 'optional' },
+                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required' }
                 ]
             },
             'e-bidding': {
                 name: 'วิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)',
                 description: 'เหมาะสำหรับพัสดุ/งานทั่วไปที่มีมูลค่าสูงและมีผู้ขายหลายราย',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/บันทึกเสนอขออนุมัติ_e-bidding.docx' },
-                    { title: 'ร่างประกาศ/ร่างเอกสารประกวดราคา (TOR)', description: 'เอกสารขอบเขตงานและคุณสมบัติผู้เข้าแข่งขัน', status: 'required', templateUrl: 'templates/ร่าง TOR_e-bidding.docx' },
-                    { title: 'รายงานผลการพิจารณาการประกวดราคา', description: 'บันทึกสรุปผลการพิจารณาจากคณะกรรมการ', status: 'required', templateUrl: 'templates/รายงานผลพิจารณา_e-bidding.docx' },
-                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required', templateUrl: 'templates/สำเนาสัญญา.pdf' },
-                    { title: 'หลักประกันซอง/หลักประกันสัญญา (ถ้ามี)', description: 'เอกสารแสดงหลักประกันจากผู้เสนอราคา', status: 'optional', templateUrl: null }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
+                    { title: 'ร่างประกาศ/ร่างเอกสารประกวดราคา (TOR)', description: 'เอกสารขอบเขตงานและคุณสมบัติผู้เข้าแข่งขัน', status: 'required' },
+                    { title: 'รายงานผลการพิจารณาการประกวดราคา', description: 'บันทึกสรุปผลการพิจารณาจากคณะกรรมการ', status: 'required' },
+                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required' },
+                    { title: 'หลักประกันซอง/หลักประกันสัญญา (ถ้ามี)', description: 'เอกสารแสดงหลักประกันจากผู้เสนอราคา', status: 'optional' }
                 ]
             },
             'selection': {
                 name: 'วิธีคัดเลือก',
                 description: 'เหมาะสำหรับพัสดุ/งานที่ซับซ้อน หรือต้องคำนึงถึงคุณภาพ/เทคนิคเป็นพิเศษ',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/บันทึกเสนอขออนุมัติ_คัดเลือก.docx' },
-                    { title: 'เอกสารเชิญชวน/เอกสารคัดเลือก (RfP)', description: 'เอกสารสำหรับเชิญชวนผู้ขายที่ถูกคัดเลือก', status: 'required', templateUrl: 'templates/เอกสารเชิญชวน_RFP.docx' },
-                    { title: 'แผนการดำเนินงาน/Proposal จากผู้ขาย', description: 'ข้อเสนอทางเทคนิคและราคาจากผู้ขาย', status: 'required', templateUrl: null },
-                    { title: 'รายงานผลการคัดเลือก', description: 'บันทึกสรุปผลการพิจารณาและเหตุผลการคัดเลือก', status: 'required', templateUrl: 'templates/รายงานผลคัดเลือก.docx' },
-                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required', templateUrl: 'templates/สำเนาสัญญา.pdf' }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
+                    { title: 'เอกสารเชิญชวน/เอกสารคัดเลือก (RfP)', description: 'เอกสารสำหรับเชิญชวนผู้ขายที่ถูกคัดเลือก', status: 'required' },
+                    { title: 'แผนการดำเนินงาน/Proposal จากผู้ขาย', description: 'ข้อเสนอทางเทคนิคและราคาจากผู้ขาย', status: 'required' },
+                    { title: 'รายงานผลการคัดเลือก', description: 'บันทึกสรุปผลการพิจารณาและเหตุผลการคัดเลือก', status: 'required' },
+                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required' }
                 ]
             },
             'special': {
                 name: 'วิธีพิเศษ',
                 description: 'สำหรับกรณีพิเศษที่ต้องเร่งด่วนมาก หรือเป็นงานที่มีความจำเป็นเร่งด่วนภัยพิบัติ',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง (กรณีพิเศษ)', description: 'ระบุเหตุผลความจำเป็นและเร่งด่วน', status: 'required', templateUrl: 'templates/บันทึกเสนอขออนุมัติ_พิเศษ.docx' },
-                    { title: 'รายงานการสำรวจราคาจากผู้ขาย', description: 'เอกสารแสดงการสืบราคาจากผู้ขาย', status: 'required', templateUrl: 'templates/รายงานสำรวจราคา.docx' },
-                    { title: 'ใบเสนอราคา/ขอบเขตงาน (กรณีพิเศษ)', description: 'เอกสารเสนอราคาจากผู้ขาย', status: 'required', templateUrl: null },
-                    { title: 'หลักฐานการเกิดเหตุฉุกเฉิน/ภัยพิบัติ', description: 'เช่น รูปภาพ, รายงานสถานการณ์', status: 'required', templateUrl: null },
-                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required', templateUrl: 'templates/สำเนาสัญญา.pdf' }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง (กรณีพิเศษ)', description: 'ระบุเหตุผลความจำเป็นและเร่งด่วน', status: 'required' },
+                    { title: 'รายงานการสำรวจราคาจากผู้ขาย', description: 'เอกสารแสดงการสืบราคาจากผู้ขาย', status: 'required' },
+                    { title: 'ใบเสนอราคา/ขอบเขตงาน (กรณีพิเศษ)', description: 'เอกสารเสนอราคาจากผู้ขาย', status: 'required' },
+                    { title: 'หลักฐานการเกิดเหตุฉุกเฉิน/ภัยพิบัติ', description: 'เช่น รูปภาพ, รายงานสถานการณ์', status: 'required' },
+                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required' }
                 ]
             },
             'default': { // Fallback if method is not found
                 name: 'ไม่พบข้อมูลวิธีจัดซื้อจัดจ้าง',
                 description: 'กรุณากลับไปหน้าก่อนหน้าเพื่อเลือกวิธีจัดซื้อจัดจ้างอีกครั้ง',
                 documents: [
-                    { title: 'ไม่พบเอกสารที่เกี่ยวข้อง', description: 'กรุณาติดต่อผู้ดูแลระบบ', status: 'required', templateUrl: null }
+                    { title: 'ไม่พบเอกสารที่เกี่ยวข้อง', description: 'กรุณาติดต่อผู้ดูแลระบบ', status: 'required' }
                 ]
             }
         };
@@ -746,101 +499,9 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
-        // Function to display procurement details
-        function displayProcurementDetails(formData) {
-            const displayDiv = document.getElementById('procurementDetailsDisplay');
-            if (!formData) {
-                displayDiv.innerHTML = '<p style="text-align: center; color: #777;">ไม่พบข้อมูลโครงการ</p>';
-                return;
-            }
-
-            displayDiv.innerHTML = `
-                <div class="detail-item full-width">
-                    <strong><i class="fas fa-signature"></i> ชื่อโครงการจัดซื้อจัดจ้าง</strong>
-                    <span>${formData.projectName || '-'}</span>
-                </div>
-                <div class="detail-item">
-                    <strong><i class="fas fa-coins"></i> วงเงินงบประมาณ (บาท)</strong>
-                    <span>${formData.projectBudget ? parseFloat(formData.projectBudget).toLocaleString('th-TH') : '-'}</span>
-                </div>
-                <div class="detail-item">
-                    <strong><i class="fas fa-hourglass-half"></i> ความเร่งด่วน</strong>
-                    <span>${mapUrgency(formData.urgency) || '-'}</span>
-                </div>
-                <div class="detail-item">
-                    <strong><i class="fas fa-tags"></i> ประเภทพัสดุ/งาน</strong>
-                    <span>${mapProcurementType(formData.procurementType) || '-'}</span>
-                </div>
-                <div class="detail-item">
-                    <strong><i class="fas fa-users"></i> ลักษณะผู้ขาย</strong>
-                    <span>${mapVendorChar(formData.vendorChar) || '-'}</span>
-                </div>
-                <div class="detail-item full-width">
-                    <strong><i class="fas fa-align-left"></i> รายละเอียด/ขอบเขตงาน (TOR)</strong>
-                    <span>${formData.projectDescription || 'ไม่มีข้อมูล'}</span>
-                </div>
-                <div class="detail-item">
-                    <strong><i class="fas fa-user"></i> ผู้ประสานงาน</strong>
-                    <span>${formData.contactPerson || '-'}</span>
-                </div>
-                <div class="detail-item">
-                    <strong><i class="fas fa-phone"></i> เบอร์โทรศัพท์ผู้ประสานงาน</strong>
-                    <span>${formData.contactTel || '-'}</span>
-                </div>
-            `;
-        }
-
-        // Helper functions to map codes to display text (must match create_request.html selects)
-        function mapUrgency(code) {
-            const map = {
-                'very_low': 'ไม่เร่งด่วน',
-                'low': 'เร่งด่วนปานกลาง',
-                'medium': 'เร่งด่วน',
-                'high': 'เร่งด่วนมาก'
-            };
-            return map[code] || code;
-        }
-
-        function mapProcurementType(code) {
-            const map = {
-                'general': 'พัสดุทั่วไป',
-                'specialized': 'พัสดุเฉพาะทาง/เทคนิค',
-                'complex': 'งานที่ซับซ้อน/ที่ปรึกษา',
-                'emergency': 'กรณีฉุกเฉิน/ภัยพิบัติ',
-                'catalog': 'สินค้าในบัญชีราคามาตรฐาน/e-market'
-            };
-            return map[code] || code;
-        }
-
-        function mapVendorChar(code) {
-            const map = {
-                'multiple': 'มีผู้ขายหลายราย',
-                'single': 'มีผู้ขายเพียงรายเดียว',
-                'existing': 'ต้องการใช้ผู้ขายเดิม',
-                'invited': 'ต้องการเชิญผู้ขายเฉพาะราย',
-                'any': 'ไม่จำกัด'
-            };
-            return map[code] || code;
-        }
-
         // Function to load documents based on URL parameter
         function loadDocumentChecklist() {
             const requestedMethodCode = getUrlParameter('method');
-            const encodedFormData = getUrlParameter('formData');
-            
-            let formData = null;
-            if (encodedFormData) {
-                try {
-                    formData = JSON.parse(encodedFormData);
-                    displayProcurementDetails(formData); // Display the received form data
-                } catch (e) {
-                    console.error("Error parsing form data from URL:", e);
-                    displayProcurementDetails(null); // Show empty or error state
-                }
-            } else {
-                displayProcurementDetails(null); // No form data received
-            }
-
             const methodData = documentRequirements[requestedMethodCode] || documentRequirements['default'];
 
             document.getElementById('displayMethodName').textContent = methodData.name;
@@ -883,80 +544,28 @@
                         iconClass = 'fa-solid fa-file';
                 }
 
-                let templateButtonHtml = '';
-                if (doc.templateUrl) {
-                    const filename = doc.templateUrl.split('/').pop(); // Extract filename from URL
-                    // Use a span/button to trigger the modal, passing filename and URLs
-                    templateButtonHtml = `
-                        <button class="template-trigger-button" 
-                                onclick="openModal('${filename}', '${doc.templateUrl}')">
-                            <i class="fas fa-file-alt"></i> ${filename}
-                        </button>
-                    `;
-                }
-
                 li.innerHTML = `
                     <div class="document-icon"><i class="${iconClass}"></i></div>
                     <div class="document-details">
                         <h4>${doc.title}</h4>
                         <p>${doc.description}</p>
                     </div>
-                    <div class="document-actions">
-                        <span class="document-status ${statusClass}">${statusText}</span>
-                        ${templateButtonHtml}
-                    </div>
+                    <span class="document-status ${statusClass}">${statusText}</span>
                 `;
                 documentList.appendChild(li);
             });
         }
 
-        // --- Modal Functions ---
-        const modal = document.getElementById('templateModal');
-        const modalFileNameSpan = document.getElementById('modalFileName');
-        const downloadTemplateBtn = document.getElementById('downloadTemplateBtn');
-        const editInWordBtn = document.getElementById('editInWordBtn');
-
-        function openModal(filename, templateUrl) {
-            modalFileNameSpan.textContent = `ไฟล์: ${filename}`;
-            
-            // Set download link
-            downloadTemplateBtn.href = templateUrl;
-            
-            // Set edit in Word link using ms-word protocol
-            // **Important**: This protocol requires Office apps to be installed and correctly configured on the user's machine,
-            // and the file to be accessible via a web URL. For a local file system mockup, this might not always work directly
-            // due to browser security or lack of protocol handler for local paths.
-            // In a real Power Platform/SharePoint environment, this URL would be provided by SharePoint itself.
-            editInWordBtn.href = `ms-word:ofe|u|${window.location.origin}/${templateUrl}`; // Construct absolute URL for ms-word protocol
-
-            modal.style.display = "flex"; // Show the modal
-        }
-
-        function closeModal() {
-            modal.style.display = "none"; // Hide the modal
-        }
-
-        // Close modal if user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-
         // Function for submitting documents (placeholder)
         function submitDocuments() {
-            alert('กำลังส่งเอกสารและข้อมูลเข้าสู่ระบบ...');
-            
-            // Re-get the parameters that were passed to this page
-            const requestedMethodCode = getUrlParameter('method');
-            const encodedFormData = getUrlParameter('formData');
-
-            // Navigate to the final summary page, passing the same parameters
-            window.location.href = `final_summary.html?method=${requestedMethodCode}&formData=${encodedFormData}`;
+            alert('กำลังส่งเอกสารและข้อมูล (Mockup)');
+            // In a real application, this would handle actual document uploads
+            // and submission to a backend system.
+            // You might then navigate to a summary page or confirmation.
+            window.location.href = 'final_summary.html'; // Assuming you have a final_summary.html
         }
 
-        // Load documents and display details when the page loads
-        // THIS IS THE ONLY CALL THAT SHOULD BE HERE FOR INITIAL PAGE LOAD
+        // Load documents when the page loads
         document.addEventListener('DOMContentLoaded', loadDocumentChecklist);
     </script>
 </body>
