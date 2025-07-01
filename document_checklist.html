@@ -474,10 +474,10 @@
         </div>
 
         <div class="action-buttons">
-            <button class="action-button primary">
+            <button class="action-button primary" onclick="confirmAndSubmit()">
                 <i class="fas fa-check-circle"></i> ยืนยันและส่งเรื่อง
             </button>
-            <button class="action-button secondary">
+            <button class="action-button secondary" onclick="window.history.back()">
                 <i class="fas fa-arrow-left"></i> กลับไปแก้ไข
             </button>
         </div>
@@ -487,20 +487,17 @@
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const dynamicDocumentList = document.getElementById('dynamicDocumentList');
-            const noDocumentsFound = document.getElementById('noDocumentsFound'); // Changed ID
-
+            
             // Function to update a span element's text content
-            function updateDisplay(elementId, paramName) {
+            function updateDisplay(elementId, paramName, defaultValue = '- ไม่มีข้อมูล -') {
                 const element = document.getElementById(elementId);
                 const value = urlParams.get(paramName);
-                if (element && value) {
-                    element.textContent = decodeURIComponent(value);
-                } else if (element) {
-                    element.textContent = '- ไม่มีข้อมูล -'; // Default text if no data
+                if (element) {
+                    element.textContent = value ? decodeURIComponent(value) : defaultValue;
                 }
             }
 
-            // Update Project Information
+            // Display project information from URL parameters
             updateDisplay('displayProjectName', 'projectName');
             updateDisplay('displayProjectBudget', 'projectBudget');
             updateDisplay('displayUrgency', 'urgency');
@@ -515,7 +512,7 @@
             updateDisplay('methodNameInChecklist', 'methodText'); // For the checklist description
 
 
-            // --- START OF NEW DOCUMENT LOADING LOGIC ---
+            // --- Document Loading Logic ---
             const documentTemplates = {
                 "direct_purchase_small": [
                     { name: "ใบปะหน้าขออนุมัติจัดซื้อ (เฉพาะเจาะจงไม่เกิน 50,000)", icon: "fas fa-file-alt", downloadUrl: "#" },
@@ -575,6 +572,7 @@
                             if (this.files && this.files.length > 0) {
                                 if (uploadedStatus) uploadedStatus.style.display = 'inline-block';
                                 if (missingStatus) missingStatus.style.display = 'none';
+                                // In a real app, you'd send this file to a server
                                 alert('อัพโหลดไฟล์แล้ว: ' + this.files[0].name); // For demonstration
                             }
                         });
@@ -587,31 +585,32 @@
                     noDocumentsFoundElement.style.display = 'block';
                 }
             }
-            // --- END OF NEW DOCUMENT LOADING LOGIC ---
-
-            // Existing example of how to toggle document status (now applies to dynamic elements too)
-            // This part is for static examples in your HTML and can be removed if you fetch real data
-            // (Moved into the forEach loop above to apply to dynamically created items)
-            // It will also handle the `no_match` case by not showing download/upload buttons for such entries.
-
-            // The following loop is now redundant because event listeners are attached in the forEach loop above.
-            // const documentItems = document.querySelectorAll('.document-item');
-            // documentItems.forEach(item => {
-            //     const uploadInput = item.querySelector('.upload-item-input');
-            //     const uploadedStatus = item.querySelector('.uploaded-status');
-            //     const missingStatus = item.querySelector('.missing-status');
-
-            //     if (uploadInput) {
-            //         uploadInput.addEventListener('change', function() {
-            //             if (this.files && this.files.length > 0) {
-            //                 if (uploadedStatus) uploadedStatus.style.display = 'inline-block';
-            //                 if (missingStatus) missingStatus.style.display = 'none';
-            //                 alert('อัพโหลดไฟล์แล้ว: ' + this.files[0].name); // For demonstration
-            //             }
-            //         });
-            //     }
-            // });
         });
+
+        // --- NEW FUNCTION FOR SUBMISSION ---
+        function confirmAndSubmit() {
+            // In a real application, you would perform validation here,
+            // e.g., check if all required documents are uploaded.
+            // For now, we'll just simulate a successful submission.
+
+            // Get relevant data from URL parameters to pass to the confirmation page
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectName = urlParams.get('projectName');
+            const projectBudget = urlParams.get('projectBudget');
+            const methodText = urlParams.get('methodText');
+
+            // Simulate a request ID
+            const requestId = '#REQ-' + Math.floor(Math.random() * 900000 + 100000); // Random 6-digit number
+
+            // Construct the URL for the submission confirmation page
+            let submissionUrl = `submission_confirmation.html?` +
+                                `projectName=${encodeURIComponent(projectName || '')}` +
+                                `&projectBudget=${encodeURIComponent(projectBudget || '')}` +
+                                `&methodText=${encodeURIComponent(methodText || '')}` +
+                                `&requestId=${encodeURIComponent(requestId)}`;
+            
+            window.location.href = submissionUrl;
+        }
     </script>
 </body>
 </html>
