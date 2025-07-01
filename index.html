@@ -487,7 +487,7 @@
                 <div class="card-title">ศูนย์รวมความรู้ (Knowledge Hub)</div>
                 <div class="card-description">เข้าถึงระเบียบ, แบบฟอร์ม, และคู่มือจัดซื้อจัดจ้างฉบับล่าสุด</div>
                 <div class="card-action">
-                    <a href="#" class="card-button" onclick="goToKnowledgeHub()">
+                    <a href="knowledge_hub.html" class="card-button">
                         <i class="fas fa-search"></i> ค้นหาข้อมูล
                     </a>
                 </div>
@@ -605,10 +605,7 @@
             // In a real app, this would navigate to a "My Requests" page with a filter applied
         }
 
-        function goToKnowledgeHub() {
-            alert('กำลังนำไปที่ Procurement Knowledge Hub');
-            // In a real app, this would navigate to a SharePoint site/page for the knowledge hub
-        }
+        // Removed goToKnowledgeHub() as it's no longer needed for direct link
 
         function viewAllRequests() {
             alert('กำลังแสดงรายการคำขอทั้งหมดของฉัน');
