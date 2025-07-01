@@ -468,36 +468,8 @@
             </p>
             <div id="documentListContainer">
                 <ul class="document-list" id="dynamicDocumentList">
-                    <li class="document-item">
-                        <span class="document-name"><i class="fas fa-file-invoice"></i> ตัวอย่างเอกสาร 1</span>
-                        <div class="document-actions">
-                            <button class="action-button small primary download-item-btn" data-template-url="#">
-                                <i class="fas fa-download"></i> ดาวน์โหลด
-                            </button>
-                            <label class="action-button small secondary upload-item-label">
-                                <input type="file" class="upload-item-input" style="display: none;">
-                                <i class="fas fa-upload"></i> อัพโหลด
-                            </label>
-                            <i class="fas fa-check-circle status-icon uploaded-status" style="display:none;" title="อัพโหลดแล้ว"></i>
-                            <i class="fas fa-times-circle status-icon missing-status" style="display:inline-block;" title="ยังไม่อัพโหลด"></i>
-                        </div>
-                    </li>
-                    <li class="document-item">
-                        <span class="document-name"><i class="fas fa-file-invoice"></i> ตัวอย่างเอกสาร 2</span>
-                        <div class="document-actions">
-                             <button class="action-button small primary download-item-btn" data-template-url="#">
-                                <i class="fas fa-download"></i> ดาวน์โหลด
-                            </button>
-                            <label class="action-button small secondary upload-item-label">
-                                <input type="file" class="upload-item-input" style="display: none;">
-                                <i class="fas fa-upload"></i> อัพโหลด
-                            </label>
-                            <i class="fas fa-check-circle status-icon uploaded-status" style="display:none;" title="อัพโหลดแล้ว"></i>
-                            <i class="fas fa-times-circle status-icon missing-status" style="display:inline-block;" title="ยังไม่อัพโหลด"></i>
-                        </div>
-                    </li>
-                </ul>
-                <p class="no-documents" style="text-align: center; color: #888; font-style: italic; display: none;">ไม่พบเอกสารสำหรับวิธีจัดซื้อจัดจ้างนี้</p>
+                    </ul>
+                <p class="no-documents-found" style="text-align: center; color: #888; font-style: italic; display: none;">ไม่พบรายการเอกสารสำหรับวิธีจัดซื้อจัดจ้างนี้</p>
             </div>
         </div>
 
@@ -514,6 +486,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
+            const dynamicDocumentList = document.getElementById('dynamicDocumentList');
+            const noDocumentsFound = document.getElementById('noDocumentsFound'); // Changed ID
 
             // Function to update a span element's text content
             function updateDisplay(elementId, paramName) {
@@ -540,36 +514,103 @@
             updateDisplay('displayRecommendedMethod', 'methodText');
             updateDisplay('methodNameInChecklist', 'methodText'); // For the checklist description
 
-            // TODO: In a real application, you would fetch documents based on 'methodCode' here
-            // const recommendedMethodCode = urlParams.get('methodCode');
-            // if (recommendedMethodCode) {
-            //     // Example: fetch(`/api/documents?method=${recommendedMethodCode}`)
-            //     // .then(response => response.json())
-            //     // .then(data => {
-            //     //     // Dynamically populate document list here
-            //     // });
-            // } else {
-            //     document.getElementById('dynamicDocumentList').innerHTML = '<li class="no-documents" style="text-align: center; color: #888; font-style: italic;">ไม่พบเอกสารสำหรับวิธีจัดซื้อจัดจ้างนี้</li>';
-            // }
 
-            // Example of how to toggle document status (for demonstration, remove in production)
-            // This part is for static examples in your HTML and can be removed if you fetch real data
-            const documentItems = document.querySelectorAll('.document-item');
-            documentItems.forEach(item => {
-                const uploadInput = item.querySelector('.upload-item-input');
-                const uploadedStatus = item.querySelector('.uploaded-status');
-                const missingStatus = item.querySelector('.missing-status');
+            // --- START OF NEW DOCUMENT LOADING LOGIC ---
+            const documentTemplates = {
+                "direct_purchase_small": [
+                    { name: "ใบปะหน้าขออนุมัติจัดซื้อ (เฉพาะเจาะจงไม่เกิน 50,000)", icon: "fas fa-file-alt", downloadUrl: "#" },
+                    { name: "ใบเสนอราคา", icon: "fas fa-file-invoice-dollar", downloadUrl: "#" }
+                ],
+                "direct_purchase_large": [
+                    { name: "ใบปะหน้าขออนุมัติจัดซื้อ (เฉพาะเจาะจง 50,000 - 500,000)", icon: "fas fa-file-alt", downloadUrl: "#" },
+                    { name: "เอกสาร TOR", icon: "fas fa-file-contract", downloadUrl: "#" },
+                    { name: "ใบเสนอราคา", icon: "fas fa-file-invoice-dollar", downloadUrl: "#" }
+                ],
+                "e_bidding": [
+                    { name: "แบบฟอร์มขออนุมัติประกวดราคา e-bidding", icon: "fas fa-gavel", downloadUrl: "#" },
+                    { name: "เอกสาร TOR/คุณลักษณะเฉพาะ", icon: "fas fa-file-contract", downloadUrl: "#" },
+                    { name: "รายงานผลการพิจารณา", icon: "fas fa-chart-bar", downloadUrl: "#" }
+                ],
+                "negotiated_price": [
+                    { name: "ใบปะหน้าขออนุมัติสอบราคา", icon: "fas fa-file-alt", downloadUrl: "#" },
+                    { name: "เอกสาร TOR/ขอบเขตงาน", icon: "fas fa-file-contract", downloadUrl: "#" }
+                ],
+                "e_market": [
+                    { name: "แบบฟอร์มขออนุมัติจัดซื้อ e-market", icon: "fas fa-shopping-cart", downloadUrl: "#" },
+                    { name: "ใบแจ้งความจำนงค์", icon: "fas fa-file-signature", downloadUrl: "#" }
+                ],
+                "no_match": [] // No documents for a no_match case
+            };
 
-                if (uploadInput) {
-                    uploadInput.addEventListener('change', function() {
-                        if (this.files && this.files.length > 0) {
-                            if (uploadedStatus) uploadedStatus.style.display = 'inline-block';
-                            if (missingStatus) missingStatus.style.display = 'none';
-                            alert('อัพโหลดไฟล์แล้ว: ' + this.files[0].name); // For demonstration
-                        }
-                    });
+            const recommendedMethodCode = urlParams.get('methodCode');
+            const documentsToDisplay = documentTemplates[recommendedMethodCode] || [];
+
+            if (documentsToDisplay.length > 0) {
+                documentsToDisplay.forEach(doc => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'document-item';
+                    listItem.innerHTML = `
+                        <span class="document-name"><i class="${doc.icon}"></i> ${doc.name}</span>
+                        <div class="document-actions">
+                            <button class="action-button small primary download-item-btn" ${doc.downloadUrl ? `data-template-url="${doc.downloadUrl}"` : 'disabled'} ${doc.noDownloadUpload ? 'style="display:none;"' : ''}>
+                                <i class="fas fa-download"></i> ดาวน์โหลด
+                            </button>
+                            <label class="action-button small secondary upload-item-label" ${doc.noDownloadUpload ? 'style="display:none;"' : ''}>
+                                <input type="file" class="upload-item-input" style="display: none;">
+                                <i class="fas fa-upload"></i> อัพโหลด
+                            </label>
+                            <i class="fas fa-check-circle status-icon uploaded-status" style="display:none;" title="อัพโหลดแล้ว"></i>
+                            <i class="fas fa-times-circle status-icon missing-status" style="display:inline-block;" title="ยังไม่อัพโหลด"></i>
+                        </div>
+                    `;
+                    dynamicDocumentList.appendChild(listItem);
+
+                    // Re-attach event listeners for newly created elements
+                    const uploadInput = listItem.querySelector('.upload-item-input');
+                    const uploadedStatus = listItem.querySelector('.uploaded-status');
+                    const missingStatus = listItem.querySelector('.missing-status');
+
+                    if (uploadInput) {
+                        uploadInput.addEventListener('change', function() {
+                            if (this.files && this.files.length > 0) {
+                                if (uploadedStatus) uploadedStatus.style.display = 'inline-block';
+                                if (missingStatus) missingStatus.style.display = 'none';
+                                alert('อัพโหลดไฟล์แล้ว: ' + this.files[0].name); // For demonstration
+                            }
+                        });
+                    }
+                });
+            } else {
+                // If no documents found for the method, display a message
+                const noDocumentsFoundElement = document.querySelector('.no-documents-found');
+                if (noDocumentsFoundElement) {
+                    noDocumentsFoundElement.style.display = 'block';
                 }
-            });
+            }
+            // --- END OF NEW DOCUMENT LOADING LOGIC ---
+
+            // Existing example of how to toggle document status (now applies to dynamic elements too)
+            // This part is for static examples in your HTML and can be removed if you fetch real data
+            // (Moved into the forEach loop above to apply to dynamically created items)
+            // It will also handle the `no_match` case by not showing download/upload buttons for such entries.
+
+            // The following loop is now redundant because event listeners are attached in the forEach loop above.
+            // const documentItems = document.querySelectorAll('.document-item');
+            // documentItems.forEach(item => {
+            //     const uploadInput = item.querySelector('.upload-item-input');
+            //     const uploadedStatus = item.querySelector('.uploaded-status');
+            //     const missingStatus = item.querySelector('.missing-status');
+
+            //     if (uploadInput) {
+            //         uploadInput.addEventListener('change', function() {
+            //             if (this.files && this.files.length > 0) {
+            //                 if (uploadedStatus) uploadedStatus.style.display = 'inline-block';
+            //                 if (missingStatus) missingStatus.style.display = 'none';
+            //                 alert('อัพโหลดไฟล์แล้ว: ' + this.files[0].name); // For demonstration
+            //             }
+            //         });
+            //     }
+            // });
         });
     </script>
 </body>
