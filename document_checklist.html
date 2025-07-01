@@ -201,6 +201,7 @@
             gap: 1rem;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            flex-wrap: wrap; /* Allow wrapping for responsiveness */
         }
 
         .document-item:hover {
@@ -249,7 +250,60 @@
             background-color: #27ae60; /* Green */
         }
 
-        /* Action Buttons */
+        /* Action Buttons for each item */
+        .action-buttons-item {
+            display: flex;
+            gap: 0.8rem;
+            margin-left: auto; /* Push to the right */
+            flex-wrap: wrap; /* Allow wrapping */
+            justify-content: flex-end; /* Align buttons to the right */
+        }
+
+        .action-button-item {
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+            border: 1px solid;
+            background-color: white;
+            color: #555;
+            text-decoration: none;
+            text-align: center;
+            justify-content: center;
+            white-space: nowrap; /* Prevent button text from wrapping */
+        }
+
+        .action-button-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .download-button {
+            border-color: #3498db;
+            color: #3498db;
+        }
+
+        .download-button:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .edit-word-button {
+            border-color: #2c3e50;
+            color: #2c3e50;
+        }
+
+        .edit-word-button:hover {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        /* Overall Action Buttons */
         .action-buttons {
             display: flex;
             justify-content: center;
@@ -336,6 +390,12 @@
             .document-status {
                 margin-top: 0.5rem;
                 align-self: flex-end; /* Align status to the right bottom */
+            }
+            .action-buttons-item {
+                width: 100%; /* Take full width on small screens */
+                justify-content: flex-start; /* Align left */
+                margin-left: 0;
+                margin-top: 1rem; /* Space from details */
             }
             .action-buttons {
                 flex-direction: column;
@@ -431,62 +491,62 @@
                 name: 'วิธีเฉพาะเจาะจง',
                 description: 'เหมาะสำหรับพัสดุ/งานที่มีผู้ขายจำกัด, วงเงินไม่สูง, หรือมีความจำเป็นเร่งด่วนเป็นพิเศษ',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
-                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required' },
-                    { title: 'ใบเสนอราคา/ขอบเขตงาน (TOR)', description: 'เอกสารเสนอราคาจากผู้ขาย หรือรายละเอียดงาน', status: 'required' },
-                    { title: 'เอกสารประกอบการพิจารณาผู้ขาย', description: 'สำเนาทะเบียนพาณิชย์, หนังสือรับรองบริษัท (ถ้ามี)', status: 'optional' },
-                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required' }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/specific_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง.docx' },
+                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required', templateUrl: 'templates/specific_pr_po.docx', templateFileName: 'ใบขออนุมัติซื้อ_จ้าง.docx' },
+                    { title: 'ใบเสนอราคา/ขอบเขตงาน (TOR)', description: 'เอกสารเสนอราคาจากผู้ขาย หรือรายละเอียดงาน', status: 'required', templateUrl: 'templates/specific_tor.docx', templateFileName: 'ใบเสนอราคา_ขอบเขตงาน.docx' },
+                    { title: 'เอกสารประกอบการพิจารณาผู้ขาย', description: 'สำเนาทะเบียนพาณิชย์, หนังสือรับรองบริษัท (ถ้ามี)', status: 'optional', templateUrl: '', templateFileName: '' }, // No template for this, just info
+                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required', templateUrl: 'templates/specific_report.docx', templateFileName: 'รายงานผลการพิจารณา.docx' }
                 ]
             },
             'e-market': {
                 name: 'วิธีตลาดอิเล็กทรอนิกส์ (e-market)',
                 description: 'เหมาะสำหรับสินค้า/บริการที่มีมาตรฐานทั่วไป และอยู่ในบัญชี e-catalog',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
-                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required' },
-                    { title: 'ใบเสนอราคาจาก e-market', description: 'ใบเสนอราคาที่ได้จากระบบ e-market', status: 'required' },
-                    { title: 'แคตตาล็อกสินค้า/รายละเอียดผลิตภัณฑ์', description: 'เอกสารแสดงคุณสมบัติของสินค้าที่เลือก', status: 'optional' },
-                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required' }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/e-market_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง_eMarket.docx' },
+                    { title: 'ใบขออนุมัติซื้อ/จ้าง (PR/PO)', description: 'เอกสารแสดงความต้องการจัดซื้อ/จัดจ้าง', status: 'required', templateUrl: 'templates/e-market_pr_po.docx', templateFileName: 'ใบขออนุมัติซื้อ_จ้าง_eMarket.docx' },
+                    { title: 'ใบเสนอราคาจาก e-market', description: 'ใบเสนอราคาที่ได้จากระบบ e-market', status: 'required', templateUrl: '', templateFileName: '' }, // No template for this, generated by system
+                    { title: 'แคตตาล็อกสินค้า/รายละเอียดผลิตภัณฑ์', description: 'เอกสารแสดงคุณสมบัติของสินค้าที่เลือก', status: 'optional', templateUrl: '', templateFileName: '' }, // No template for this, just info
+                    { title: 'รายงานผลการพิจารณา', description: 'บันทึกรายงานผลการพิจารณาและอนุมัติ', status: 'required', templateUrl: 'templates/e-market_report.docx', templateFileName: 'รายงานผลการพิจารณา_eMarket.docx' }
                 ]
             },
             'e-bidding': {
                 name: 'วิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)',
                 description: 'เหมาะสำหรับพัสดุ/งานทั่วไปที่มีมูลค่าสูงและมีผู้ขายหลายราย',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
-                    { title: 'ร่างประกาศ/ร่างเอกสารประกวดราคา (TOR)', description: 'เอกสารขอบเขตงานและคุณสมบัติผู้เข้าแข่งขัน', status: 'required' },
-                    { title: 'รายงานผลการพิจารณาการประกวดราคา', description: 'บันทึกสรุปผลการพิจารณาจากคณะกรรมการ', status: 'required' },
-                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required' },
-                    { title: 'หลักประกันซอง/หลักประกันสัญญา (ถ้ามี)', description: 'เอกสารแสดงหลักประกันจากผู้เสนอราคา', status: 'optional' }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/e-bidding_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง_eBidding.docx' },
+                    { title: 'ร่างประกาศ/ร่างเอกสารประกวดราคา (TOR)', description: 'เอกสารขอบเขตงานและคุณสมบัติผู้เข้าแข่งขัน', status: 'required', templateUrl: 'templates/e-bidding_tor.docx', templateFileName: 'ร่างประกาศ_TOR_eBidding.docx' },
+                    { title: 'รายงานผลการพิจารณาการประกวดราคา', description: 'บันทึกสรุปผลการพิจารณาจากคณะกรรมการ', status: 'required', templateUrl: 'templates/e-bidding_report.docx', templateFileName: 'รายงานผลการพิจารณา_eBidding.docx' },
+                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required', templateUrl: '', templateFileName: '' }, // No template for this, actual contract
+                    { title: 'หลักประกันซอง/หลักประกันสัญญา (ถ้ามี)', description: 'เอกสารแสดงหลักประกันจากผู้เสนอราคา', status: 'optional', templateUrl: '', templateFileName: '' }
                 ]
             },
             'selection': {
                 name: 'วิธีคัดเลือก',
                 description: 'เหมาะสำหรับพัสดุ/งานที่ซับซ้อน หรือต้องคำนึงถึงคุณภาพ/เทคนิคเป็นพิเศษ',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required' },
-                    { title: 'เอกสารเชิญชวน/เอกสารคัดเลือก (RfP)', description: 'เอกสารสำหรับเชิญชวนผู้ขายที่ถูกคัดเลือก', status: 'required' },
-                    { title: 'แผนการดำเนินงาน/Proposal จากผู้ขาย', description: 'ข้อเสนอทางเทคนิคและราคาจากผู้ขาย', status: 'required' },
-                    { title: 'รายงานผลการคัดเลือก', description: 'บันทึกสรุปผลการพิจารณาและเหตุผลการคัดเลือก', status: 'required' },
-                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required' }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง', description: 'แบบฟอร์มบันทึกข้อความเพื่อขออนุมัติ', status: 'required', templateUrl: 'templates/selection_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง_Selection.docx' },
+                    { title: 'เอกสารเชิญชวน/เอกสารคัดเลือก (RfP)', description: 'เอกสารสำหรับเชิญชวนผู้ขายที่ถูกคัดเลือก', status: 'required', templateUrl: 'templates/selection_rfp.docx', templateFileName: 'เอกสารเชิญชวน_RfP_Selection.docx' },
+                    { title: 'แผนการดำเนินงาน/Proposal จากผู้ขาย', description: 'ข้อเสนอทางเทคนิคและราคาจากผู้ขาย', status: 'required', templateUrl: '', templateFileName: '' }, // From vendor
+                    { title: 'รายงานผลการคัดเลือก', description: 'บันทึกสรุปผลการพิจารณาและเหตุผลการคัดเลือก', status: 'required', templateUrl: 'templates/selection_report.docx', templateFileName: 'รายงานผลการคัดเลือก_Selection.docx' },
+                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required', templateUrl: '', templateFileName: '' } // Actual contract
                 ]
             },
             'special': {
                 name: 'วิธีพิเศษ',
                 description: 'สำหรับกรณีพิเศษที่ต้องเร่งด่วนมาก หรือเป็นงานที่มีความจำเป็นเร่งด่วนภัยพิบัติ',
                 documents: [
-                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง (กรณีพิเศษ)', description: 'ระบุเหตุผลความจำเป็นและเร่งด่วน', status: 'required' },
-                    { title: 'รายงานการสำรวจราคาจากผู้ขาย', description: 'เอกสารแสดงการสืบราคาจากผู้ขาย', status: 'required' },
-                    { title: 'ใบเสนอราคา/ขอบเขตงาน (กรณีพิเศษ)', description: 'เอกสารเสนอราคาจากผู้ขาย', status: 'required' },
-                    { title: 'หลักฐานการเกิดเหตุฉุกเฉิน/ภัยพิบัติ', description: 'เช่น รูปภาพ, รายงานสถานการณ์', status: 'required' },
-                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required' }
+                    { title: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง (กรณีพิเศษ)', description: 'ระบุเหตุผลความจำเป็นและเร่งด่วน', status: 'required', templateUrl: 'templates/special_approval_note.docx', templateFileName: 'บันทึกเสนอขออนุมัติจัดซื้อจัดจ้าง_Special.docx' },
+                    { title: 'รายงานการสำรวจราคาจากผู้ขาย', description: 'เอกสารแสดงการสืบราคาจากผู้ขาย', status: 'required', templateUrl: '', templateFileName: '' }, // From survey
+                    { title: 'ใบเสนอราคา/ขอบเขตงาน (กรณีพิเศษ)', description: 'เอกสารเสนอราคาจากผู้ขาย', status: 'required', templateUrl: '', templateFileName: '' }, // From vendor
+                    { title: 'หลักฐานการเกิดเหตุฉุกเฉิน/ภัยพิบัติ', description: 'เช่น รูปภาพ, รายงานสถานการณ์', status: 'required', templateUrl: '', templateFileName: '' }, // Evidence
+                    { title: 'สำเนาสัญญา/บันทึกข้อตกลง', description: 'เอกสารสัญญาที่ลงนามแล้ว', status: 'required', templateUrl: '', templateFileName: '' } // Actual contract
                 ]
             },
             'default': { // Fallback if method is not found
                 name: 'ไม่พบข้อมูลวิธีจัดซื้อจัดจ้าง',
                 description: 'กรุณากลับไปหน้าก่อนหน้าเพื่อเลือกวิธีจัดซื้อจัดจ้างอีกครั้ง',
                 documents: [
-                    { title: 'ไม่พบเอกสารที่เกี่ยวข้อง', description: 'กรุณาติดต่อผู้ดูแลระบบ', status: 'required' }
+                    { title: 'ไม่พบเอกสารที่เกี่ยวข้อง', description: 'กรุณาติดต่อผู้ดูแลระบบ', status: 'required', templateUrl: '', templateFileName: '' }
                 ]
             }
         };
@@ -544,6 +604,25 @@
                         iconClass = 'fa-solid fa-file';
                 }
 
+                let actionButtonsHtml = '';
+                // Only show buttons if templateUrl is provided
+                if (doc.templateUrl) {
+                    actionButtonsHtml = `
+                        <div class="action-buttons-item">
+                            <button class="action-button-item download-button"
+                                    data-file-url="${doc.templateUrl}"
+                                    data-file-name="${doc.templateFileName}">
+                                <i class="fas fa-download"></i> ดาวน์โหลด Template
+                            </button>
+                            <button class="action-button-item edit-word-button"
+                                    data-file-url="${doc.templateUrl}"
+                                    data-file-name="${doc.templateFileName}">
+                                <i class="fas fa-file-word"></i> แก้ไขผ่าน Word
+                            </button>
+                        </div>
+                    `;
+                }
+
                 li.innerHTML = `
                     <div class="document-icon"><i class="${iconClass}"></i></div>
                     <div class="document-details">
@@ -551,8 +630,44 @@
                         <p>${doc.description}</p>
                     </div>
                     <span class="document-status ${statusClass}">${statusText}</span>
+                    ${actionButtonsHtml}
                 `;
                 documentList.appendChild(li);
+            });
+
+            // Add event listeners for the newly created buttons
+            document.querySelectorAll('.download-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const fileUrl = this.dataset.fileUrl;
+                    const fileName = this.dataset.fileName;
+                    // Create a temporary anchor element for download
+                    const a = document.createElement('a');
+                    a.href = fileUrl;
+                    a.download = fileName; // Suggests a filename for download
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    alert(`กำลังดาวน์โหลด: ${fileName}`);
+                });
+            });
+
+            document.querySelectorAll('.edit-word-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const fileUrl = this.dataset.fileUrl;
+                    const fileName = this.dataset.fileName;
+                    // Attempt to open in Word using Office URI Scheme
+                    // This relies on the user's system recognizing the ms-word protocol
+                    // and may not work in all browsers/configurations.
+                    // For true collaboration/editing, SharePoint/OneDrive integration is usually required.
+                    const wordEditUrl = `ms-word:ofe|u|${encodeURIComponent(fileUrl)}`;
+                    
+                    try {
+                        window.location.href = wordEditUrl; // Try to open directly
+                        alert(`พยายามเปิดไฟล์ ${fileName} เพื่อแก้ไขใน Microsoft Word...`);
+                    } catch (e) {
+                        alert(`ไม่สามารถเปิดไฟล์ ${fileName} ใน Microsoft Word โดยตรงได้\nโปรดตรวจสอบว่าคุณได้ติดตั้ง Microsoft Word และเบราว์เซอร์ของคุณรองรับการเปิดผ่านโปรโตคอล 'ms-word:'`);
+                    }
+                });
             });
         }
 
