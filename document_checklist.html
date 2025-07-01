@@ -314,8 +314,9 @@
             background-color: #27ae60; /* Green */
         }
 
-        .template-button {
-            background: #4CAF50; /* Green for download */
+        /* Styles for the Template button/trigger */
+        .template-trigger-button {
+            background: #4CAF50; /* Green for template action */
             color: white;
             border: none;
             padding: 0.6rem 1rem;
@@ -323,15 +324,137 @@
             font-size: 0.9rem;
             cursor: pointer;
             transition: background-color 0.2s ease, transform 0.2s ease;
-            text-decoration: none; /* For links */
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .template-button:hover {
+        .template-trigger-button:hover {
             background-color: #388e3c;
             transform: translateY(-1px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 200; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto; /* Auto margin for centering */
+            padding: 2.5rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            text-align: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .modal-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-action-button {
+            padding: 0.9rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none; /* For links */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .download-action {
+            background: #3498db; /* Blue */
+            color: white;
+            border: none;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        .download-action:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .edit-action {
+            background: #27ae60; /* Green */
+            color: white;
+            border: none;
+            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+        }
+        .edit-action:hover {
+            background-color: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        .modal-note {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 1.5rem;
+            line-height: 1.4;
+        }
+        .modal-note i {
+            margin-right: 5px;
+            color: #666;
         }
 
         /* Action Buttons */
@@ -438,6 +561,9 @@
             .action-button {
                 width: 100%;
             }
+            .modal-content {
+                padding: 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -524,8 +650,29 @@
         </div>
     </div>
 
+    <div id="templateModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h3><i class="fas fa-file-alt"></i> เลือกรูปแบบการจัดการเอกสาร</h3>
+            <p id="modalFileName">ไฟล์: [ชื่อไฟล์]</p>
+            <div class="modal-actions">
+                <a id="downloadTemplateBtn" href="#" class="modal-action-button download-action" download>
+                    <i class="fas fa-download"></i> ดาวน์โหลด
+                </a>
+                <a id="editInWordBtn" href="#" class="modal-action-button edit-action">
+                    <i class="fas fa-edit"></i> แก้ไขใน Word Desktop
+                </a>
+            </div>
+            <p class="modal-note">
+                <i class="fas fa-info-circle"></i> การแก้ไขใน Word Desktop จะทำงานได้ดีที่สุดในสภาพแวดล้อม Microsoft 365/SharePoint
+            </p>
+        </div>
+    </div>
+
     <script>
         // Document definitions for each procurement method including template URLs
+        // **IMPORTANT:** Ensure these template URLs lead to actual files in your 'templates' folder.
+        // For testing, they can be placeholder files like .txt renamed to .docx.
         const documentRequirements = {
             'specific': {
                 name: 'วิธีเฉพาะเจาะจง',
@@ -676,7 +823,6 @@
             return map[code] || code;
         }
 
-
         // Function to load documents based on URL parameter
         function loadDocumentChecklist() {
             const requestedMethodCode = getUrlParameter('method');
@@ -737,10 +883,17 @@
                         iconClass = 'fa-solid fa-file';
                 }
 
-                const templateButtonHtml = doc.templateUrl ?
-                    `<a href="${doc.templateUrl}" class="template-button" download>
-                        <i class="fas fa-download"></i> ดาวน์โหลด Template
-                    </a>` : '';
+                let templateButtonHtml = '';
+                if (doc.templateUrl) {
+                    const filename = doc.templateUrl.split('/').pop(); // Extract filename from URL
+                    // Use a span/button to trigger the modal, passing filename and URLs
+                    templateButtonHtml = `
+                        <button class="template-trigger-button" 
+                                onclick="openModal('${filename}', '${doc.templateUrl}')">
+                            <i class="fas fa-file-alt"></i> ${filename}
+                        </button>
+                    `;
+                }
 
                 li.innerHTML = `
                     <div class="document-icon"><i class="${iconClass}"></i></div>
@@ -757,14 +910,49 @@
             });
         }
 
+        // --- Modal Functions ---
+        const modal = document.getElementById('templateModal');
+        const modalFileNameSpan = document.getElementById('modalFileName');
+        const downloadTemplateBtn = document.getElementById('downloadTemplateBtn');
+        const editInWordBtn = document.getElementById('editInWordBtn');
+
+        function openModal(filename, templateUrl) {
+            modalFileNameSpan.textContent = `ไฟล์: ${filename}`;
+            
+            // Set download link
+            downloadTemplateBtn.href = templateUrl;
+            
+            // Set edit in Word link using ms-word protocol
+            // **Important**: This protocol requires Office apps to be installed and correctly configured on the user's machine,
+            // and the file to be accessible via a web URL. For a local file system mockup, this might not always work directly
+            // due to browser security or lack of protocol handler for local paths.
+            // In a real Power Platform/SharePoint environment, this URL would be provided by SharePoint itself.
+            editInWordBtn.href = `ms-word:ofe|u|${window.location.origin}/${templateUrl}`; // Construct absolute URL for ms-word protocol
+
+            modal.style.display = "flex"; // Show the modal
+        }
+
+        function closeModal() {
+            modal.style.display = "none"; // Hide the modal
+        }
+
+        // Close modal if user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
         // Function for submitting documents (placeholder)
         function submitDocuments() {
-            alert('กำลังส่งเอกสารและข้อมูล (Mockup)');
-            // In a real application, this would handle actual document uploads
-            // and submission to a backend system.
-            // You might then navigate to a summary page or confirmation.
-            // For now, let's navigate to the final_summary.html if it exists
-            window.location.href = 'final_summary.html'; 
+            alert('กำลังส่งเอกสารและข้อมูลเข้าสู่ระบบ...');
+            
+            // Re-get the parameters that were passed to this page
+            const requestedMethodCode = getUrlParameter('method');
+            const encodedFormData = getUrlParameter('formData');
+
+            // Navigate to the final summary page, passing the same parameters
+            window.location.href = `final_summary.html?method=${requestedMethodCode}&formData=${encodedFormData}`;
         }
 
         // Load documents and display details when the page loads
