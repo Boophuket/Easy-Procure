@@ -583,26 +583,38 @@
         }
 
         // Function to proceed to the next step (e.g., Checklist page)
-     function proceedToChecklist() {
-            // In a real application, you would first save the form data
-            // and then navigate to the next page, passing the Request ID or similar.
-            const formData = {
-                projectName: document.getElementById('projectName').value,
-                projectBudget: document.getElementById('projectBudget').value,
-                urgency: document.getElementById('urgency').value,
-                procurementType: document.getElementById('procurementType').value,
-                vendorChar: document.getElementById('vendorChar').value,
-                projectDescription: document.getElementById('projectDescription').value,
-                contactPerson: document.getElementById('contactPerson').value,
-                contactTel: document.getElementById('contactTel').value,
-                recommendedMethod: document.getElementById('recommendationResult').querySelector('h4') ? document.getElementById('recommendationResult').querySelector('h4').textContent.replace(' ', '').trim() : 'N/A' // Get recommended method text
-            };
+    function proceedToChecklist() {
+            const recommendedMethodElement = document.getElementById('recommendationResult').querySelector('.recommendation-method h4');
+            let recommendedMethodCode = 'default'; // Fallback
 
-            console.log('Form Data:', formData);
-            alert('บันทึกข้อมูลและกำลังนำไปหน้า Checklist (จำลอง)');
+            if (recommendedMethodElement) {
+                // Extract the method name, e.g., "วิธีเฉพาะเจาะจง"
+                const fullMethodText = recommendedMethodElement.textContent.trim();
+                // Find the key in methodDefinitions that matches the full method text
+                for (const key in methodDefinitions) {
+                    if (methodDefinitions[key].name === fullMethodText.replace('💡', '').trim()) { // Remove the icon from the text
+                        recommendedMethodCode = key;
+                        break;
+                    }
+                }
+            }
+            
+            // Validate required form fields before proceeding
+            const projectName = document.getElementById('projectName').value.trim();
+            const projectBudget = document.getElementById('projectBudget').value.trim();
+            const urgency = document.getElementById('urgency').value;
+            const procurementType = document.getElementById('procurementType').value;
+            const vendorChar = document.getElementById('vendorChar').value;
+            const contactPerson = document.getElementById('contactPerson').value.trim();
+            const contactTel = document.getElementById('contactTel').value.trim();
 
-            // Simulate navigation to the next page (e.g., Checklist)
-            // window.location.href = 'checklist.html?requestId=ABC123';
+            if (!projectName || !projectBudget || !urgency || !procurementType || !vendorChar || !contactPerson || !contactTel) {
+                alert('กรุณากรอกข้อมูลในช่องที่มีเครื่องหมายดอกจัน (*) ให้ครบถ้วนก่อนดำเนินการต่อ');
+                return; // Stop function execution
+            }
+
+            // Navigate to the document checklist page, passing the recommended method code
+            window.location.href = `document_checklist.html?method=${recommendedMethodCode}`;
         }
 
         // Initial call to hide recommendation until inputs are filled
